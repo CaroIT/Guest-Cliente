@@ -1,0 +1,64 @@
+page-resumen {
+    ion-content {
+        background-image: url('../assets/imgs/fondo_r3.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        //background-position: center;
+        width: 100%;
+        position: relative;
+        border: none;
+    }
+    ._card {
+        background-color: rgba(0, 0, 0, 0.65);
+    }
+    .sucursal {
+        color: #eccc68;
+        font-size: 2rem;
+    }
+    .text_color {
+        color: #fff;
+    }
+    .text_colortwo {
+        color: #000;
+    }
+    .text_num {
+        font-size: 2rem;
+        color: #fff;
+    }
+    .consumo {
+        font-size: 2rem;
+        color: #fff;
+    }
+    .consumodetalle {
+        font-size: 1.3rem;
+        color: #fff;
+    }
+    .consumoT {
+        font-size: 1.8rem;
+        color: #fff;
+    }
+    .consumoR {
+        font-size: 1.8rem;
+        color: #eccc68;
+    }
+    ._footer {
+        background-color: #000000c2;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 10%;
+        color: rgb(255, 255, 255);
+    }
+    .fondorow {
+        background-color: #222;
+    }
+    ion-footer {
+        background-color: #222222;
+    }
+    .botontotal {
+        width: 70%;
+        height: 40%;
+        border-radius: 15px;
+        margin-left: -70%;
+    }
+}

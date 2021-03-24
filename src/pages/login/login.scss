@@ -1,0 +1,47 @@
+page-login {
+  ion-content{
+    background-image: url('../assets/imgs/fondo_r3.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+      //background-position: center;
+    width: 100%;
+    position: relative;
+    border: none;
+  }
+  .blanco{
+    color: #ffffff;
+    font: bold;
+    font-weight: 900;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,f1f1f1+50,e1e1e1+100,f6f6f6+100,e1e1e1+100&0.5+0,0.5+100 */
+  background: -moz-linear-gradient(-45deg, rgba(255,255,255,0.5) 0%, rgba(241,241,241,0.5) 50%, rgba(225,225,225,0.5) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(-45deg, rgba(255,255,255,0.5) 0%,rgba(241,241,241,0.5) 50%,rgba(225,225,225,0.5) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg, rgba(255,255,255,0.5) 0%,rgba(241,241,241,0.5) 50%,rgba(225,225,225,0.5) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80ffffff', endColorstr='#80e1e1e1',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  border-radius: 10px;
+
+  }
+  .margen{
+      margin-top: 30px;
+    }
+    .text{
+      color: #ffffff;
+      font: bold;
+      font-weight: 900;
+      text-align: center;
+    }
+    .ima{
+      height: 25px;
+      width: 25px;
+      background-color: transparent;
+      
+    }
+    .esquina{
+      text-align: right;
+      margin-left: 40%;
+      background-color: transparent;
+
+    }
+  .button{
+    background-color: transparent;
+  }
+}

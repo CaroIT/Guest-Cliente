@@ -1,0 +1,201 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>resumen</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-card class="_card">
+        <ion-card-content>
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-3>
+                        <div text-center text-uppercase class="text_color">
+                            {{mes}}
+                        </div>
+                        <div text-center class="text_num">
+                            <b>{{diasN}}</b>
+                        </div>
+                        <div text-center class="text_color">
+                            {{dias}}
+                        </div>
+                    </ion-col>
+                    <ion-col col-9>
+                        <div class="sucursal">
+                            {{s.displayName}}
+                        </div>
+                        <div class="text_color">
+                            <ion-icon name="person"></ion-icon> &nbsp; Reservación para {{r.numPersonas}} personas
+                        </div>
+                        <div text-uppercase class="text_color">
+                            <ion-icon name="time"></ion-icon> &nbsp; {{r.hora}}
+                        </div>
+                        <div text-uppercase class="text_color">
+                            <!-- <img src="./assets/imgs/icons/mesa.png" style="width: 6%;">  -->
+                            <ion-icon name="wine"></ion-icon> &nbsp;&nbsp; {{z.nombre}}
+                        </div>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card class="_card">
+        <ion-card-content>
+            <ion-grid>
+                <ion-row>
+                    <ion-col text-center col-3>
+                        <div class="text_color">
+                            Cupón
+                        </div>
+                    </ion-col>
+                    <ion-col text-right col-9>
+                        <div class="text_color">
+                            <form [formGroup]="myForm" novalidate class="">
+                                <ion-list>
+                                    <ion-item>
+                                        <ion-input type="numer" [(ngModel)]="data.cvc" name="cvc" formControlName="cvc">
+                                        </ion-input>
+                                    </ion-item>
+                                </ion-list>
+                            </form>
+                            <button ion-button block round color="dark" style="height: 35px;"
+                                (click)="verificarcodigo(s.uidSucursal, total)"
+                                [disabled]="!myForm.valid">Verificar</button>
+                        </div>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-card-content>
+    </ion-card>
+    <ion-card class="_card">
+        <ion-card-content>
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-12>
+                        <div text-center class="consumoR">
+                            <ion-icon name="wine"></ion-icon> &nbsp; Consumo de la reservación
+                        </div>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col col-3>
+                        <div text-center class="consumodetalle">
+                            <ion-icon></ion-icon> &nbsp; Producto
+                        </div>
+                    </ion-col>
+                    <ion-col col-3>
+                        <div text-center class="consumodetalle">
+                            <ion-icon></ion-icon> &nbsp; Costo
+                        </div>
+                    </ion-col>
+                    <ion-col col-3>
+                        <div text-center class="consumodetalle">
+                            <ion-icon></ion-icon> &nbsp; Cantidad
+                        </div>
+                    </ion-col>
+                    <ion-col col-3>
+                        <div text-center class="consumodetalle">
+                            <ion-icon></ion-icon> &nbsp; Total
+                        </div>
+                    </ion-col>
+                </ion-row>
+                <ion-row *ngFor="let producto of productos">
+                    <ion-col col-3>
+                        <div text-center class="consumodetalle">
+                            {{producto.producto}}
+                        </div>
+                    </ion-col>
+                    <ion-col col-3>
+                        <div text-center class="consumodetalle">
+                            {{producto.costo | currency}}
+                        </div>
+                    </ion-col>
+                    <ion-col col-3>
+                        <div text-center class="consumodetalle">
+                            {{producto.cantidad}}
+                        </div>
+                    </ion-col>
+                    <ion-col col-3>
+                        <div text-center class="consumodetalle">
+                            {{producto.total | currency}}
+                        </div>
+                    </ion-col>
+                </ion-row>
+                <ion-row class="fondorow">
+                    <ion-col col-7 class="fondorow">
+                        <div text-center class="consumoT">
+                            <ion-icon name="cash"></ion-icon> &nbsp; Consumo {{s.totalReservacion}}
+                        </div>
+                    </ion-col>
+                    <ion-col col-5 class="fondorow">
+                        <div text-center class="consumoT">
+                            {{total | currency}}
+                        </div>
+                    </ion-col>
+                    <!-- <ion-col col-5 class="fondorow" *ngFor="let cupon of coupons | async ">
+                        <div text-center class="consumoT">
+                            {{cupon.codigoCupon}}
+                        </div>
+                    </ion-col> -->
+                </ion-row>
+
+
+                <div *ngIf="ocultar1">
+                    <ion-row class="fondorow">
+                        <ion-col col-7 class="fondorow">
+                            <div text-center class="consumoT">
+                                <ion-icon name="cash"></ion-icon> &nbsp; Total a pagar
+                            </div>
+                        </ion-col>
+                        <ion-col col-5 class="fondorow">
+                            <div text-center class="consumoT">
+                                {{resta | currency}}
+                            </div>
+                        </ion-col>
+                    </ion-row>
+                </div>
+
+                <!-- <ion-row class="fondorow" *ngFor="let item of _coupon | async ">
+                    <ion-col col-7 class="fondorow">
+                        <div text-center class="consumoT">
+                            <ion-icon name="cash"></ion-icon> &nbsp; Valor del Cupón
+                        </div>
+                    </ion-col>
+                    <ion-col col-5 class="fondorow">
+                        <div text-center class="consumoT" disable>
+                            $ {{item.valorCupon}}
+                        </div>
+                        <br>
+                        <button block round class="botontotal" (click)="consumototal(total, item.valorCupon, item.uid, item.numCupones)">Total</button>
+
+                        <div text-center class="consumoT" *ngFor="let reservacion of _reser | async " style="margin-top: -23px;">
+                            $ {{reservacion.totalReservacion}}
+                        </div>
+                    </ion-col>
+                </ion-row> -->
+            </ion-grid>
+            <br><br><br>
+            <!--<div class="_footer">
+                <div text-center margin>
+                    Al selecionar "Reservar", aceptas los términos y condiciones de los <a>Términos de uso</a> y la
+                    <a>Política
+                        de
+                        privacidad</a> de Guest Resy
+                </div>
+            </div>-->
+        </ion-card-content>
+
+    </ion-card>
+     <div class="_footer">
+        <div text-center margin>
+            Al selecionar "Continuar", aceptas los términos y condiciones de los <a>Términos de uso</a> y la <a>Política
+                de
+                privacidad</a> de Guest Resy
+        </div>
+    </div>
+</ion-content>
+
+<ion-footer>
+    <button ion-button full color="dark" (click)="saveReserva()">Continuar</button>
+</ion-footer>

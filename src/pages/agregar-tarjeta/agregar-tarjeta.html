@@ -1,0 +1,74 @@
+<ion-header class="esquina">
+    <ion-navbar class="borde">
+       <ion-row >
+         <ion-col>
+            <button ion-fab color="negro" (click)="(goBack())"><ion-icon name="arrow-back" color="naranja" style="zoom:1.2;"></ion-icon></button>
+         </ion-col>
+         <ion-col>
+             <ion-title class="texto-alineado"><h6>REGISTRAR TARJETA</h6></ion-title>
+         </ion-col>
+         <ion-col>
+             <button class="esquina">
+              <img src="./assets/imgs/icons/corona.png" class="ima">
+             </button>
+         </ion-col>
+       </ion-row>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <form [formGroup]="myForm" novalidate class="">
+   <ion-list>
+       <ion-item>
+         <ion-label class="blanco_1">Número <p class="blanco_2">*16 dígitos</p></ion-label>
+         <ion-input type="tel" [(ngModel)]="numTarjeta" name="numTarjeta" formControlName="numTarjeta" minlength="16" maxlength="16" ></ion-input>
+       </ion-item>
+       <br>
+       <ion-item>
+         <ion-label class="blanco_1">Mes expiración</ion-label>
+         <ion-select [(ngModel)]="mesExp" multiple="false" cancelText="Cancelar" okText="Aceptar" name="mesExp" formControlName="mesExp">
+             <div>
+               <ion-option value="1">Enero</ion-option>
+               <ion-option value="2">Febrero</ion-option>
+               <ion-option value="3">Marzo</ion-option>
+               <ion-option value="4">Abril</ion-option>
+               <ion-option value="5">Mayo</ion-option>
+               <ion-option value="6">Junio</ion-option>
+               <ion-option value="7">Julio</ion-option>
+               <ion-option value="8">Agosto</ion-option>
+               <ion-option value="9">Septiembre</ion-option>
+               <ion-option value="10">Octubre</ion-option>
+               <ion-option value="11">Noviembre</ion-option>
+               <ion-option value="12">Diciembre</ion-option>
+             </div>
+         </ion-select>
+         <!--<ion-datetime displayFormat="M" doneText=Aceptar cancelText=Cancelar [(ngModel)]="mesExp" name="mesExp" formControlName="mesExp"></ion-datetime>-->
+         <!--<ion-input type="tel" [(ngModel)]="mesExp" name="mesExp" formControlName="mesExp" maxlength="2"></ion-input>-->
+       </ion-item>
+       <br>
+       <ion-item>
+         <ion-label class="blanco_1">Año expiración</ion-label>
+         <ion-datetime displayFormat="YYYY" min='{{ fechaActualanio }}' max='2080' doneText=Aceptar cancelText=Cancelar [(ngModel)]="anioExp" name="anioExp" formControlName="anioExp"></ion-datetime>
+       </ion-item>
+       <br>
+       <ion-item>
+         <ion-label class="blanco_1">CVC<p class="blanco_2">*3 dígitos</p></ion-label>
+         <ion-input type="tel" [(ngModel)]="cvc" name="cvc" formControlName="cvc" minlength="3" maxlength="3"></ion-input>
+       </ion-item>
+    </ion-list>
+  </form>
+  <ion-footer no-border>
+      <ion-toolbar>
+          <ion-grid>
+              <ion-row>
+                <ion-col col-6>
+                </ion-col>
+                <ion-col col-6>
+                      <div text-center>
+                          <button ion-button block round color="dark" (click)="tarjetaAdd()" [disabled]="!myForm.valid">Registrar</button>
+                      </div>
+                </ion-col>
+              </ion-row>
+          </ion-grid>
+      </ion-toolbar>
+  </ion-footer>
+ </ion-content>

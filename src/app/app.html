@@ -1,0 +1,62 @@
+<ion-menu [content]="content">
+    <ion-content class="menu-content" padding>
+        <h4></h4>
+        <div>
+            <div class="margen3_app">
+                <div *ngFor="let users of nombresUsers">
+                    <div *ngIf="users.uid==user.uid">
+                        <img class="imgRedonda" [src]="users.photoURL">
+                    </div>
+                </div>
+            </div>
+            <div class="margen2_app">
+                <h6 class="mayusculas">{{user.nombre}}</h6>
+            </div>
+            <div class="margen1_app">
+                <img class="cate" src="../assets/imgs/icons/gold_guest.png">
+            </div>
+        </div>
+        <div class="borde"></div>
+        <div class="margen4_app">
+            <ion-list class="menu-list">
+                <button ion-item (click)="irHome( home )">
+                    <img class="home" src="../assets/imgs/icons/home.png"> <div class="home2"> Home</div>
+                </button>
+                <!-- <button ion-item (click)="irNosotros( nosotros )">
+                  <img class="home" src="../assets/imgs/icons/corona.png">  Nosotros
+                  </button> -->
+                <!--<button ion-item (click)="irReservacion( reservacion )">
+                    <img class="home" src="../assets/imgs/icons/time.png"> Reservaciones
+                  </button>-->
+                <button ion-item (click)="irMisreservaciones( reservaciones )">
+                        <img class="home" src="../assets/imgs/icons/sucursal.png"><div class="home2"> Mis reservaciones</div>
+               </button>
+                <!--<button ion-item (click)="irCarta( carta )">
+                    <img class="home" src="../assets/imgs/icons/champagne.png">  Carta Móvil
+                  </button>
+                -->
+                <button ion-item (click)="irPerfil( perfil )">
+                    <img class="home" src="../assets/imgs/icons/profile.png"> <div class="home2"> Perfil</div>
+                </button>
+                <button ion-item (click)="irHistorial( historial )">
+                    <img class="home" src="../assets/imgs/icons/book.png">  <div class="home3"> Historial</div>
+                </button>
+                <button ion-item (click)="irPago( pago )">
+                    <img class="home" src="../assets/imgs/icons/tarjeta.png">  <div class="home3"> Pago</div>
+                </button>
+                <button ion-item (click)="irCupones( cupones )">
+                    <img class="home" src="../assets/imgs/icons/tarjeta.png"> <div class="home3"> Cupones</div>
+                </button>
+                <ion-footer>
+                    <button style="text-align: right" ion-item (click)="salir( rootPage )">
+                             <img class="home" src="../assets/imgs/icons/turn-off.png">  Cerrar Sesión
+                    </button>
+                </ion-footer>
+            </ion-list>
+        </div>
+    </ion-content>
+</ion-menu>
+
+
+
+<ion-nav [root]="rootPage" #content></ion-nav>

@@ -1,0 +1,33 @@
+page-generarqr-2 {
+  ion-content {
+    background-color: transparent;
+    background: transparent;
+  }
+.card_atras{
+  background: -moz-linear-gradient(top, rgb(228, 150, 2) 0%, rgba(68,71,75,0.05) 2%, rgba(0,0,0,1) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, rgb(228, 150, 2) 0%,rgba(68,71,75,0.05) 2%,rgba(0,0,0,1) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, rgb(228, 150, 2) 0%,rgba(68,71,75,0.05) 2%,rgba(68,71,75,0.01) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  //filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+}
+.borde {
+    margin-top: 0em;
+    border-style: solid;
+    border-width: 1px;
+    border-bottom-color: #e49602;
+}
+.esquina{
+  background-color: black;
+}
+.texto-alineado{
+  margin-top: 4%;
+  margin-left: -58%;
+}
+.ima{
+  height: 28px;
+  width: 28px;
+  background-color: black;
+  margin-left: 160%;
+  margin-top: 55%;
+}
+
+}

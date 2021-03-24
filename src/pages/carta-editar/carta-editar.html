@@ -1,0 +1,79 @@
+<ion-header class="fondo">
+    <ion-navbar hideBackButton >
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    <ion-title><h6>CARTA MÓVIL</h6></ion-title>
+                </ion-col>
+                <ion-col >
+                </ion-col>
+                <ion-col>
+                     <img class="icon_img" src="../assets/imgs/icons/corona.png">
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-navbar>
+
+</ion-header>
+<ion-content>
+    <!-- <ion-list *ngFor='let task of tasks | async'>
+    <ion-item>{{ task.name }}</ion-item>
+    </ion-list> -->
+    <!--Barra de busqueda-->
+    <!-- <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar> -->
+    <ion-card class="card_atras2">
+        <ion-card-header class="card_atras2">
+            <p class="blanco_1" text-center text-color="texto3"> Carta de bebidas</p>
+        </ion-card-header>
+    </ion-card>
+
+    <ion-grid>
+        <ion-row>
+            <ion-col col-6 *ngFor="let cartaItem of cartas">
+                <ion-card class="card_atras">
+                    <ion-card-content class="card_atras">
+                        <img [src]="cartaItem.img" />
+                        <ion-card-title class="blanco_3" text-center>
+                            {{cartaItem.titulo}}
+                        </ion-card-title>
+                        <p class="blanco_2">{{cartaItem.categoria}}</p>
+                        <ion-item class="card_atras">
+                            <img class="icon" src="../assets/imgs/icons/billete.png" item-start>
+                            <ion-badge class="fon" item-end>{{cartaItem.precio | currency}}</ion-badge>
+                        </ion-item>
+                        <!-- <ion-item class="card_atras">
+                        <img class="icon" src="../assets/imgs/icons/admin-historial.png" item-start>
+                        <p class="blanco_1"> Nota </p>
+                        <ion-badge class="fon" item-end>{{cartaItem.nota}}</ion-badge>
+                    </ion-item> -->
+                        <ion-item style="text-align: right;" class="card_atras" (click)="productoDetalle2(cartaItem.uid)">
+                            <img class="icon" src="../assets/imgs/icons/corona.png" item-end>
+                            <a class="blanco_2">Reservar</a>
+                            <ion-badge item-end></ion-badge>
+                        </ion-item>
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>
+
+<ion-footer no-border>
+    <ion-toolbar>
+        <ion-grid>
+            <ion-row>
+                <ion-col col-6>
+                    <!--<div text-center>
+                        <button ion-button round block color="dark" (click)="(goBack())">Atras</button>
+                    </div>-->
+                </ion-col>
+                <ion-col col-6>
+                    <div text-center>
+                        <button ion-button round block color="dark" (click)="(goToResumen(consumo, total))">{{total | currency}} <ion-icon
+                        name="arrow-dropright" class="total"></ion-icon></button>
+                    </div>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-toolbar>
+</ion-footer>

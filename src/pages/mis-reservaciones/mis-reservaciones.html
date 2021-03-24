@@ -1,0 +1,399 @@
+<ion-header>
+    <ion-navbar class="borde">
+        <ion-row>
+            <ion-col>
+               <button ion-button menuToggle>
+                     <ion-icon item-start name="menu" class="colorIcon3" style="zoom:1.5;"></ion-icon>
+                </button>
+            </ion-col>
+            <ion-col>
+              <ion-title class="texto-alineado"><h6>RESERVACIONES</h6></ion-title>
+            </ion-col>
+            <ion-col>
+              <button class="esquina">
+               <img src="./assets/imgs/icons/corona.png" class="ima">
+              </button>
+            </ion-col>
+        </ion-row>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+   <!--MOSTRAR RESERVACIONES QUE SE HAN COMPARTIDO CON EL USUARIO-->
+  <ion-card  class="card_atras" *ngFor="let compartidas of resCompartidas">
+    <div *ngFor="let reservacion of infoResevaciones">
+      <!--DEJAR DE MOSTRAR EL ESTATUS RECHAZADO DE UNA RESERVACION COMPARTIDA-->
+      <div *ngIf="reservacion.estatus=='Compartida'">
+      <div *ngIf="compartidas.estatus!='Rechazado'">
+        <div *ngIf="reservacion.idReservacion==compartidas.idReservacion">
+          <ion-card-content class="card_atras">
+              <ion-card-title>
+                  <h5 class="blanco_1">Reservación Compartida</h5>
+              </ion-card-title>
+              <p class="blanco_2">
+              </p>
+              <ion-item class="card_atras">
+                  <img class="icon" src="../assets/imgs/icons/calendario.png" item-start>
+                  <p class="blanco_2">Fecha de reservación</p>
+                  <ion-badge class="negro" item-end>{{reservacion.fechaR}}</ion-badge>
+              </ion-item>
+              <ion-item class="card_atras">
+                  <img class="icon" src="../assets/imgs/icons/time.png" item-start>
+                  <a class="blanco_2">Estatus{{tamano}}</a>
+                  <ion-badge class="negro" item-end>{{reservacion.estatus}}</ion-badge>
+              </ion-item>
+              <ion-item class="card_atras">
+                  <img class="icon" src="../assets/imgs/icons/sucursal.png" item-start>
+                  <a class="blanco_2">Folio</a>
+                  <ion-badge class="negro" item-end>{{reservacion.folio}}</ion-badge>
+              </ion-item>
+              <ion-item class="card_atras">
+                  <img class="icon" src="../assets/imgs/icons/mas.png" item-start>
+                  <a (click)="verDetalle(reservacion.idReservacion)" class="blanco_2">Más detalles</a>
+                  <ion-badge item-end></ion-badge>
+              </ion-item>
+            <div *ngIf="compartidas.estatus=='Espera'">
+              <ion-item class="card_atras">
+                <div class="centradoB">
+                  <div class="texto_compartir">
+                     *Invitación para que el total de
+                  </div>
+                  <div class="texto_compartir">
+                    la cuenta se divida contigo.
+                  </div>
+                  <button ion-button color="naranja" (click)="aceptarCompartir(compartidas.idCompartir,reservacion.idReservacion)">
+                         Acepto dividir cuenta
+                  </button>
+                  <button ion-button color="naranja" (click)="rechazarCompartir(compartidas.idCompartir,reservacion.idReservacion)">
+                         No acepto
+                  </button>
+                </div>
+              </ion-item>
+            </div>
+          </ion-card-content>
+        </div>
+      </div>
+      </div>
+      <div *ngIf="reservacion.estatus=='CreadaCompartida'">
+      <div *ngIf="compartidas.estatus!='Rechazado'">
+        <div *ngIf="reservacion.idReservacion==compartidas.idReservacion">
+          <ion-card-content class="card_atras">
+              <ion-card-title>
+                  <h5 class="blanco_1">Reservación Compartida</h5>
+              </ion-card-title>
+              <p class="blanco_2">
+              </p>
+              <ion-item class="card_atras">
+                  <img class="icon" src="../assets/imgs/icons/calendario.png" item-start>
+                  <p class="blanco_2">Fecha de reservación</p>
+                  <ion-badge class="negro" item-end>{{reservacion.fechaR}}</ion-badge>
+              </ion-item>
+              <ion-item class="card_atras">
+                  <img class="icon" src="../assets/imgs/icons/time.png" item-start>
+                  <a class="blanco_2">Estatus{{tamano}}</a>
+                  <ion-badge class="negro" item-end>Compartida</ion-badge>
+              </ion-item>
+              <ion-item class="card_atras">
+                  <img class="icon" src="../assets/imgs/icons/sucursal.png" item-start>
+                  <a class="blanco_2">Folio</a>
+                  <ion-badge class="negro" item-end>{{reservacion.folio}}</ion-badge>
+              </ion-item>
+              <ion-item class="card_atras">
+                  <img class="icon" src="../assets/imgs/icons/mas.png" item-start>
+                  <a (click)="verDetalle(reservacion.idReservacion)" class="blanco_2">Más detalles</a>
+                  <ion-badge item-end></ion-badge>
+              </ion-item>
+          </ion-card-content>
+        </div>
+      </div>
+      </div>
+      <div *ngIf="reservacion.estatus=='AceptadoCompartida'">
+      <div *ngIf="compartidas.estatus!='Rechazado'">
+        <div *ngIf="reservacion.idReservacion==compartidas.idReservacion">
+          <ion-card-content class="card_atras">
+              <ion-card-title>
+                  <h5 class="blanco_1">Reservación Compartida</h5>
+              </ion-card-title>
+              <p class="blanco_2">
+              </p>
+              <ion-item class="card_atras">
+                  <img class="icon" src="../assets/imgs/icons/calendario.png" item-start>
+                  <p class="blanco_2">Fecha de reservación</p>
+                  <ion-badge class="negro" item-end>{{reservacion.fechaR}}</ion-badge>
+              </ion-item>
+              <ion-item class="card_atras">
+                  <img class="icon" src="../assets/imgs/icons/time.png" item-start>
+                  <a class="blanco_2">Estatus{{tamano}}</a>
+                  <ion-badge class="negro" item-end>Compartida</ion-badge>
+              </ion-item>
+              <ion-item class="card_atras">
+                  <img class="icon" src="../assets/imgs/icons/sucursal.png" item-start>
+                  <a class="blanco_2">Folio</a>
+                  <ion-badge class="negro" item-end>{{reservacion.folio}}</ion-badge>
+              </ion-item>
+              <ion-item class="card_atras">
+                  <img class="icon" src="../assets/imgs/icons/mas.png" item-start>
+                  <a (click)="verDetalle(reservacion.idReservacion)" class="blanco_2">Más detalles</a>
+                  <ion-badge item-end></ion-badge>
+              </ion-item>
+          </ion-card-content>
+        </div>
+      </div>
+      </div>
+    </div>
+</ion-card>
+<!--Termina mostrar reservacions compartidas con el usuario-->
+<ion-card class="card_atras" *ngFor="let reservaciones of misReservaciones">
+  <!--<div *ngFor="let areas of nombresAreas">-->
+    <div *ngFor="let zonas of nombresZonas">
+      <div *ngFor="let sucursales of nombresSucursales">
+        <!--<div *ngIf="reservaciones.idArea==areas.uid">-->
+          <div *ngIf="reservaciones.idZona==zonas.uid">
+            <div *ngIf="reservaciones.idSucursal==sucursales.uid">
+        <!--Mostrar reservaciones en estatus Creando-->
+        <div *ngIf="reservaciones.estatus=='Creando'">
+        <ion-card-content class="card_atras">
+            <ion-card-title>
+                <h5 class="blanco_1">Reservación en {{sucursales.displayName}}</h5>
+            </ion-card-title>
+            <p class="blanco_2">
+            </p>
+            <ion-item class="card_atras">
+                <img class="icon" src="../assets/imgs/icons/calendario.png" item-start>
+                <p class="blanco_2">Fecha de reservación</p>
+                <ion-badge class="negro" item-end>{{reservaciones.fechaR}}</ion-badge>
+            </ion-item>
+            <ion-item class="card_atras">
+                <img class="icon" src="../assets/imgs/icons/time.png" item-start>
+                <a class="blanco_2">Estatus</a>
+                <ion-badge class="negro" item-end>{{reservaciones.estatus}}</ion-badge>
+            </ion-item>
+            <ion-item class="card_atras">
+                <img class="icon" src="../assets/imgs/icons/sucursal.png" item-start>
+                <a class="blanco_2">Folio</a>
+                <ion-badge class="negro" item-end>{{reservaciones.folio}}</ion-badge>
+            </ion-item>
+            <ion-item class="card_atras">
+                <img class="icon" src="../assets/imgs/icons/mas.png" item-start>
+                <a (click)="verDetalle(reservaciones.idReservacion)" class="blanco_2">Más detalles</a>
+                <ion-badge item-end></ion-badge>
+            </ion-item>
+        </ion-card-content>
+       </div>
+      <!--Mostrar reservaciones en estatus Pagando-->
+       <!--<div *ngIf="reservaciones.estatus=='Pagando'">
+          <ion-card-content class="card_atras">
+              <ion-card-title>
+                  <h5 class="blanco_1">Reservación en {{sucursales.displayName}}</h5>
+              </ion-card-title>
+              <p class="blanco_2">
+              </p>
+              <ion-item class="card_atras">
+                  <img class="icon" src="../assets/imgs/icons/calendario.png" item-start>
+                  <p class="blanco_2">Fecha de reservación</p>
+                  <ion-badge class="negro" item-end>{{reservaciones.fechaR}}</ion-badge>
+              </ion-item>
+              <ion-item class="card_atras">
+                  <img class="icon" src="../assets/imgs/icons/time.png" item-start>
+                  <a class="blanco_2">Estatus</a>
+                  <ion-badge class="negro" item-end>{{reservaciones.estatus}}</ion-badge>
+              </ion-item>
+              <ion-item class="card_atras">
+                  <img class="icon" src="../assets/imgs/icons/mas.png" item-start>
+                  <a (click)="verDetalle(reservaciones.idReservacion)" class="blanco_2">Más detalles</a>
+                  <ion-badge item-end></ion-badge>
+              </ion-item>
+          </ion-card-content>
+        </div>-->
+          <!--Mostrar reservaciones en estatus Modificado opcion de aceptar o cancelar reserevacion-->
+           <div *ngIf="reservaciones.estatus=='Modificado'">
+              <ion-card-content class="card_atras" >
+                  <ion-card-title>
+                      <h5 class="blanco_1">Reservación en {{sucursales.displayName}}</h5>
+                        <ion-badge color="naranja">Tu reservación ha sido reasignada a
+                          <br>
+                           la zona: {{zonas.nombre}}
+                          <br>
+                          el consumo sugerido es: {{zonas.consumo | currency}}
+                        </ion-badge>
+                   </ion-card-title>
+                  <p class="blanco_2">
+                  </p>
+                  <ion-item class="card_atras">
+                      <img class="icon" src="../assets/imgs/icons/calendario.png" item-start>
+                      <p class="blanco_2">Fecha de reservación</p>
+                      <ion-badge class="negro" item-end>{{reservaciones.fechaR}}</ion-badge>
+                  </ion-item>
+                  <!--<ion-item class="card_atras">
+                      <img class="icon" src="../assets/imgs/icons/billete.png" item-start>
+                      <a class="blanco_2">Consumo total</a>
+                      <ion-badge class="negro" item-end></ion-badge>
+                  </ion-item>-->
+                  <ion-item class="card_atras">
+                      <img class="icon" src="../assets/imgs/icons/time.png" item-start>
+                      <a class="blanco_2">Estatus</a>
+                      <ion-badge class="negro" item-end>{{reservaciones.estatus}}</ion-badge>
+                  </ion-item>
+                  <ion-item class="card_atras">
+                      <img class="icon" src="../assets/imgs/icons/sucursal.png" item-start>
+                      <a class="blanco_2">Folio</a>
+                      <ion-badge class="negro" item-end>{{reservaciones.folio}}</ion-badge>
+                  </ion-item>
+                  <ion-item class="card_atras">
+                      <img class="icon" src="../assets/imgs/icons/mas.png" item-start>
+                      <a (click)="verDetalle(reservaciones.idReservacion)" class="blanco_2">Más detalles</a>
+                      <ion-badge item-end></ion-badge>
+                  </ion-item>
+                  <ion-item class="card_atras">
+                    <div class="centradoB">
+                      <button ion-button color="naranja" (click)="CancelarReservacion(reservaciones.idReservacion )">
+                             Cancelar
+                      </button>
+                      <button ion-button color="naranja" (click)="verCarta(reservaciones.idReservacion, reservaciones.idSucursal, reservaciones.idevento)">
+                             Aceptar reservacion
+                      </button>
+                    </div>
+                  </ion-item>
+              </ion-card-content>
+            </div>
+            <!--Mostrar reservaciones en estatus Aceptado-->
+             <div *ngIf="reservaciones.estatus=='Aceptado'">
+                <ion-card-content class="card_atras">
+                    <ion-card-title>
+                        <h5 class="blanco_1">Reservación en {{sucursales.displayName}}</h5>
+                    </ion-card-title>
+                    <p class="blanco_2">
+                    </p>
+                    <ion-item class="card_atras">
+                        <img class="icon" src="../assets/imgs/icons/calendario.png" item-start>
+                        <p class="blanco_2">Fecha de reservación</p>
+                        <ion-badge class="negro" item-end>{{reservaciones.fechaR}}</ion-badge>
+                    </ion-item>
+                    <ion-item class="card_atras">
+                        <img class="icon" src="../assets/imgs/icons/time.png" item-start>
+                        <a class="blanco_2">Estatus</a>
+                        <ion-badge class="negro" item-end>{{reservaciones.estatus}}</ion-badge>
+                    </ion-item>
+                    <ion-item class="card_atras">
+                        <img class="icon" src="../assets/imgs/icons/sucursal.png" item-start>
+                        <a class="blanco_2">Folio</a>
+                        <ion-badge class="negro" item-end>{{reservaciones.folio}}</ion-badge>
+                    </ion-item>
+                    <ion-item class="card_atras">
+                        <img class="icon" src="../assets/imgs/icons/mas.png" item-start>
+                        <a (click)="verDetalle(reservaciones.idReservacion)" class="blanco_2">Más detalles</a>
+                        <ion-badge item-end></ion-badge>
+                    </ion-item>
+                </ion-card-content>
+              </div>
+            </div>
+            </div>
+            <!--</div>-->
+    </div>
+    </div>
+    <!--</div>-->
+    </ion-card>
+  </ion-content>
+   <!-- <ion-card class="card_atras">
+        <ion-card-content class="card_atras">
+            <ion-card-title>
+                <h4 class="blanco_1">Reservación 2</h4>
+            </ion-card-title>
+            <p class="blanco_2">
+                Alfonso Martínez
+            </p>
+            <ion-item class="card_atras">
+                <img class="icon" src="../assets/imgs/icons/calendario.png" item-start>
+                <p class="blanco_2">Fecha de reservación</p>
+                <ion-badge class="negro" item-end>Viernes 9 Julio 2018 </ion-badge>
+            </ion-item>
+            <ion-item class="card_atras">
+                <img class="icon" src="../assets/imgs/icons/billete.png" item-start>
+                <a class="blanco_2">Consumo total</a>
+                <ion-badge class="negro" item-end>$5000.00</ion-badge>
+            </ion-item>
+            <ion-item class="card_atras">
+                <img class="icon" src="../assets/imgs/icons/mas.png" item-start>
+                <a class="blanco_2">Más detalles</a>
+                <ion-badge item-end></ion-badge>
+            </ion-item>
+        </ion-card-content>
+    </ion-card>-->
+    <!--<ion-card class="card_atras">
+        <ion-card-content class="card_atras">
+            <ion-card-title>
+                <h4 class="blanco_1">Reservación 3</h4>
+            </ion-card-title>
+            <p class="blanco_2">
+                Alfonso Martínez
+            </p>
+            <ion-item class="card_atras">
+                <img class="icon" src="../assets/imgs/icons/calendario.png" item-start>
+                <p class="blanco_2">Fecha de reservación</p>
+                <ion-badge class="negro" item-end>Viernes 9 Julio 2018 </ion-badge>
+            </ion-item>
+            <ion-item class="card_atras">
+                <img class="icon" src="../assets/imgs/icons/billete.png" item-start>
+                <a class="blanco_2">Consumo total</a>
+                <ion-badge class="negro" item-end>$5000.00</ion-badge>
+            </ion-item>
+            <ion-item class="card_atras">
+                <img class="icon" src="../assets/imgs/icons/mas.png" item-start>
+                <a class="blanco_2">Más detalles</a>
+                <ion-badge item-end></ion-badge>
+            </ion-item>
+        </ion-card-content>
+    </ion-card>-->
+
+    <!-- <ion-card class="card_atras">
+<ion-card-content class="card_atras">
+  <ion-card-title class="blanco_1">
+  Reservación 2
+    </ion-card-title>
+  <p class="blanco_2">
+  Alfonso Martínez
+  </p>
+<ion-item class="card_atras">
+<ion-icon name="md-calendar" item-start></ion-icon>
+<h4 class="blanco_2">Fecha de reservación</h4>
+<ion-badge  class="negro" item-end>Sabado 29 Julio 2018 </ion-badge>
+</ion-item>
+<ion-item class="card_atras">
+<ion-icon name="md-cash" item-start></ion-icon>
+<a>Consumo total</a>
+<ion-badge  class="negro" item-end>$5036.00</ion-badge>
+</ion-item>
+<ion-item class="card_atras">
+<ion-icon name="md-add" item-start></ion-icon>
+<a>Más detalles</a>
+<ion-badge item-end></ion-badge>
+</ion-item>
+
+</ion-card-content>
+</ion-card>
+
+<ion-card class="card_atras">
+<ion-card-content class="card_atras">
+  <ion-card-title class="blanco_1">
+  Reservación 3
+    </ion-card-title>
+  <p class="blanco_2">
+  Alfonso Martínez
+  </p>
+<ion-item class="card_atras">
+<ion-icon name="md-calendar" item-start></ion-icon>
+<h4 class="blanco_2">Fecha de reservación</h4>
+<ion-badge  class="negro" item-end>Sabado 31 Julio 2018 </ion-badge>
+</ion-item>
+<ion-item class="card_atras">
+<ion-icon name="md-cash" item-start></ion-icon>
+<a>Consumo total</a>
+<ion-badge  class="negro" item-end>$4000.00</ion-badge>
+</ion-item>
+<ion-item class="card_atras">
+<ion-icon name="md-add" item-start></ion-icon>
+<a>Más detalles</a>
+<ion-badge item-end></ion-badge>
+</ion-item>
+
+</ion-card-content>
+</ion-card> -->

@@ -1,0 +1,39 @@
+<ion-content padding text-center>
+    <ion-grid>
+        <ion-row class="esquina">
+            <ion-col><button class="esquina" (click)="goLogin()" icon-left block>
+                <img src="./assets/imgs/icons/corona.png" class="ima"></button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-grid class="margen">
+        <ion-row>
+            <ion-col class="top-20">
+                <img src="./assets/imgs/Logoblanco.png">
+            </ion-col>
+        </ion-row>
+
+
+        <!-- <ion-row>
+            <ion-col>
+                <button class="blanco" (click)="signInGoogle()" ion-button icon-left block>
+                <ion-icon name="logo-google"></ion-icon>
+                Google
+              </button>
+            </ion-col>
+
+        </ion-row> -->
+        <ion-row>
+            <ion-col>
+
+                <button class="blanco" (click)="signInWithFacebook()" ion-button icon-left block>
+                  <ion-icon name="logo-facebook"></ion-icon>
+                  Facebook
+                </button>
+
+            </ion-col>
+        </ion-row>
+
+    </ion-grid>
+
+</ion-content>

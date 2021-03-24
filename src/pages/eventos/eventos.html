@@ -1,0 +1,96 @@
+<ion-header>
+    <ion-navbar class="borde">
+       <ion-row >
+         <ion-col>
+           <button ion-button menuToggle>
+             <ion-icon item-start name="menu" class="colorIcon3" style="zoom:1.5;"></ion-icon>
+           </button>
+         </ion-col>
+         <ion-col>
+           <ion-title class="texto-alineado"><h6>EVENTOS</h6></ion-title>
+         </ion-col>
+         <ion-col>
+           <button class="esquina">
+            <img src="./assets/imgs/icons/corona.png" class="ima">
+           </button>
+         </ion-col>
+        </ion-row>
+    </ion-navbar>
+    <!--BUSCAR POR CIUDAD-->
+    <ion-item text-right class="card_atras">
+        <ion-label>
+            <h3 class="colorIcon">Ciudad</h3>
+        </ion-label>
+        <ion-select [(ngModel)]="filterPostCiudad" interface="popover" >
+           <div *ngFor="let ciudad of ciudades">
+              <ion-option [value]="ciudad.ciudad">{{ciudad.ciudad}}</ion-option>
+           </div>
+        </ion-select>
+    </ion-item>
+    <!--TERMINA BUSCAR POR CIUDAD-->
+
+    <ion-item text-right class="card_atras">
+        <ion-label>
+            <ion-icon ios="ios-list" md="md-list" class="colorIcon"></ion-icon>
+        </ion-label>
+        <ion-select [(ngModel)]="filterPost" interface="popover" >
+            <ion-option value="Deportivo">Deportivo</ion-option>
+            <ion-option value="Cultural">Cultural</ion-option>
+            <ion-option value="Académico">Académico</ion-option>
+            <ion-option value="Recreativo">Recreativo</ion-option>
+            <ion-option value="Social">Social</ion-option>
+            <ion-option value="Festival">Festival</ion-option>
+            <ion-option value="Homenaje">Homenaje</ion-option>
+            <ion-option value="Reconocimiento">Reconocimiento</ion-option>
+            <ion-option value="Feria">Feria</ion-option>
+            <ion-option value="Cumpleaños">Cumpleaños</ion-option>
+            <ion-option value="Familiy">Familiy Day</ion-option>
+            <ion-option value="Simposio">Simposio</ion-option>
+            <ion-option value="Otro">Otro</ion-option>
+            <ion-option value="">Todos</ion-option>
+        </ion-select>
+    </ion-item>
+</ion-header>
+<ion-content class="card-background-page">
+  <!--VALIDACION PARA QUE MANDE SOLO EVENTOS DE LA CIUDAD DE LA QUE ES EL USUARIO-->
+  <div *ngFor="let user of usuarios">
+  <div *ngIf="uidUserSesion==user.uid">
+    <ion-card class="card_atras" *ngFor="let evento of eventos | pipesFilterEvento: filterPost | pipesFilterCiudad: filterPostCiudad">
+      <div *ngFor="let sucursal of sucursales">
+      <div *ngIf="evento.uidSucursal==sucursal.uid">
+      <div *ngIf="sucursal.ciudad==user.ciudad">
+          <img [src]="evento.img" (click)="verDetalle(evento.uid, evento.uidSucursal)" />
+        <ion-row>
+            <!--<ion-title color="light"><h2 text-color="color-texto">{{ evento.titulo }}</h2></ion-title>-->
+            <ion-title color="light"><h2 text-color="color-texto">{{ evento.fecha }}</h2></ion-title>
+            <ion-row>
+                <ion-col mr-5 text-right>
+                    <!--
+                     Compartir
+                  </button> -->
+                    <ion-fab class="btnshare">
+                        <button ion-fab color="dark"><ion-icon name="ios-share-alt" class="colorIcon2"></ion-icon></button>
+                        <ion-fab-list side="top">
+                            <button class="fabbtn" ion-fab (click)="compartir(evento)">
+                            <img  src="../assets/imgs/icons/facebook.png"></button>
+                            <!-- <button class="fabbtn" ion-fab (click)="compartirInsta(evento)">
+                            <img  src="../assets/imgs/icons/insta.png"></button> -->
+                        </ion-fab-list>
+                    </ion-fab>
+                </ion-col>
+            </ion-row>
+            <ion-col text-right>
+               <button (click)="verDetalle(evento.uid, evento.uidSucursal)" text-align ion-button clear small color="light" icon-left>
+                  <!--<img class="icon" src="../assets/imgs/icons/mas.png">-->
+                  <!--<ion-icon name="add" class="colorIcon"></ion-icon>
+                   Más-->
+               </button>
+            </ion-col>
+        </ion-row>
+      </div>
+      </div>
+      </div>
+    </ion-card>
+  </div>
+  </div>
+</ion-content>

@@ -1,0 +1,210 @@
+// Ionic Variables and Theming. For more info, please see:
+// http://ionicframework.com/docs/theming/
+// Font path is used to include ionicons,
+// roboto, and noto sans fonts
+$font-path: "../assets/fonts";
+// The app direction is used to include
+// rtl styles in your app. For more info, please see:
+// http://ionicframework.com/docs/theming/rtl-support/
+$app-direction: ltr;
+@import "ionic.globals";
+// Shared Variables
+// --------------------------------------------------
+// To customize the look and feel of this app, you can override
+// the Sass variables found in Ionic's source scss files.
+// To view all the possible Ionic variables, see:
+// http://ionicframework.com/docs/theming/overriding-ionic-variables/
+// Named Color Variables
+// --------------------------------------------------
+// Named colors makes it easy to reuse colors on various components.
+// It's highly recommended to change the default colors
+// to match your app's branding. Ionic uses a Sass map of
+// colors so you can add, rename and remove colors as needed.
+// The "primary" color is the only required color in the map.
+$colors: ( primary: #488aff, secondary: #32db64, danger: #f53d3d, light: #f4f4f4, dark: #222, gold: #eccc68, naranja: #e49602, negro: #000000 );
+.home {
+    height: 25px;
+    width: 25px;
+}
+
+//Cabecera
+ion-navbar {
+    .toolbar-background {
+        background: #000;
+    }
+    .toolbar-title {
+        text-align: justify;
+        color: #fff;
+        font: bold;
+        font-weight: 200;
+    }
+}
+
+//Termina cabeca.
+//Tabs
+.tabs-md .tab-button[aria-selected=true] {
+    color: #0000;
+    /*your  text color */
+    background: #000;
+    /* your background color*/
+}
+
+//admin-home
+.fondo_admin {
+    background-image: url('../assets/imgs/fondoadmin.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    position: relative;
+    border: none;
+}
+
+.fondo2 {
+    background-image: url('../assets/imgs/fondoapp.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    position: relative;
+    border: none;
+}
+
+//termina tabs
+ion-menu {
+    .menu-content {
+        background-color: #000;
+    }
+    .menu-list {
+        margin: 10vh 0px 0px !important;
+        .item {
+            background-color: #000;
+            padding-right: 32px;
+            &:first-child {
+                border: #fff;
+            }
+            .item-inner {
+                font-size: 1.5rem;
+                font-weight: 300;
+                letter-spacing: 1px;
+                color: #fff;
+                position: center;
+            }
+            .item-icon {
+                color: #fff;
+                font-size: 3.4rem;
+            }
+            &.activated {
+                background-color: #fff;
+                transition-duration: 0ms;
+                .item-inner {
+                    color: #fff;
+                }
+                .item-icon {
+                    color: #fff;
+                }
+            }
+        }
+    }
+}
+
+.warning {
+    background-color: #000;
+    color: #ffffff;
+    text-align: center;
+    padding: 10px;
+    border-radius: 15px;
+    border-bottom-color: #eccc68;
+}
+
+.alert-md .alert-head {
+    color: #eccc68;
+    text-align: center !important;
+    padding: 24px 24px 20px;
+}
+
+.alert-ios .alert-head {
+    color: #eccc68;
+}
+
+.alert-md .alert-message {
+    text-align: center;
+}
+
+///SEGMENT
+//@Android
+$segment-button-md-border-bottom-color:#d6d5d5;
+$segment-button-md-text-color-activated:#ffffff;
+$segment-button-md-border-color-activated:#eccc68;
+$alert-md-checkbox-label-text-color: #ffffff;
+$alert-md-checkbox-label-text-color-checked:#eccc68;
+
+//@IOS
+$segment-button-ios-background-color:#000000;
+$segment-button-ios-background-color-activated:#eccc68;
+$segment-button-ios-text-color:#ffffff;
+$alert-ios-checkbox-label-text-color-checked:#eccc68;
+///Termina el segment
+// App iOS Variables
+// --------------------------------------------------
+// iOS only Sass variables can go here
+// App Material Design Variables
+$select-ios-icon-color: #eccc68;
+$select-ios-placeholder-color: #000000;
+$alert-ios-background: #000000;
+$alert-ios-button-text-color: #eccc68;
+$alert-ios-radio-label-text-color: #ffffff;
+$datetime-ios-placeholder-color: #000000;
+$alert-ios-message-text-color: #ffffff;
+$alert-ios-message-text-align: center;
+$picker-ios-background-color: #000000;
+$picker-ios-option-selected-color: #eccc68;
+$picker-ios-option-text-color: #ffffff;
+$picker-ios-button-text-color: #eccc68;
+$card-ios-margin-left: 0px;
+$card-ios-margin-right: 0px;
+$alert-ios-checkbox-label-text-color: #ffffff;
+// --------------------------------------------------
+// Material Design only Sass variables can go here
+// App Windows Variables
+// --------------------------------------------------
+// Windows only Sass variables can go here
+// App Theme
+// --------------------------------------------------
+// Android  only Sass variables can go here
+// App Theme
+$select-md-icon-color: #eccc68 !default;
+$select-md-placeholder-color: #000;
+$alert-md-background-color: #000000;
+$alert-md-button-text-color: #eccc68;
+$alert-md-radio-label-text-color: #ffffff;
+$picker-md-background-color: #000000;
+$picker-md-option-selected-color: #eccc68;
+$picker-md-option-text-color: #ffffff;
+$picker-md-button-text-color: #eccc68;
+$alert-md-message-text-color: #ffffff;
+$alert-md-message-text-align: center;
+$card-md-margin-left: 0px;
+$card-md-margin-right: 0px;
+
+// --------------------------------------------------
+// Ionic apps can have different themes applied, which can
+// then be future customized. This import comes last
+// so that the above variables are used and Ionic's
+// default are overridden.
+@import "ionic.theme.default";
+// Ionicons
+// --------------------------------------------------
+// The premium icon font for Ionic. For more info, please see:
+// http://ionicframework.com/docs/ionicons/
+@import "ionic.ionicons";
+// Fonts
+// --------------------------------------------------
+@import "roboto";
+@import "noto-sans";
+
+@font-face {
+  font-family: 'TimesNewRoman';
+  font-weight: 400;
+  src: url('../assets/fonts/times-new-roman-corsivo.ttf');
+}

@@ -1,0 +1,143 @@
+page-reservacion-detalle {
+  ion-content{
+    background-image: url('../assets/imgs/fondo_r3.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+      //background-position: center;
+    width: 100%;
+    position: relative;
+    border: none;
+}
+  //NUEVOS
+  .borde {
+      margin-top: 0em;
+      border-style: solid;
+      border-width: 1px;
+      border-bottom-color: #e49602;
+  }
+  .ima{
+    height: 28px;
+    width: 28px;
+    background-color: black;
+    margin-left: 120%;
+    margin-top: 55%;
+  }
+  .esquina{
+    background-color: black;
+  }
+  .texto-alineado{
+    margin-top: 4%;
+    margin-left: -40%;
+    text-transform: uppercase;
+  }
+.bordeCard {
+  background: -moz-linear-gradient(top, rgba(69, 72, 77, 1) 0%, rgba(68, 71, 75, 0.05) 2%, rgba(0, 0, 0, 1) 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, rgba(69, 72, 77, 1) 0%, rgba(68, 71, 75, 0.05) 2%, rgba(0, 0, 0, 1) 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, rgb(46, 46, 46) 0%, rgb(46, 46, 46) 0%, rgb(46, 46, 46) 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  // filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000', GradientType=0);
+  /* IE6-9 */
+  // font-weight: bold;
+
+  //background-color: red;
+  //margin-top: -10px;
+}
+.colorRow{
+  background-color: #e49602;
+  //height: 41px;
+}
+[text-color="texto1"] {
+color: #ffffff;
+}
+[text-color="texto2"] {
+color: #000000;
+}
+
+[text-color="texto3"] {
+color: #ffffff;
+font-family: "TimesNewRoman" !important;
+text-transform: uppercase;
+}
+
+.icon{
+height: 25px;
+width: 25px;
+}
+ion-icon{
+  color: #e49602;
+}
+.icon_img{
+  width: 30px;
+  height: 30px;
+  margin-left: 50%;
+}
+
+.card_atras{
+  background: -moz-linear-gradient(top, rgb(228, 150, 2) 0%, rgba(68,71,75,0.05) 2%, rgba(0,0,0,1) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, rgb(228, 150, 2) 0%,rgba(68,71,75,0.05) 2%,rgba(0,0,0,1) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, rgb(228, 150, 2) 0%,rgba(68,71,75,0.05) 2%,rgba(68,71,75,0.01) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  //filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+}
+.card_atras2{
+    background-color: transparent;
+}
+
+.blanco_1{
+  font-size: 25px;
+   resize: none;
+   color: #fff;
+}
+.blanco_2{
+  font-size: 15px;
+   resize: none;
+   color: #fff;
+}
+.blanco_3{
+  font-size: 18px;
+   resize: none;
+   color: #fff;
+}
+.card_title{
+  font-size: 15px;
+   resize: none;
+   color: #fff;
+   font: bold;
+   font-weight: 900;
+
+   background: -moz-linear-gradient(top, rgba(69,72,77,1) 0%, rgba(68,71,75,0.05) 2%, rgba(0,0,0,1) 100%); /* FF3.6-15 */
+   background: -webkit-linear-gradient(top, rgba(69,72,77,1) 0%,rgba(68,71,75,0.05) 2%,rgba(0,0,0,1) 100%); /* Chrome10-25,Safari5.1-6 */
+   background: linear-gradient(to bottom, rgba(69,72,77,1) 0%,rgba(68,71,75,0.05) 2%,rgba(0,0,0,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+}
+.negro{
+  background: #2f3542;
+  color: #fff;
+}
+a{
+  color: #eccc68;
+}
+.borde{
+  margin-top: 0%;
+  border-bottom: #e49602 1px solid;
+  //color: #e49602;
+}
+.centradoB{
+text-align: center;
+}
+.fondo{
+  background: transparent;
+}
+.centradoB2{
+text-align: center;
+}
+.tamanoBoton{
+  width:160px;
+  height:100px;
+}
+.colorBoton{
+  background-color: black;
+}
+
+}

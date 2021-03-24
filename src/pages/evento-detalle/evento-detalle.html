@@ -1,0 +1,62 @@
+<ion-header class="esquina">
+    <ion-navbar class="borde">
+       <ion-row >
+         <ion-col>
+           <button ion-fab color="negro" (click)="(goBack())"><ion-icon name="arrow-back" color="naranja" style="zoom:1.2;"></ion-icon></button>
+         </ion-col>
+           <ion-col>
+             <ion-title class="texto-alineado"><h6>GUEST EVENTOS</h6></ion-title>
+           </ion-col>
+           <ion-col>
+             <button class="esquina">
+              <img src="./assets/imgs/icons/corona.png" class="ima">
+             </button>
+           </ion-col>
+       </ion-row>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content class="esquina cards-bg">
+    <ion-card class="bordeCard">
+        <img [src]="evento.img" />
+        <ion-card-content class="atras" text-center>
+            <!--<ion-card-title  text-color="texto3">
+                {{ evento.titulo }}
+            </ion-card-title>-->
+            <p text-color="texto1">
+                {{evento.obs}}
+            </p>
+            <p text-color="texto1">
+                {{evento.fecha}}, {{ evento.hora }}
+            </p>
+            <p text-color="texto1">
+                {{evento.categoria}}
+            </p>
+            <p text-color="texto1">
+                {{evento.lugar}}
+            </p>
+            <p text-color="texto1">
+                {{evento.ciudad}}
+            </p>
+        </ion-card-content>
+        <ion-row class="colorRow">
+                <button ion-button color="naranja" block (click)="Reservar(evento.uid, sucursalID)">
+                    <p text-color="texto2">RESERVAR</p>
+                </button>
+        </ion-row>
+    </ion-card>
+</ion-content>
+<!--<ion-footer no-border>
+    <ion-toolbar>
+        <ion-grid>
+            <ion-row>
+                <ion-col col-12>
+                    <div text-center>
+                        <button ion-button round block color="dark" (click)="(goBack())">Atras</button>
+                    </div>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-toolbar>
+</ion-footer>-->

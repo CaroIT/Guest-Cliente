@@ -1,0 +1,88 @@
+page-modalmesas {
+    .grid-example {
+        padding: 10px 0px 100px 10px;
+        flex-wrap: wrap;
+        .grid-item {
+            //   padding: 20px 4.5px 5px 1px;
+            padding: 1% 1.9% 10%;
+            &>.double-item {
+                &>.grid-item {
+                    padding: 50px 50px;
+                    &:first-child {
+                        padding-top: 0px;
+                    }
+                    &:last-child {
+                        padding-bottom: 0px;
+                    }
+                }
+            }
+            .numMesas {
+                flex: 0 0 100%;
+                max-width: 100%;
+                height: 25px;
+                width: 50px;
+                background-color: #FFFFFF;
+                margin-top: 61px;
+            }
+            .grid-item-wrapper {
+                position: relative;
+                padding-bottom: 0px;
+                height: 60px;
+                width: 60px;
+                border-radius: 100px 100px 100px 100px;
+                border: 2px solid;
+                // background-color: rgba(236, 234, 134, 0.315);
+                .grid-item-inner {
+                    // background-color: #FFFFFF;
+                    height: 100%;
+                    width: 100%;
+                    position: absolute;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    &.multi-line {
+                        flex-wrap: wrap;
+                        .item-title {
+                            flex: 0 0 100%;
+                            max-width: 100%;
+                            margin: 5px 0px;
+                        }
+                    }
+                }
+            }
+            .grid-item-wrapper1 {
+                position: relative;
+                padding-bottom: 0px;
+                height: 60px;
+                width: 60px;
+                border-radius: 100px 100px 100px 100px;
+                border: 2px solid;
+                background-color: rgba(236, 234, 134, 0.315);
+                .grid-item-inner1 {
+                    // background-color: #FFFFFF;
+                    height: 100%;
+                    width: 100%;
+                    position: absolute;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    &.multi-line {
+                        flex-wrap: wrap;
+                        .item-title {
+                            flex: 0 0 100%;
+                            max-width: 100%;
+                            margin: 5px 0px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .color1 {
+        background: #FFFFFF;
+    }
+    .icono {
+        zoom: 3.0;
+        color: #ffffff;
+    }
+}

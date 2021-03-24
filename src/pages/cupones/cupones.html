@@ -1,0 +1,57 @@
+<ion-header>
+    <ion-navbar class="borde">
+        <ion-row>
+            <ion-col>
+                <button ion-button menuToggle>
+                    <ion-icon item-start name="menu" class="colorIcon3" style="zoom:1.5;"></ion-icon>
+                </button>
+            </ion-col>
+            <ion-col>
+                <ion-title class="texto-alineado">
+                    <h6>CUPONES</h6>
+                </ion-title>
+            </ion-col>
+            <ion-col>
+                <button class="esquina">
+                    <img src="./assets/imgs/icons/corona.png" class="ima">
+                </button>
+            </ion-col>
+        </ion-row>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+    <h2 class="titulos">Cupones disponibles</h2>
+    <div *ngFor="let sucursal of totalsucursal">
+        <div *ngIf="usuario.ciudad == sucursal.ciudad">
+            <div *ngFor="let cupones of totalcupones" style="text-align: center;">
+                <div *ngIf="sucursal.uid == cupones.idSucursal">
+                    <div *ngFor="let cupon of cupones_visibles">
+                        <div *ngIf="cupones.uid == cupon">
+                            <div *ngIf=" cupones.numCupones > 0">
+                                <div *ngIf="cupones.fechaExpiracion >= fechaActual">
+                                    <br> <br>
+                                        <ion-badge class="tamanoB" color="naranja" item-end>
+                                            Cupón de descuento {{ cupones.valorCupon | currency }}
+                                            <br>
+                                            Código {{ cupones.codigoCupon }}
+                                            <br><br>
+                                            <ion-badge color="dark">{{ cupones.estatus }}</ion-badge>
+                                            <br><br>
+                                            <ion-badge color="light" (click)="CopyText(cupones.codigoCupon)">
+                                                <ion-icon name="copy" is-active="false"></ion-icon> Copiar código
+                                            </ion-badge>
+                                        </ion-badge>
+                                        <br>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</ion-content>

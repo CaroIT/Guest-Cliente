@@ -1,0 +1,67 @@
+<ion-header>
+    <ion-navbar class="borde">
+        <ion-row>
+            <ion-col>
+                <button ion-button menuToggle>
+                    <ion-icon item-start name="menu" class="colorIcon3" style="zoom:1.5;"></ion-icon>
+                </button>
+            </ion-col>
+            <ion-col>
+                <ion-title class="texto-alineado">
+                    <h6>HISTORIAL</h6>
+                </ion-title>
+            </ion-col>
+            <ion-col>
+                <button class="esquina">
+                    <img src="./assets/imgs/icons/corona.png" class="ima">
+                </button>
+            </ion-col>
+        </ion-row>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+
+    <!--prueba de consula-->
+    <ion-card class="card_atras">
+
+        <div style="color: papayawhip;">
+
+            <div *ngFor="let area of areas"> {{ historial.estatus }}
+                <!-- <ion-option *ngFor="let area of areas" [value]="area.$key">{{ area.estatus }}</ion-option>-->
+            </div>
+        </div>
+
+    </ion-card>
+
+    <ion-card class="card_atras" *ngFor="let historia of historial; let i = index">
+        <ion-card-content class="card_atras">
+            <ion-card-title>
+                <h4 class="blanco_1" ng-init='contador()'> Reservacion {{ i + 1}} </h4>
+            </ion-card-title>
+
+            <ion-item class="card_atras">
+                <img class="icon" src="../assets/imgs/icons/calendario.png" item-start>
+                <p class="blanco_2">Fecha de reservación</p>
+                <ion-badge class="negro" item-end>{{ historia.fechaR }} </ion-badge>
+            </ion-item>
+            <ion-item class="card_atras">
+                <img class="icon" src="../assets/imgs/icons/time.png" item-start>
+                <a class="blanco_2">Estatus</a>
+                <ion-badge class="negro" item-end> Completada </ion-badge>
+            </ion-item>
+            <ion-item class="card_atras">
+                <img class="icon" src="../assets/imgs/icons/admin- user.png" item-start>
+                <a class="blanco_2">No. Personas</a>
+                <ion-badge class="negro" item-end> {{ historia.numPersonas }} </ion-badge>
+            </ion-item>
+
+            <ion-item class="card_atras" (click)="presentModal( historia )">
+                <ion-badge item-end></ion-badge>
+                <img class="icon" src="../assets/imgs/icons/mas.png" item-start>
+                <a class="blanco_2">Más detalles</a>
+                <ion-badge item-end></ion-badge>
+            </ion-item>
+        </ion-card-content>
+    </ion-card>
+
+</ion-content>

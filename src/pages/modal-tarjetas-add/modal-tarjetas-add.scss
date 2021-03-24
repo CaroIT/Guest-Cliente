@@ -1,0 +1,109 @@
+page-modal-tarjetas-add {
+  ion-content {
+      background-image: url('../assets/imgs/fondo_r3.png');
+      background-repeat: no-repeat;
+      background-size: cover;
+      //background-position: center;
+      width: 100%;
+      position: relative;
+      border: none;
+  }
+  .toolbar-background-md {
+      background-color: rgba(0, 0, 0, 0.5);
+  }
+  .toolbar-background-ios {
+      background-color: rgba(0, 0, 0, 0.5);
+  }
+
+
+  //NUEVOS
+  .borde {
+      margin-top: 0em;
+      border-style: solid;
+      border-width: 1px;
+      border-bottom-color: #e49602;
+  }
+  .ima{
+    height: 28px;
+    width: 28px;
+    background-color: black;
+    margin-left: 120%;
+    margin-top: 55%;
+  }
+  .esquina{
+    background-color: black;
+  }
+  .texto-alineado{
+    margin-top: 4%;
+    margin-left: -20%;
+  }
+  .bordeCard {
+  background: -moz-linear-gradient(top, rgba(69, 72, 77, 1) 0%, rgba(68, 71, 75, 0.05) 2%, rgba(0, 0, 0, 1) 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, rgba(69, 72, 77, 1) 0%, rgba(68, 71, 75, 0.05) 2%, rgba(0, 0, 0, 1) 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, rgb(46, 46, 46) 0%, rgb(46, 46, 46) 0%, rgb(46, 46, 46) 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  // filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000', GradientType=0);
+  /* IE6-9 */
+  // font-weight: bold;
+
+  //background-color: red;
+  //margin-top: -10px;
+  }
+  .colorRow{
+  background-color: #e49602;
+  height: 41px;
+  }
+  [text-color="texto1"] {
+  color: #ffffff;
+  }
+  [text-color="texto2"] {
+  color: #000000;
+  }
+
+  [text-color="texto3"] {
+  color: #ffffff;
+  font-family: "TimesNewRoman" !important;
+  text-transform: uppercase;
+  }
+  .card_atras {
+    background: -moz-linear-gradient(top, rgba(69, 72, 77, 1) 0%, rgba(68, 71, 75, 0.05) 2%, rgba(0, 0, 0, 1) 100%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(69, 72, 77, 1) 0%, rgba(68, 71, 75, 0.05) 2%, rgba(0, 0, 0, 1) 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(69, 72, 77, 1) 0%, rgba(68, 71, 75, 0.05) 2%, rgba(0, 0, 0, 1) 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    // filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000', GradientType=0);
+    /* IE6-9 */
+  }
+  ion-list .item {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#eccc68+80,fefcea+80&0.05+0,0.05+100 */
+    background: -moz-linear-gradient(top, rgba(254, 252, 234, 0.05) 0%, rgba(254, 252, 234, 0.05) 80%, rgba(254, 252, 234, 0.05) 100%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(254, 252, 234, 0.05) 0%, rgba(254, 252, 234, 0.05) 80%, rgba(254, 252, 234, 0.05) 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(254, 252, 234, 0.05) 0%, rgba(254, 252, 234, 0.05) 80%, rgba(254, 252, 234, 0.05) 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    //   filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#0dfefcea', endColorstr='#0dfefcea', GradientType=0);
+    //   /* IE6-9 */
+    color: #ffffff;
+  }
+  ion-card {
+    position: relative;
+    text-align: center;
+  }
+  .item-md {
+    padding-left: 0px;
+  }
+  .blanco_1 {
+      font-size: 18px;
+      resize: none;
+      color: #FFFFFF;
+  }
+  .blanco_2 {
+      font-size: 11px;
+      resize: none;
+      color: #FFFFFF;
+  }
+}

@@ -1,0 +1,105 @@
+page-producto-detalle-2 {
+  ion-content {
+      background-image: url('../assets/imgs/fondo_r3.png');
+      background-repeat: no-repeat;
+      background-size: cover;
+      //background-position: center;
+      width: 100%;
+      position: relative;
+      border: none;
+  }
+  .card-background-page {
+      ion-card {
+          position: relative;
+          text-align: center;
+      }
+      .card-title {
+          position: absolute;
+          top: 36%;
+          font-size: 2.0em;
+          width: 100%;
+          font-weight: bold;
+          color: #ffffff;
+      }
+      .card-subtitle {
+          font-size: 1.0em;
+          position: absolute;
+          top: 52%;
+          width: 100%;
+          color: #eccc68;
+      }
+  }
+  #badge-titulo {
+      width: 32rem;
+      height: 12rem;
+      font-size: 2rem;
+      background-color: #eccc68c7;
+  }
+  #badge-stitulo {
+      margin-top: 10%;
+  }
+  .toolbar-background-md {
+      background-color: rgba(0, 0, 0, 0.5);
+  }
+  .toolbar-background-ios {
+      background-color: rgba(0, 0, 0, 0.5);
+  }
+  #mas_menos {
+      max-width: 4rem;
+      margin-top: -1rem;
+  }
+  .caja {
+      border-radius: 6px;
+      overflow: hidden;
+      height: 2.6rem;
+      width: 70%;
+      font-size: 2.4rem;
+      font-weight: 390;
+      text-transform: uppercase;
+      color: #fff;
+      margin: auto;
+      margin-top: 0.5rem;
+  }
+  #caja {
+      margin-top: 5px;
+      margin-top: -1rem;
+  }
+  #pisto {
+      margin-top: 4rem;
+  }
+  .fondo {
+      background: black;
+      border-bottom: #e49602 1.4px groove;
+  }
+  .icon_img{
+    width: 30px;
+    height: 30px;
+    margin-left: 50%;
+  }
+  .card_atras2 {
+        background-color: transparent;
+  }
+  .card_atras3 {
+        background-color: transparent;
+        border-bottom: #e49602 1.4px solid;
+        border-top: #e49602 0.2px solid;
+  }
+  .blanco_1 {
+      font-size: 16px;
+      resize: none;
+      color: #fff;
+  }
+  .card-fondo {
+  background: transparent;
+  }
+  .card-md {
+    margin: auto;
+  }
+  .blanco_2 {
+      font-size: 16px;
+      resize: none;
+      color: #fff;
+      text-transform: uppercase;
+  }
+
+}

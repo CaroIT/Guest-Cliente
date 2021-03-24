@@ -1,0 +1,36 @@
+<ion-header>
+
+    <ion-navbar>
+        <!-- <ion-title>imagencroquis</ion-title> -->
+        <ion-buttons>
+            <button ion-button (click)="cerrarModal()">
+              Cerrar
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="fondo_admin" padding>
+    <ion-item text-center *ngIf="imagenPreview">
+        <img [src]="imagenPreview">
+        <!-- <img src="{{usuario.photo}}?type=large&width=720&height=720" style="width:60%;border-radius:50%;"> -->
+    </ion-item>
+
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <button ion-button block icon-left color="dark" (click)="seleccionaFoto()">
+              <ion-icon name="photos"></ion-icon>
+              &nbsp;&nbsp;Seleccionar
+            </button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-buttons end>
+        <button color="dark" ion-button [disabled]="imagenPreview.length <= 1" (click)="subirFoto()">
+              Actualizar
+            </button>
+    </ion-buttons>
+</ion-content>

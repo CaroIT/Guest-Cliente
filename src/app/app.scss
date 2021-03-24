@@ -1,0 +1,115 @@
+// http://ionicframework.com/docs/theming/
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+h4 {
+    color: #ffffff
+}
+//ion-content {
+//  background-color: transparent;
+//  background: transparent;
+//}
+.transparent-body {
+  background: none transparent !important;
+  opacity: 0 !important;
+}
+ion-icon {
+    &[class*="custom-"] {
+        mask-size: contain;
+        mask-position: 50% 50%;
+        mask-repeat: no-repeat;
+        background: currentColor;
+        width: 1em;
+        height: 1em;
+        margin-right: 5px;
+    }
+    &[class*="custom-relog"] {
+        mask-image: url(../../assets/imgs/icons/relog.png);
+    }
+    &[class*="custom-corona"] {
+        mask-image: url(../../assets/imgs/icons/corona.png);
+    }
+    &[class*="custom-facebook"] {
+        mask-image: url(../../assets/imgs/icons/facebook.PNG);
+    }
+    &[class*="custom-user"] {
+        mask-image: url(../../assets/imgs/icons/profile.PNG);
+    }
+}
+
+.imagen_perfil {
+    text-align: center;
+    height: 70px;
+    width: 70px;
+    // margin-top: 10px;
+    // margin-bottom: 1px;
+    border-radius: 250px;
+}
+
+.imgRedonda {
+    width:80px;
+    height: 80px;
+    border-radius:50%;
+    border:2px solid #ffffff;
+}
+
+.cate {
+    height: 164px;
+    width: 202px;
+}
+
+h6 {
+    color: #ffffff
+}
+
+.margen1_app {
+    margin-bottom: -8em;
+    margin-top: -4.8em;
+    margin-left: 5em;
+}
+
+.margen2_app {
+    margin-top: -5em;
+    margin-left: 7em;
+}
+
+.margen3_app {
+    //margin-top: 1em;
+    // text-align: right;
+    // margin-bottom: 1em;
+    // margin-top: 1em;
+}
+
+.margen4_app {
+    margin-top: -4em;
+}
+
+.borde {
+    margin-top: 5em;
+    border-style: solid;
+    border-width: 2px;
+    border-bottom-color: #ffffff;
+}
+.mayusculas{
+	text-transform:uppercase;
+}
+.home2{
+    margin-top: -23px;
+    margin-left: 30px;
+    margin-bottom: 4px;
+}
+.home3{
+    margin-top: -25px;
+    margin-left: 30px;
+    margin-bottom: 4px;
+}

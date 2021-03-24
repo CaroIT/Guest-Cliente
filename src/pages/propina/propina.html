@@ -1,0 +1,59 @@
+<ion-header class="esquina">
+    <ion-navbar hideBackButton class="borde">
+       <ion-row >
+         <ion-col>
+            <!--<button ion-fab color="negro" (click)="(goBack())"><ion-icon name="arrow-back" color="naranja" style="zoom:1.2;"></ion-icon></button>-->
+         </ion-col>
+         <ion-col>
+             <ion-title class="texto-alineado"><h6>AGREGAR PROPINA</h6></ion-title>
+         </ion-col>
+         <ion-col>
+             <button class="esquina">
+              <img src="./assets/imgs/icons/corona.png" class="ima">
+             </button>
+         </ion-col>
+       </ion-row>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <form [formGroup]="myForm" novalidate class="">
+   <ion-list>
+       <ion-item>
+         <ion-label class="blanco_1">Propina</ion-label>
+         <ion-select [(ngModel)]="propina" multiple="false" cancelText="Cancelar" okText="Aceptar" name="propina" formControlName="propina">
+             <div>
+               <ion-option value="0.05">5%</ion-option>
+               <ion-option value="0.10">10%</ion-option>
+               <ion-option value="0.15">15%</ion-option>
+               <ion-option value="0.20">20%</ion-option>
+             </div>
+         </ion-select>
+         <!--<ion-datetime displayFormat="M" doneText=Aceptar cancelText=Cancelar [(ngModel)]="mesExp" name="mesExp" formControlName="mesExp"></ion-datetime>-->
+         <!--<ion-input type="tel" [(ngModel)]="mesExp" name="mesExp" formControlName="mesExp" maxlength="2"></ion-input>-->
+       </ion-item>
+    </ion-list>
+  </form>
+  <!--<div class="_footer">
+      <div text-center margin>
+          Al selecionar "Reservar", aceptas los términos y condiciones de los <a>Términos de uso</a> y la
+          <a>Política
+              de
+              privacidad</a> de Guest Resy
+      </div>
+  </div>-->
+  <ion-footer no-border>
+      <ion-toolbar>
+          <ion-grid>
+              <ion-row>
+                <ion-col col-6>
+                </ion-col>
+                <ion-col col-6>
+                      <div text-center>
+                          <button ion-button block round color="dark" (click)="propinaAdd()" [disabled]="!myForm.valid">Reservar</button>
+                      </div>
+                </ion-col>
+              </ion-row>
+          </ion-grid>
+      </ion-toolbar>
+  </ion-footer>
+ </ion-content>

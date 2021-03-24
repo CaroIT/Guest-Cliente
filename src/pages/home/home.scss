@@ -1,0 +1,32 @@
+page-home {
+  ion-content{
+    background-image: url('../assets/imgs/fondoblanco2.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+      //background-position: center;
+    width: 100%;
+    position: relative;
+    border: none;
+  }
+  .slide{
+    height: auto;
+  }
+  .blanco{
+      font-size: 20px;
+       resize: none;
+       color: #fff;
+       font: bold;
+       font-weight: 900;
+    }
+    .list{
+      height: auto;
+      margin-top: 10px;
+      border: none;
+    }
+    ion-icon{
+      color: #eccc68;
+    }
+    .es{
+      text-align: center;
+    }
+}
