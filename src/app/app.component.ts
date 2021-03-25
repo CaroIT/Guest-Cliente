@@ -24,6 +24,7 @@ import * as firebase from 'firebase/app';
 import "firebase/database";
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { CuponesPage } from '../pages/cupones/cupones';
+import { TipoLugarPage } from "../pages/tipo-lugar/tipo-lugar";
 
 
 @Component({
@@ -35,17 +36,20 @@ export class MyApp {
   user: Credenciales = {};
 
   rootPage: any = LoginPage;
-  home = TabsPage;
+  // home = TabsPage;
+  home = TipoLugarPage;
   nosotros = NosotrosPage;
   carta = CartaPage;
   perfil = PerfilPage;
   historial = HistorialPage;
   reservacion = Reservacion_1Page;
   reservaciones = MisReservacionesPage;
-  pago = TarjetasPage;''
+  pago = TarjetasPage; ''
   cupones = CuponesPage;
   nombresUsers: any;
   us: any;
+  uidUserSesion: any;
+  nombresUserss: any = {};
 
   constructor(
     private platform: Platform,
@@ -61,32 +65,36 @@ export class MyApp {
     console.log(this.usuarioProv.usuario);
     this.user = this.usuarioProv.usuario;
 
+    this.uidUserSesion = localStorage.getItem('uid');
+    console.log('id del usuario en localStorage', this.uidUserSesion);
+
     platform.ready().then(() => {
-      if( localStorage.getItem("isLogin") == "true" && localStorage.getItem("reservacion") != "true" ){
-          this.fb.login(['public_profile','email']).then((res: FacebookLoginResponse) => {
-           const facebookCredential = firebase.auth.FacebookAuthProvider.credential(res.authResponse.accessToken);
-           firebase.auth().signInWithCredential(facebookCredential)
-           .then(user => {
-            this.us = user.user;
-            console.log('Usuario: ', JSON.stringify(this.us));
-            localStorage.setItem("uid", this.us.uid);
-             //cargar datos de facebook del usuario
-             this.usuarioProv.cargarUsuario(
-               this.us.displayName,
-               this.us.email,
-               this.us.photoURL,
-               this.us.uid,
-               this.us.phoneNumber,
-               'facebook'
-             );
-            this.nav.setRoot(TabsPage);
+      if (localStorage.getItem("isLogin") == "true" && localStorage.getItem("reservacion") != "true") {
+        this.fb.login(['public_profile', 'email']).then((res: FacebookLoginResponse) => {
+          const facebookCredential = firebase.auth.FacebookAuthProvider.credential(res.authResponse.accessToken);
+          firebase.auth().signInWithCredential(facebookCredential)
+            .then(user => {
+              this.us = user.user;
+              console.log('Usuario: ', JSON.stringify(this.us));
+              localStorage.setItem("uid", this.us.uid);
+              //cargar datos de facebook del usuario
+              this.usuarioProv.cargarUsuario(
+                this.us.displayName,
+                this.us.email,
+                this.us.photoURL,
+                this.us.uid,
+                this.us.phoneNumber,
+                'facebook'
+              );
+              // this.nav.setRoot(TabsPage);
+              this.nav.setRoot(TipoLugarPage);
             }).catch(e => alert('Error de autenticación' + JSON.stringify(e)));
-          })
+        })
       }
-      else if( localStorage.getItem("isLogin") == "false" ){
-          this.nav.setRoot(LoginPage);
+      else if (localStorage.getItem("isLogin") == "false") {
+        this.nav.setRoot(LoginPage);
       }
-      else if( localStorage.getItem("reservacion") == "true" ){
+      else if (localStorage.getItem("reservacion") == "true") {
         this.nav.setRoot(ResumenPage, {
           idReservacion: localStorage.getItem("idReservacion"),
           idSucursal: localStorage.getItem("idSucursal"),
@@ -107,6 +115,14 @@ export class MyApp {
       .valueChanges()
       .subscribe(data => {
         this.nombresUsers = data;
+      });
+
+    //consultar tabla usuarios
+    this.afs
+      .collection("users").doc(this.uidUserSesion)
+      .valueChanges()
+      .subscribe(data => {
+        this.nombresUserss = data;
       });
   }//termina constructor
 
@@ -141,28 +157,28 @@ export class MyApp {
     this.menuCtrl.close();
   }
 
-  irPago( pago: any ) {
+  irPago(pago: any) {
     console.log(pago);
     this.rootPage = pago;
     this.menuCtrl.close();
   }
 
-  irCupones( cupones: any){
+  irCupones(cupones: any) {
     console.log(cupones);
     this.rootPage = cupones;
     this.menuCtrl.close();
   }
 
-  irMisreservaciones( reservaciones:any ){
-    console.log( reservaciones );
-    this.rootPage= reservaciones;
+  irMisreservaciones(reservaciones: any) {
+    console.log(reservaciones);
+    this.rootPage = reservaciones;
     this.menuCtrl.close();
-    }
+  }
 
-  irReservacion( reservacion:any ){
-  console.log( reservacion );
-  this.rootPage= reservacion;
-  this.menuCtrl.close();
+  irReservacion(reservacion: any) {
+    console.log(reservacion);
+    this.rootPage = reservacion;
+    this.menuCtrl.close();
   }
 
   irLogin(rootPage) {

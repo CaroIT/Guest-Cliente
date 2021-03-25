@@ -1,7 +1,6 @@
 <ion-menu [content]="content">
-    <ion-content class="menu-content" padding>
-        <h4></h4>
-        <div>
+    <ion-content class="menu-content" padding style="background-color:#FD9530">
+        <!-- <div>
             <div class="margen3_app">
                 <div *ngFor="let users of nombresUsers">
                     <div *ngIf="users.uid==user.uid">
@@ -15,12 +14,25 @@
             <div class="margen1_app">
                 <img class="cate" src="../assets/imgs/icons/gold_guest.png">
             </div>
+        </div> -->
+
+        <div align="center">
+            <img class="imgRedonda" src="{{nombresUserss.photoURL}}?type=large&width=720&height=720">
+            <p style="color: white;font-size: large;">{{nombresUserss.displayName}}</p>
         </div>
+
+        <div class="margen2_app">
+            <h6 class="mayusculas">{{user.nombre}}</h6>
+        </div>
+        <div class="margen1_app">
+        </div>
+
+
         <div class="borde"></div>
         <div class="margen4_app">
             <ion-list class="menu-list">
-                <button ion-item (click)="irHome( home )">
-                    <img class="home" src="../assets/imgs/icons/home.png"> <div class="home2"> Home</div>
+                <button ion-item style="background:#FD9530" (click)="irHome( home )">
+                    <img class="home" src="../assets/imgs/icons/iconos-07.png"> Home
                 </button>
                 <!-- <button ion-item (click)="irNosotros( nosotros )">
                   <img class="home" src="../assets/imgs/icons/corona.png">  Nosotros
@@ -28,30 +40,31 @@
                 <!--<button ion-item (click)="irReservacion( reservacion )">
                     <img class="home" src="../assets/imgs/icons/time.png"> Reservaciones
                   </button>-->
-                <button ion-item (click)="irMisreservaciones( reservaciones )">
-                        <img class="home" src="../assets/imgs/icons/sucursal.png"><div class="home2"> Mis reservaciones</div>
-               </button>
+                <button ion-item style="background:#FD9530" (click)="irMisreservaciones( reservaciones )">
+                    <img class="home" src="../assets/imgs/icons/Frame.png"> Mis Reservaciones
+                </button>
                 <!--<button ion-item (click)="irCarta( carta )">
                     <img class="home" src="../assets/imgs/icons/champagne.png">  Carta Móvil
                   </button>
                 -->
-                <button ion-item (click)="irPerfil( perfil )">
-                    <img class="home" src="../assets/imgs/icons/profile.png"> <div class="home2"> Perfil</div>
+                <button ion-item style="background:#FD9530" (click)="irPerfil( perfil )">
+                    <img class="home" src="../assets/imgs/icons/iconos-02.png"> Perfil
                 </button>
-                <button ion-item (click)="irHistorial( historial )">
-                    <img class="home" src="../assets/imgs/icons/book.png">  <div class="home3"> Historial</div>
+                <button ion-item style="background:#FD9530" (click)="irHistorial( historial )">
+                    <img class="home" src="../assets/imgs/icons/iconos-03.png"> Historial
                 </button>
-                <button ion-item (click)="irPago( pago )">
-                    <img class="home" src="../assets/imgs/icons/tarjeta.png">  <div class="home3"> Pago</div>
+                <button ion-item style="background:#FD9530" (click)="irPago( pago )">
+                    <img class="home" src="../assets/imgs/icons/medidas.png"> Pago
                 </button>
-                <button ion-item (click)="irCupones( cupones )">
-                    <img class="home" src="../assets/imgs/icons/tarjeta.png"> <div class="home3"> Cupones</div>
+                <button ion-item style="background:#FD9530" (click)="irCupones( cupones )">
+                    <img class="home" src="../assets/imgs/icons/medidas-09.png"> &nbsp; Cupones
                 </button>
-                <ion-footer>
-                    <button style="text-align: right" ion-item (click)="salir( rootPage )">
-                             <img class="home" src="../assets/imgs/icons/turn-off.png">  Cerrar Sesión
-                    </button>
-                </ion-footer>
+                <button
+                    style="border-radius: 10px;color:#ffff;width:50px;width:130px;height:30px;margin-left:50px;margin-top:60px"
+                    block (click)="salir( rootPage )">
+                    <img src="../assets/imgs/icons/icono negro-03.png" style="width:20px" alt="">
+                    <font color="black"> Salir </font>
+                </button>
             </ion-list>
         </div>
     </ion-content>

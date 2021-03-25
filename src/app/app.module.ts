@@ -83,6 +83,7 @@ import { QRScanner } from '@ionic-native/qr-scanner';
 import { CuponesProvider } from '../providers/cupones/cupones';
 import { Clipboard } from '@ionic-native/clipboard';
 import { Stripe } from '@ionic-native/stripe';
+import { TipoLugarPage } from '../pages/tipo-lugar/tipo-lugar';
 
 
 
@@ -127,7 +128,8 @@ export const firebaseConfig = {
     CuponesPage,
     HistorialDetallePage,
     PropinaPage,
-    QrGeneradoPage
+    QrGeneradoPage,
+    TipoLugarPage
   ],
   imports: [
     BrowserModule,
@@ -177,7 +179,8 @@ export const firebaseConfig = {
     CuponesPage,
     HistorialDetallePage,
     PropinaPage,
-    QrGeneradoPage
+    QrGeneradoPage,
+    TipoLugarPage
   ],
   providers: [
     StatusBar,

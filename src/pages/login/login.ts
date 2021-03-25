@@ -7,12 +7,11 @@ import { UsuarioProvider } from "../../providers/usuario/usuario";
 import { TabsPage } from "../../pages/tabs/tabs";
 import { TelefonoUserPage } from "../../pages/telefono-user/telefono-user";
 import { Platform } from 'ionic-angular';
-//import { Facebook } from '@ionic-native/facebook';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
-// import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFirestore } from '@angular/fire/firestore';
-// import { EventosPage } from '../eventos/eventos';
+import { TipoLugarPage } from '../tipo-lugar/tipo-lugar';
+
 
 
 @IonicPage()
@@ -22,12 +21,10 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class LoginPage {
   acti: any[];
-  // firedata = firebase.database().ref('/users');
   us: any;
   codigos: any;
   telefono: any;
   url: any;
-  //usData: any;
   usPhotoUrl: any;
 
   pageLogin = "admin-login";
@@ -38,17 +35,12 @@ export class LoginPage {
               private fb: Facebook,
               private googlePlus: GooglePlus,
               private platform: Platform,
-              // public afiredatabase: AngularFireDatabase,
               public afs: AngularFirestore
               ) {
               }
 
 
-   ionViewDidLoad() {
-     //if (localStorage.getItem("isLogin") == "true") {
-      //   this.navCtrl.setRoot(TabsPage);
-      //}
-  }
+   ionViewDidLoad() {}
 
   signInGoogle() {
     this.googlePlus
@@ -87,7 +79,8 @@ export class LoginPage {
                 phoneNumber: this.us.phoneNumber,
                 type: "u"
               });
-            this.navCtrl.setRoot(TabsPage);
+            // this.navCtrl.setRoot(TabsPage);
+            this.navCtrl.setRoot(TipoLugarPage);
           })
           .catch(error =>
             console.log("Firebase failure: " + JSON.stringify(error))
@@ -110,14 +103,7 @@ export class LoginPage {
         //console.log('userID',this.us.uid);
         this.url = "?height=500";
         this.usPhotoUrl = this.us.photoURL+this.url;
-        //console.log('url foto',this.usPhotoUrl);
-        //this.usData = user.additionalUserInfo.profile;
-        //console.log('Usuario data2: ', JSON.stringify(this.usData));
-        //this.usPhotoUrl = this.usData.picture.data.url;
-        //console.log('picture user facebook',this.usPhotoUrl);
-        // alert(JSON.stringify(this.us.uid));
-         // console.log(res);
-         //cargar datos de facebook del usuario
+
          this.usuarioProv.cargarUsuario(
            this.us.displayName,
            this.us.email,
@@ -187,7 +173,8 @@ export class LoginPage {
              });
              //console.log('telefono',this.telefono);
            });
-        this.navCtrl.setRoot(TabsPage);
+        // this.navCtrl.setRoot(TabsPage);
+        this.navCtrl.setRoot(TipoLugarPage);
         }).catch(e => alert('Error de autenticación' + JSON.stringify(e)));
       })
     }else{
@@ -238,6 +225,7 @@ export class LoginPage {
   }
 
   signIn(){
-    this.navCtrl.setRoot(TabsPage);
+    // this.navCtrl.setRoot(TabsPage);
+    this.navCtrl.setRoot(TipoLugarPage);
   }
 }
