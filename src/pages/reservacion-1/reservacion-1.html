@@ -1,93 +1,191 @@
 <ion-header>
-
-    <ion-navbar>
-        <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-        <ion-title>Guest Reservaciones</ion-title>
+    <ion-navbar class="borde" hideBackButton>
+        <ion-row>
+            <ion-col>
+                <button ion-button menuToggle class="botonMod">
+                    <ion-icon item-start name="menu" class="colorIcon3" style="zoom:1.5;"></ion-icon>
+                </button>
+            </ion-col>
+            <ion-col>
+                <img src="./assets/imgs/Logoblanco.png" style="width: 60%;" alt="">
+            </ion-col>
+            <ion-col>
+                <div align='end'>
+                    <img src="{{miUser.photoURL}}?type=large&width=720&height=720" style="width:40%;border-radius:50%;">
+                </div>
+            </ion-col>
+        </ion-row>
     </ion-navbar>
 </ion-header>
 
+<ion-content class="card-background-page">
 
-<ion-content padding>
-  <!--BUSCAR POR CIUDAD-->
-  <ion-item text-right class="card_atras">
-      <ion-label>
-          <h3 class="colorIcon">Ciudad</h3>
-      </ion-label>
-      <ion-select [(ngModel)]="filterPostCiudad" interface="popover" >
-         <div *ngFor="let ciudad of ciudades">
-            <ion-option [value]="ciudad.ciudad">{{ciudad.ciudad}}</ion-option>
-         </div>
-      </ion-select>
-  </ion-item>
-  <!--TERMINA BUSCAR POR CIUDAD-->
-    <ion-item text-right class="card_atras">
-        <ion-label>
-            <ion-icon ios="ios-list" md="md-list"></ion-icon>
-        </ion-label>
-        <ion-select [(ngModel)]="filterPost" interface="popover">
-            <ion-option value="bar">Bares</ion-option>
-            <ion-option value="antro">Antros</ion-option>
-            <ion-option value="restaurante">Restaurantes</ion-option>
-            <ion-option value="">Todos</ion-option>
-        </ion-select>
-    </ion-item>
+    <div *ngIf="estatus == 0">
 
-    <div class="warning1">
-        <div style="text-align: center">
-            <img height="43px" width="43px" src="../assets/imgs/icons/corona.png" item-start><br>
-        </div>
-        <br> Selecciona el lugar de tu reservación.
-    </div>
-    <!--<hr color="green" size=6 width="150">-->
-    <!-- <ion-list class="card_atras">
-        <ion-item *ngFor="let sucursal of sucursales | async" class="card_atras">
-            <ion-thumbnail item-start>
-                <img [src]="sucursal.photoURL" />
-            </ion-thumbnail>
-            <h2> {{sucursal.displayName}} </h2>
-            <p> {{sucursal.direccion}} </p>
-            <button ion-button clear item-end (click)="reservar(sucursal.uid)">Seleccionar</button>
+        <ion-row>
+            <ion-col col-3>
+                <ion-item text-center no-lines>
+                    <ion-icon name="md-calendar" class="colorIcon" (click)="verEvento()"></ion-icon>
+                    <p style="font-size: 11px;" (click)="verEvento()">EVENTOS</p>
+                </ion-item>
+            </ion-col>
+            <ion-col col-5 style="margin-left: -25px;">
+                <!-- <ion-item text-center no-lines>
+                    <ion-icon name="md-time" class="colorIcon" (click)="verReservacion()"></ion-icon>
+                    <p style="font-size: 11px;" (click)="verReservacion()">RESERVACIONES</p>
+                </ion-item> -->
+                <ion-item text-right class="card_atras" no-lines>
+                    <ion-label>
+                        <h3 class="colorIcon">Ciudad</h3>
+                    </ion-label>
+                    <ion-select [(ngModel)]="filterPostCiudad" interface="popover" >
+                       <div *ngFor="let ciudad of ciudades">
+                          <ion-option [value]="ciudad.ciudad">{{ciudad.ciudad}}</ion-option>
+                       </div>
+                    </ion-select>
+                </ion-item>
+            </ion-col>
+            <ion-col>
+                <ion-item text-right no-lines>
+                    <ion-label>
+                        <ion-icon name="md-list" class="colorIcon" color="black"></ion-icon>
+                    </ion-label>
+                    <ion-select [(ngModel)]="filterPost" interface="popover" class="colorIcon" style="color: #000;">
+                        <ion-option value="bar">Bares</ion-option>
+                        <ion-option value="antro">Antros</ion-option>
+                        <ion-option value="restaurante">Restaurantes</ion-option>
+                        <ion-option value="">Todos</ion-option>
+                    </ion-select>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+
+        <br>
+
+        <ion-item text-center no-lines>
+            <label class="selecciona"> SELECCIONA EL LUGAR DE TU RESERVACIÓN </label>
         </ion-item>
-    </ion-list> -->
 
+        <div *ngFor="let user of usuarios">
+            <div *ngIf="uidUserSesion==user.uid">
+                <div *ngFor="let sucursal of sucursalesS" class="card_atras">
+                    <div *ngIf="sucursal.ciudad==user.ciudad">
 
-  <div *ngFor="let user of usuarios">
-  <div *ngIf="uidUserSesion==user.uid">
-    <ion-card *ngFor="let sucursal of sucursales | pipesCategoria:filterPost | pipesFilterCiudad2: filterPostCiudad" class="card_atras" (click)="reservar(sucursal.uid)" >
-        <!--<div *ngIf="sucursal.ciudad==user.ciudad">-->
-        <!-- {{ sucursal.tipo }} -->
-        <div>
-            <div class="">
-                <img class="ima" [src]="sucursal.photoURL" (click)="reservar(sucursal.uid)" />
-            </div>
-            <ion-card-content>
-                <ion-card-title text-center color="light">
-                    {{sucursal.displayName}}
-                </ion-card-title>
-                <p text-center style="color: #ecf0f1;">
-                    {{sucursal.direccion}}
-                </p>
-                <p text-center style="color: #ecf0f1;">
-                    {{sucursal.ciudad}}
-                </p>
-                <div hidden>
-                    {{ sucursal.tipo }}
+                        <ion-card>
+                            <img [src]="sucursal.photoURL" />
+                            <div class="card-title">
+                                <ion-fab class="btnshare" top right edge>
+                                    <button ion-fab color="dark">
+                                        <ion-icon name="ios-arrow-dropdown" class="arrow"></ion-icon>
+                                    </button>
+                                    <ion-fab-list side="top right edge">
+                                        <button class="fabbtn" ion-fab (click)="compartir(sucursal.displayName, sucursal.photoURL)">
+                                            <!-- <img src="../assets/imgs/icons/facebook.png"> -->
+                                            <ion-icon name="logo-facebook" style="color:#706F6F;"></ion-icon>
+                                        </button>
+                                    </ion-fab-list>
+                                </ion-fab>
+                                <b>{{sucursal.displayName}}</b>
+                            </div>
+                            <div class="card-subtitle">{{sucursal.direccion}}, {{sucursal.ciudad}}
+                                <div align="right" (click)="reservar(sucursal.uid)">
+                                    <img src="./assets/imgs/select.png" style="width: 30%;margin-top: -5%;" alt=""
+                                    (click)="reservar(sucursal.uid)">
+                                </div>
+                            </div>
+
+                        </ion-card>
+
+                    </div>
                 </div>
-            </ion-card-content>
-            <ion-row no-padding>
-                <ion-col>
-                    <button ion-button clear small color="light" (click)="reservar(sucursal.uid)" icon-start>
-                    <ion-icon ios="ios-checkbox-outline" md="md-checkbox-outline"></ion-icon>
-                      Seleccionar
-                    </button>
-                </ion-col>
-            </ion-row>
+            </div>
         </div>
-      <!--</div>-->
-    </ion-card>
-  </div>
-  </div>
+
+    </div>
+
+    <div *ngIf="estatus == 1">
+
+        <ion-row>
+            <ion-col col-3>
+                <ion-item text-center no-lines>
+                    <ion-icon name="md-calendar" class="colorIcon" (click)="verEvento()"></ion-icon>
+                    <p style="font-size: 11px;" (click)="verEvento()">EVENTOS</p>
+                </ion-item>
+            </ion-col>
+            <ion-col col-5 style="margin-left: -25px;">
+                <!-- <ion-item text-center no-lines>
+                    <ion-icon name="md-time" class="colorIcon" (click)="verReservacion()"></ion-icon>
+                    <p style="font-size: 11px;" (click)="verReservacion()">RESERVACIONES</p>
+                </ion-item> -->
+                <ion-item text-right class="card_atras" no-lines>
+                    <ion-label>
+                        <h3 class="colorIcon">Ciudad</h3>
+                    </ion-label>
+                    <ion-select [(ngModel)]="filterPostCiudad" interface="popover" >
+                       <div *ngFor="let ciudad of ciudades">
+                          <ion-option [value]="ciudad.ciudad">{{ciudad.ciudad}}</ion-option>
+                       </div>
+                    </ion-select>
+                </ion-item>
+            </ion-col>
+            <ion-col>
+                <ion-item text-right no-lines>
+                    <ion-label>
+                        <ion-icon name="md-list" class="colorIcon" color="black"></ion-icon>
+                    </ion-label>
+                    <ion-select [(ngModel)]="filterPost" interface="popover" class="colorIcon" style="color: #000;">
+                        <ion-option value="bar">Bares</ion-option>
+                        <ion-option value="antro">Antros</ion-option>
+                        <ion-option value="restaurante">Restaurantes</ion-option>
+                        <ion-option value="">Todos</ion-option>
+                    </ion-select>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+
+        <br>
+
+        <ion-item text-center no-lines>
+            <label class="selecciona"> SELECCIONA EL LUGAR DE TU RESERVACIÓN </label>
+        </ion-item>
+
+
+        <div *ngFor="let user of usuarios">
+            <div *ngIf="uidUserSesion==user.uid">
+                <div *ngFor="let sucursal of sucursales | pipesCategoria:filterPost | pipesFilterCiudad2: filterPostCiudad" class="card_atras" (click)="reservar(sucursal.uid)">
+                    <!-- <div *ngIf="sucursal.ciudad==user.ciudad"> -->
+                        
+                        <ion-card>
+                            <img [src]="sucursal.photoURL" />
+                            <div class="card-title">
+                                <ion-fab class="btnshare" top right edge>
+                                    <button ion-fab color="dark">
+                                        <ion-icon name="ios-arrow-dropdown" class="arrow"></ion-icon>
+                                    </button>
+                                    <ion-fab-list side="top right edge">
+                                        <button class="fabbtn" ion-fab (click)="compartir(sucursal.displayName, sucursal.photoURL)">
+                                            <!-- <img src="../assets/imgs/icons/facebook.png"> -->
+                                            <ion-icon name="logo-facebook" style="color:#706F6F;"></ion-icon>
+                                        </button>
+                                    </ion-fab-list>
+                                </ion-fab>
+                                <b>{{sucursal.displayName}}</b>
+                            </div>
+                            <div class="card-subtitle">{{sucursal.direccion}}, {{sucursal.ciudad}}
+                                <div align="right" (click)="reservar(sucursal.uid)">
+                                    <img src="./assets/imgs/select.png" style="width: 30%;margin-top: -5%;" alt=""
+                                    (click)="reservar(sucursal.uid)">
+                                </div>
+                            </div>
+
+                        </ion-card>
+
+                    <!-- </div> -->
+                </div>
+            </div>
+        </div>
+
+    </div>
 
 </ion-content>
+

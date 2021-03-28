@@ -1,54 +1,163 @@
 page-reservacion-1 {
-    ion-content {
-        background-image: url('../assets/imgs/fondo_r3.png');
-        background-repeat: no-repeat;
+
+    //Nuevo
+    .toolbar-background {
+        background-image: url('../assets/content/head.png')!important;
         background-size: cover;
-        //background-position: center;
+        background-position: center center;
+        background-repeat: no-repeat;
+    }
+
+    //Nuevo
+    .botonMod {
+        background: white;
+        height: 36px;
+        border-radius: 60%;
+        margin-top: 10px;
+        width: 26px;
+    }
+
+    //Nuevo
+    .colorIcon3 {
+        zoom: 1;
+        color: #000;
+        font-size: inherit;
+    }
+
+    .borde {
+        margin-top: 0em;
+    }
+
+    .colorIcon{
+        color: #000;
+    }
+
+    .selecciona {
+        font-size: 14px
+    }
+
+    .btnshare {
+        zoom: 70%;
+        margin-top: -20%;
+    }
+
+    .colorIcon2 {
+        color: #F9F6F6;
+    }
+
+    .imagen_fondo{
         width: 100%;
-        position: relative;
-        border: none;
+        height: 250px;
     }
-    ion-icon {
-    color: #F59C2A;
-    //color: #eccc68;
+
+    .titulo{
+        position: fixed;
+        margin-top: -35%;
+        color: white;
     }
-    .card_atras {
-        background: -moz-linear-gradient(top, rgb(245, 156, 42) 0%, rgba(68, 71, 75, 0.05) 10%, rgb(117, 116, 116) 100%);
-        /* FF3.6-15 */
-        background: -webkit-linear-gradient(top, rgb(245, 156, 42) 0%, rgba(68, 71, 75, 0.05) 10%, rgb(117, 116, 116) 100%);
-        /* Chrome10-25,Safari5.1-6 */
-        background: linear-gradient(to bottom, rgba(117, 116, 116, 0.2) 0%, rgba(68, 71, 75, 0.2) 80%, rgba(117, 116, 116,0.2) 100%);
-        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-        // filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000', GradientType=0);
-        /* IE6-9 */
-        // font-weight: bold;
+
+    .titulos {
         color: #fff;
-        // margin-top: 30%;
+        font-style: normal;
+        font-size: x-large;
     }
-    h2 {
+
+    .card-background-page {
+
+        ion-card {
+          position: relative;
+          text-align: center;
+        }
+      
+        .card-title {
+            font-family: 'Open Sans', sans-serif;
+            position: absolute;
+            top: 36%;
+            font-size: 2.3em;
+            width: 100%;
+            font-weight: bold;
+            color: #fff;
+            font-family: url('./assets/fonts/Staatliches-Regular.ttf');
+            
+            // @font-face {
+            //     font-family: 'Staatliches';
+            //     font-weight: 400;
+            //     src: url('./assets/fonts/Staatliches-Regular.ttf');    
+            // }
+        }
+      
+        .card-subtitle {
+          font-size: 1.0em;
+          position: absolute;
+          top: 56%;
+          width: 100%;
+          color: #fff;
+        }
+        
+      
+    }
+
+    .arrow {
         color: #fff;
     }
-    .ima {
-        border-radius: 55px;
-        height: 75px;
-        width: auto;
-        border:2px solid #ffffff;
-        margin-left: auto;
-        margin-right: auto;
-        display: block;
+    
+    .ion-option {
+        background: #000;
     }
-    ion-card {
-        border-radius: 5px;
+
+    ion-select {
+        // background-color: #000;
+        .select-icon {
+        .select-icon-inner {
+         color : #000 !important;
+            }
+        }
+        .select-ion-option {
+            background: #000;
+        }
     }
-    .colo {
-        margin-left: 35%;
-        margin-top: 2%;
-    }
-    .warning1 {
+
+    ion-option {
         background-color: #000;
-        color: #ffffff;
-        text-align: center;
-        padding: 10px;
-        border-color: #eccc68;
+        color: #fff;
     }
+
+      //NUEVOS
+      ion-select {
+        .select-icon {
+        .select-icon-inner {
+         color : #000 !important;
+       }
+       }
+    }
+
+    ion-alert:not(.select-alert) {
+        --background: black !important;
+        --color: white !important;
+      
+        button {
+          color: white !important;
+          font-size: 20px !important;
+        }
+    }
+
+    ion-select {
+        .option-content {
+            background-color: #000;
+        }
+    }
+
+
+    .radio-md .radio-checked,
+    .radio-md-primary .radio-checked {
+        border-color: #fff;
+    }
+    .radio-md .radio-inner,
+    .radio-md-primary .radio-inner {
+        background-color: #fff;
+    }
+    .item-md .radio-md {
+        background-color: transparent;
+    }
+
 }
