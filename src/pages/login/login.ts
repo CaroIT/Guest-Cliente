@@ -11,6 +11,7 @@ import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { TipoLugarPage } from '../tipo-lugar/tipo-lugar';
+import { LoginCorreoPage } from '../login-correo/login-correo';
 
 
 
@@ -222,6 +223,14 @@ export class LoginPage {
         });
       });
     }
+  }
+
+  signInWithCorreo(palabra: string){
+    this.navCtrl.setRoot(LoginCorreoPage, {palabra: palabra});
+  }
+
+  onReset(palabra: string) {
+    this.navCtrl.setRoot(LoginCorreoPage, {palabra: palabra});
   }
 
   signIn(){

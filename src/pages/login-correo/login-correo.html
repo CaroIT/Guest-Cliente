@@ -1,0 +1,219 @@
+<ion-header class="esquina">
+  <ion-navbar class="borde">
+    <ion-row>
+      <ion-col>
+        <button ion-fab color="negro" (click)="(goBack())">
+          <ion-icon name="arrow-back" color="naranja" style="zoom:1.2;"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col>
+      </ion-col>
+      <ion-col>
+      </ion-col>
+    </ion-row>
+  </ion-navbar>
+</ion-header>
+<!-- <img src="../assets/imgs/Rectangle 12.png" style="position:absolute;width:1000px"  alt=""> -->
+<ion-content padding>
+  <img src="../assets/imgs/Rectangle 12.png" style="position:absolute;width:400px;height:700px;margin-left:-15px;margin-top:-18px"  alt="">
+  <img src="../assets/imgs/Rectangle 59.png" style="position:absolute;width:340px;margin-left:15px"  alt="">
+<div align="center">
+  <img src="../assets/imgs/logo-01 1.png" style="position:absolute;margin-left:-80px;width:145px"  alt="">
+
+</div>
+
+  <br><br>
+
+  <div *ngIf="palabra == 'inicio_sesion'">
+    <ion-grid >
+      <ion-row style="margin-top:80px">
+        <ion-col>
+          <!-- <ion-card class="registro">
+            <ion-card-header class="header">
+              Inicio de Sesión
+            </ion-card-header>
+          </ion-card> -->
+
+          <!-- <ion-card>
+            <ion-card-content> -->
+              <form [formGroup]="myForm_lo" novalidate>
+                <ion-grid>
+                  <ion-row>
+                    <!-- <ion-col col-3>
+                      <ion-item class="recuadro">
+                        <ion-icon name="logo-google" style="font-size: x-large;"></ion-icon>
+                      </ion-item>
+                    </ion-col> -->
+                    <ion-col col-11>
+                      <ion-item class="_input">
+                                  <ion-label floating style="color:white">Correo Electrónico</ion-label>
+                        <ion-input type="text" style="color:white;" name="email_lo" formControlName="email_lo" [(ngModel)]="email_lo"
+                        ></ion-input>
+                      </ion-item>
+                    </ion-col>
+                  </ion-row>
+
+                  <ion-row>
+                    <!-- <ion-col col-3>
+                      <ion-item class="recuadro">
+                        <ion-icon name="md-lock" style="font-size: x-large;"></ion-icon>
+                      </ion-item>
+                    </ion-col> -->
+
+                                      <ion-col col-11>
+            <ion-item class="_input">
+              <ion-label floating style="color:white">Password</ion-label>
+                        <ion-input type="password" name="pass_lo" formControlName="pass_lo" style="color:white;"[(ngModel)]="pass_lo"
+                          ></ion-input>
+  </ion-item>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+
+                <br>
+
+                <ion-row>
+                  <ion-col>
+                    <div padding>
+                      <button   class="envio" (click)="LoginToEmail()" ion-button icon-left block> <font size="2">INICIAR SESION</font> </button>
+
+                    </div>
+                  </ion-col>
+                </ion-row>
+                 <!-- <ion-button color="secondary">Secondary</ion-button> -->
+              </form>
+            <!-- </ion-card-content>
+          </ion-card> -->
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+
+  <div *ngIf="palabra == 'registro'">
+    <ion-grid>
+      <ion-row  style="margin-top:110px">
+        <ion-col>
+          <!-- <ion-card class="registro">
+            <ion-card-header class="header">
+              Registro
+            </ion-card-header>
+          </ion-card> -->
+
+          <!-- <ion-card>
+            <ion-card-content> -->
+              <form [formGroup]="myForm" novalidate>
+                <ion-grid>
+                  <ion-row>
+                    <!-- <ion-col col-3>
+                      <ion-item class="recuadro">
+                        <ion-icon name="md-contact" item-start style="font-size: x-large;"></ion-icon>
+                      </ion-item>
+                    </ion-col> -->
+                    <ion-col col-11>
+                      <ion-item class="_input">
+                              <ion-label floating style="color:white" >Nombre</ion-label>
+                        <ion-input type="text" style="color:white;" name="name" formControlName="name" [(ngModel)]="name"
+                        ></ion-input>
+                      </ion-item>
+                    </ion-col>
+                  </ion-row>
+
+                  <ion-row>
+                    <!-- <ion-col col-3>
+                      <ion-item class="recuadro">
+                        <ion-icon name="logo-google" style="font-size: x-large;"></ion-icon>
+                      </ion-item>
+                    </ion-col> -->
+                    <ion-col col-11>
+                      <ion-item class="_input">
+                              <ion-label floating style="color:white">Correo Electrónico</ion-label>
+                        <ion-input type="text" style="color:white;" name="email" formControlName="email" [(ngModel)]="email"
+                        ></ion-input>
+                      </ion-item>
+                    </ion-col>
+                  </ion-row>
+
+                  <ion-row>
+                    <!-- <ion-col col-3>
+                      <ion-item class="recuadro">
+                        <ion-icon name="md-lock" style="font-size: x-large;"></ion-icon>
+                      </ion-item>
+                    </ion-col> -->
+                    <ion-col col-11>
+                      <ion-item class="_input">
+                              <ion-label floating style="color:white">Password</ion-label>
+                        <ion-input type="password"  style="color:white;" name="pass" formControlName="pass" [(ngModel)]="pass"
+                        ></ion-input>
+                      </ion-item>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+
+                <br>
+
+                <ion-row>
+                  <ion-col>
+                    <div padding>
+                      <button block class="envio" (click)="RegisterToEmail()">Iniciar Sesión</button>
+                    </div>
+                  </ion-col>
+                </ion-row>
+              </form>
+            <!-- </ion-card-content>
+          </ion-card> -->
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+
+  <div *ngIf="palabra == 'recuperacion'">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-card class="registro">
+            <ion-card-header class="header">
+              Recuperación
+            </ion-card-header>
+          </ion-card>
+
+          <ion-card>
+            <ion-card-content>
+              <form [formGroup]="myFormr" novalidate>
+                <ion-grid>
+
+                  <ion-row>
+                    <ion-col col-3>
+                      <ion-item class="recuadro">
+                        <ion-icon name="logo-google" style="font-size: x-large;"></ion-icon>
+                      </ion-item>
+                    </ion-col>
+                    <ion-col col-9>
+                      <ion-item class="_input">
+                        <ion-input type="text" name="email_re" formControlName="email_re" [(ngModel)]="email_re"
+                          placeholder="Correo Electrónico"></ion-input>
+                      </ion-item>
+                    </ion-col>
+                  </ion-row>
+
+                </ion-grid>
+
+                <br>
+
+                <ion-row>
+                  <ion-col>
+                    <div padding>
+                      <button block class="envio" (click)="onReset('bottom')">Recuperación de password</button>
+                    </div>
+                  </ion-col>
+                </ion-row>
+              </form>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+</ion-content>

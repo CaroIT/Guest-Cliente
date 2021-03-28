@@ -1,0 +1,69 @@
+page-login-correo {
+
+    ion-content{
+        background-image: url('../assets/imgs/Guest 159 1.png');
+        // background-image: url('../assets/imgs/Rectangle 12.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+          //background-position: center;
+        width: 100%;
+        position: relative;
+        border: none;
+    }
+  
+    .borde {
+        margin-top: 0em;
+        border-style: solid;
+        border-width: 1px;
+        border-bottom-color: #e49602;
+    }
+  
+    .ima{
+      height: 28px;
+      width: 28px;
+      background-color: black;
+      margin-left: 120%;
+      margin-top: 55%;
+    }
+  
+    .esquina{
+      background-color: black;
+    }
+  
+    .texto-alineado{
+      margin-top: 4%;
+      margin-left: -40%;
+    }
+  
+    .registro {
+        background-color: #c18c26;
+    }
+  
+    .header {
+        color: white;
+        font-size: x-large;
+        text-align: center;
+    }
+  
+    .recuadro {
+        background-color: #c18c26;
+        color: white;
+        font-size: large;
+    }
+  
+    ._input{
+        background: none;
+  
+    }
+  
+    .envio{
+        background: #ffffff;
+        border-radius: 20px;
+        width: 100%;
+        height: 40px;
+        color: #839192;
+          letter-spacing: 0.25em;
+        font-size: large;
+    }
+    
+}

@@ -84,6 +84,7 @@ import { CuponesProvider } from '../providers/cupones/cupones';
 import { Clipboard } from '@ionic-native/clipboard';
 import { Stripe } from '@ionic-native/stripe';
 import { TipoLugarPage } from '../pages/tipo-lugar/tipo-lugar';
+import { LoginCorreoPage } from '../pages/login-correo/login-correo';
 
 
 
@@ -129,7 +130,8 @@ export const firebaseConfig = {
     HistorialDetallePage,
     PropinaPage,
     QrGeneradoPage,
-    TipoLugarPage
+    TipoLugarPage,
+    LoginCorreoPage
   ],
   imports: [
     BrowserModule,
@@ -180,7 +182,8 @@ export const firebaseConfig = {
     HistorialDetallePage,
     PropinaPage,
     QrGeneradoPage,
-    TipoLugarPage
+    TipoLugarPage,
+    LoginCorreoPage
   ],
   providers: [
     StatusBar,
