@@ -1,3 +1,60 @@
 page-tipo-lugar {
 
+    //Nuevo
+    .toolbar-background {
+        background-image: url('../assets/content/head.png')!important;
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+    }
+
+    //Nuevo
+    .botonMod {
+        background: white;
+        height: 36px;
+        border-radius: 60%;
+        margin-top: 10px;
+        width: 26px;
+    }
+
+    //Nuevo
+    .colorIcon3 {
+        zoom: 1;
+        color: #000;
+        font-size: inherit;
+    }
+
+    .borde {
+        margin-top: 0em;
+    }
+
+    .card-background-page {
+
+        ion-card {
+          position: relative;
+          text-align: center;
+        }
+      
+        .card-title {
+          position: absolute;
+          top: 36%;
+          font-size: 2.0em;
+          width: 50%;
+          font-weight: bold;
+          color: #fff;
+          background-color: #000;
+          left: 48%;
+        }
+      
+        .card-subtitle {
+          font-size: 1.0em;
+          position: absolute;
+          top: 52%;
+          width: 100%;
+          color: #fff;
+        }
+      
+    }
+    
+
 }

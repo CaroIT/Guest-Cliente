@@ -114,17 +114,17 @@ ion-menu {
     text-align: center;
     padding: 10px;
     border-radius: 15px;
-    border-bottom-color: #eccc68;
+    border-bottom-color: #FD9530;
 }
 
 .alert-md .alert-head {
-    color: #eccc68;
+    color: #FD9530;
     text-align: center !important;
     padding: 24px 24px 20px;
 }
 
 .alert-ios .alert-head {
-    color: #eccc68;
+    color: #FD9530;
 }
 
 .alert-md .alert-message {
@@ -134,33 +134,33 @@ ion-menu {
 ///SEGMENT
 //@Android
 $segment-button-md-border-bottom-color:#d6d5d5;
-$segment-button-md-text-color-activated:#ffffff;
-$segment-button-md-border-color-activated:#eccc68;
+$segment-button-md-text-color-activated:#FD9530;
+$segment-button-md-border-color-activated:#FD9530;
 $alert-md-checkbox-label-text-color: #ffffff;
-$alert-md-checkbox-label-text-color-checked:#eccc68;
+$alert-md-checkbox-label-text-color-checked:#fff;
 
 //@IOS
-$segment-button-ios-background-color:#000000;
-$segment-button-ios-background-color-activated:#eccc68;
-$segment-button-ios-text-color:#ffffff;
-$alert-ios-checkbox-label-text-color-checked:#eccc68;
+$segment-button-ios-background-color:#7A7979;
+$segment-button-ios-background-color-activated:#FD9530;
+$segment-button-ios-text-color:#7A7979;
+$alert-ios-checkbox-label-text-color-checked:#FD9530;
 ///Termina el segment
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
 // App Material Design Variables
-$select-ios-icon-color: #eccc68;
+$select-ios-icon-color: #FD9530;
 $select-ios-placeholder-color: #000000;
 $alert-ios-background: #000000;
-$alert-ios-button-text-color: #eccc68;
+$alert-ios-button-text-color: #FD9530;
 $alert-ios-radio-label-text-color: #ffffff;
 $datetime-ios-placeholder-color: #000000;
 $alert-ios-message-text-color: #ffffff;
 $alert-ios-message-text-align: center;
 $picker-ios-background-color: #000000;
-$picker-ios-option-selected-color: #eccc68;
+$picker-ios-option-selected-color: #FD9530;
 $picker-ios-option-text-color: #ffffff;
-$picker-ios-button-text-color: #eccc68;
+$picker-ios-button-text-color: #FD9530;
 $card-ios-margin-left: 0px;
 $card-ios-margin-right: 0px;
 $alert-ios-checkbox-label-text-color: #ffffff;
@@ -173,19 +173,56 @@ $alert-ios-checkbox-label-text-color: #ffffff;
 // --------------------------------------------------
 // Android  only Sass variables can go here
 // App Theme
-$select-md-icon-color: #eccc68 !default;
+$select-md-icon-color: #000 !default;
 $select-md-placeholder-color: #000;
 $alert-md-background-color: #000000;
-$alert-md-button-text-color: #eccc68;
+$alert-md-button-text-color: #7A7979;
 $alert-md-radio-label-text-color: #ffffff;
 $picker-md-background-color: #000000;
-$picker-md-option-selected-color: #eccc68;
+$picker-md-option-selected-color: #FD9530;
 $picker-md-option-text-color: #ffffff;
-$picker-md-button-text-color: #eccc68;
+$picker-md-button-text-color: #FD9530;
 $alert-md-message-text-color: #ffffff;
 $alert-md-message-text-align: center;
 $card-md-margin-left: 0px;
 $card-md-margin-right: 0px;
+
+
+ion-select {
+    .option-content {
+        background-color: #000;
+    }
+}
+
+.item-radio-checked.item ion-label {
+    color: #fff !important; //your color here for selected option
+    background: #E49602 !important;
+    border-color: #fff;
+}
+
+.item-radio-checked.item {
+    color: #fff !important; //your color here for selected option
+    background-color: #E49602  !important;
+    border-color: #fff;
+}
+
+.item-radio.item {
+    color: #fff !important; //your color here for selected option
+    background-color: #E49602  !important;
+    border-color: #fff;
+}
+
+.radio-md .radio-checked,
+.radio-md-primary .radio-checked {
+  border-color: #fff;
+}
+.radio-md .radio-inner,
+.radio-md-primary .radio-inner {
+   background-color: #fff;
+}
+.item-md .radio-md {
+   background-color: transparent;
+}
 
 // --------------------------------------------------
 // Ionic apps can have different themes applied, which can
@@ -203,8 +240,14 @@ $card-md-margin-right: 0px;
 @import "roboto";
 @import "noto-sans";
 
+// @font-face {
+//   font-family: 'TimesNewRoman';
+//   font-weight: 400;
+//   src: url('../assets/fonts/times-new-roman-corsivo.ttf');
+// }
+
+
 @font-face {
-  font-family: 'TimesNewRoman';
-  font-weight: 400;
-  src: url('../assets/fonts/times-new-roman-corsivo.ttf');
+    font-family: 'Source Sans Pro';
+    src: url('../assets/fonts/SourceSansPro-Regular.ttf');
 }
