@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { AngularFirestore } from "@angular/fire/firestore";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
 import { CargaArchivoProvider } from "../../providers/carga-archivo/carga-archivo";
 // import { AngularFirestore } from '@angular/fire/firestore';
@@ -15,11 +16,14 @@ export class EventoDetallePage {
   sucursalID: any;
   mostrar: any;
   tabBarElement: any;
+  miUser: any = {};
+  uidUserSesion: any;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public _cap: CargaArchivoProvider
+    public _cap: CargaArchivoProvider,
+    public afs: AngularFirestore
   ) {
     this.evento.uid = this.navParams.get("uid");
     this.sucursalID = this.navParams.get("sucursalID");
@@ -27,11 +31,19 @@ export class EventoDetallePage {
     console.log("SucursalID", this.sucursalID);
     //para ocultar las tabs en la pantalla de resumen
     this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
-    // _cap.getEvento(this.evento.key)
-    //     .valueChanges().subscribe(evento=>{
-    //       this.evento = evento;
-    //     });
-    // this.getDetails(this.evento.key);
+
+    this.uidUserSesion = localStorage.getItem('uid');
+    console.log('id del usuario en eventos', this.uidUserSesion);
+
+    //obtener informacion de mi user
+    this.afs
+      .collection("users").doc(this.uidUserSesion)
+      .valueChanges()
+      .subscribe(dataSu => {
+        this.miUser = dataSu;
+        console.log('Datos de mi usuario', this.miUser);
+      });
+
   }
 
   ionViewDidLoad() {

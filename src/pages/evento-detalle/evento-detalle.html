@@ -1,62 +1,98 @@
-<ion-header class="esquina">
+<ion-header>
     <ion-navbar class="borde">
-       <ion-row >
-         <ion-col>
-           <button ion-fab color="negro" (click)="(goBack())"><ion-icon name="arrow-back" color="naranja" style="zoom:1.2;"></ion-icon></button>
-         </ion-col>
-           <ion-col>
-             <ion-title class="texto-alineado"><h6>GUEST EVENTOS</h6></ion-title>
-           </ion-col>
-           <ion-col>
-             <button class="esquina">
-              <img src="./assets/imgs/icons/corona.png" class="ima">
-             </button>
-           </ion-col>
-       </ion-row>
+        <ion-row>
+            <ion-col>
+                <button ion-button menuToggle class="botonMod">
+                    <ion-icon item-start name="menu" class="colorIcon3" style="zoom:1.5;"></ion-icon>
+                </button>
+            </ion-col>
+            <ion-col>
+                <img src="./assets/imgs/Logoblanco.png" style="width: 60%;" alt="">
+            </ion-col>
+            <ion-col>
+                <div align='end'>
+                    <img src="{{miUser.photoURL}}?type=large&width=720&height=720" style="width:40%;border-radius:50%;">
+                </div>
+            </ion-col>
+        </ion-row>
     </ion-navbar>
 </ion-header>
 
 
-<ion-content class="esquina cards-bg">
-    <ion-card class="bordeCard">
+<ion-content class="card-background-page">
+
+    <ion-row>
+        <ion-col col-3>
+            <ion-item text-center no-lines>
+                <ion-icon name="md-calendar" class="colorIcon" (click)="verEvento()"></ion-icon>
+                <p style="font-size: 11px;" (click)="verEvento()">EVENTOS</p>
+            </ion-item>
+        </ion-col>
+        <ion-col col-5 style="margin-left: -25px;">
+            <ion-item text-center no-lines>
+                <ion-icon name="md-time" class="colorIcon" (click)="verReservacion()"></ion-icon>
+                <p style="font-size: 11px;" (click)="verReservacion()">RESERVACIONES</p>
+            </ion-item>
+        </ion-col>
+        <ion-col>
+        </ion-col>
+    </ion-row>
+
+    <br>
+
+    <ion-item text-center no-lines>
+        <label class="selecciona"> AJUSTA TU RESERVACIÓN </label>
+    </ion-item>
+
+    <ion-card>
         <img [src]="evento.img" />
-        <ion-card-content class="atras" text-center>
-            <!--<ion-card-title  text-color="texto3">
-                {{ evento.titulo }}
-            </ion-card-title>-->
-            <p text-color="texto1">
-                {{evento.obs}}
-            </p>
-            <p text-color="texto1">
-                {{evento.fecha}}, {{ evento.hora }}
-            </p>
-            <p text-color="texto1">
-                {{evento.categoria}}
-            </p>
-            <p text-color="texto1">
-                {{evento.lugar}}
-            </p>
-            <p text-color="texto1">
-                {{evento.ciudad}}
-            </p>
-        </ion-card-content>
-        <ion-row class="colorRow">
-                <button ion-button color="naranja" block (click)="Reservar(evento.uid, sucursalID)">
-                    <p text-color="texto2">RESERVAR</p>
-                </button>
-        </ion-row>
-    </ion-card>
-</ion-content>
-<!--<ion-footer no-border>
-    <ion-toolbar>
-        <ion-grid>
-            <ion-row>
-                <ion-col col-12>
-                    <div text-center>
-                        <button ion-button round block color="dark" (click)="(goBack())">Atras</button>
-                    </div>
+        <div class="card-title">
+
+            <ion-row align="end">
+                <ion-col col-8></ion-col>
+                <ion-col col-2 class="iconStar">
+                    <ion-icon name="star" class="iconoestrella"></ion-icon>
+                </ion-col>
+                <ion-col col-2>
+                    <ion-fab class="btnshare" top right edge>
+                        <button ion-fab color="dark">
+                            <ion-icon name="ios-arrow-dropdown" class="arrow"></ion-icon>
+                        </button>
+                        <ion-fab-list side="top right edge">
+                            <button class="fabbtn" ion-fab (click)="compartir(evento)">
+                                <!-- <img src="../assets/imgs/icons/facebook.png"> -->
+                                <ion-icon name="logo-facebook" style="color:#706F6F;"></ion-icon>
+                            </button>
+                        </ion-fab-list>
+                    </ion-fab>
                 </ion-col>
             </ion-row>
-        </ion-grid>
-    </ion-toolbar>
-</ion-footer>-->
+
+            {{ evento.titulo }}
+        </div>
+        <div class="card-subtitle">
+
+            {{evento.obs}}
+
+            <br>
+
+            {{evento.fecha}}, {{ evento.hora }}
+
+            <br>
+
+            {{evento.categoria}}
+
+            <br>
+
+            {{evento.lugar}}
+        </div>
+    </ion-card>
+
+</ion-content>
+<ion-footer no-border>
+    <div align="center">
+        <button ion-button class="btnre" round (click)="Reservar(evento.uid, sucursalID)">
+            <p text-color="texto2">RESERVAR</p>
+        </button>
+    </div>
+</ion-footer>
