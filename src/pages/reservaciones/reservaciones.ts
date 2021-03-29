@@ -69,10 +69,8 @@ export class ReservacionesPage {
   resultCompartidas: any;
   usertel: any;
   resultCompartidasFinal: any;
-  miUser: any = {};
   uidUserSesion: any;
-  eventoI: any = {};
-
+  miUser: any = {};
 
   constructor(
     public navCtrl: NavController,
@@ -94,12 +92,8 @@ export class ReservacionesPage {
     this.zonasnav = this.navParams.get("zona")
     if (this.evento != null) {
       this.evento = this.navParams.get("uid");
-      this.evento = 1;
-      console.log("Evento 1, Seleccionaste evento");
     } else {
       this.evento = null;
-      this.evento = 0;
-      console.log("Evento 0, seleccionaste sucursal");
     }
     this.afs
       .collection("sucursales")
@@ -109,15 +103,6 @@ export class ReservacionesPage {
         this.sucursal = data;
         console.log(this.sucursal);
       });
-
-    // this.afs
-    //   .collection("evento")
-    //   .doc(this.evento)
-    //   .valueChanges()
-    //   .subscribe(data => {
-    //     this.eventoI = data;
-    //     console.log(this.eventoI);
-    //   });
 
     // this.afs
     // .collection("croquis_img")
@@ -157,17 +142,6 @@ export class ReservacionesPage {
     //para ocultar las tabs en la pantalla de resumen
     this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
 
-    this.uidUserSesion = localStorage.getItem('uid');
-    console.log('id del usuario en eventos', this.uidUserSesion);
-
-    //obtener informacion de mi user
-    this.afs
-      .collection("users").doc(this.uidUserSesion)
-      .valueChanges()
-      .subscribe(dataSu => {
-        this.miUser = dataSu;
-        console.log('Datos de mi usuario', this.miUser);
-      });
 
   }
 
@@ -189,6 +163,8 @@ export class ReservacionesPage {
     //this.ionViewWillEnter();
     this.getZonas();
     this.getImagen(this.idSucursal);
+
+    this.goToUser();
   }
   //funciones para ocultar las tabs
   ionViewWillEnter() {
@@ -210,6 +186,25 @@ export class ReservacionesPage {
       this.navCtrl.popToRoot();
     }
   }
+
+
+  goToUser() {
+
+    //sacar el id del usuario del local storage
+    this.uidUserSesion = localStorage.getItem('uid');
+    console.log('id del usuario en eventos', this.uidUserSesion);
+
+    //obtener informacion de mi user
+    this.afs
+      .collection("users").doc(this.uidUserSesion)
+      .valueChanges()
+      .subscribe(dataSu => {
+        this.miUser = dataSu;
+        console.log('Datos de mi usuario', this.miUser);
+      });
+
+  }
+
 
   getDetails() {
     this._cap.getEvento(this.evento).then(e => {

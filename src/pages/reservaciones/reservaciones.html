@@ -18,15 +18,11 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content class="card-background-page">
-
-
+<ion-content>
     <div class="fon bar bar-subheader bar-energized">
-        <ion-card class="sin">
+        <!-- <ion-card class="sin">
             <img class="sin" *ngIf="sucursal.tipo == 'bar'" src="../assets/imgs/bar.png" />
             <img class="sin" *ngIf="sucursal.tipo == 'antro'" src="../assets/imgs/antro.png" />
-            <!-- <div class="card-title">São Paulo</div>
-            <div class="card-subtitle">41 Listings</div> -->
             <ion-col class="card-title" col-4>
                 <img class="imgSucursal" [src]="sucursal.photoURL" />
             </ion-col>
@@ -42,12 +38,12 @@
                             class="icon" src="../assets/imgs/icons/restaurante.png" item-start> Restaurante</div>
                 </div>
             </ion-col>
-        </ion-card>
+        </ion-card> -->
     </div>
 
     <!--Inician las pruebas-->
     <div padding>
-        <ion-segment [(ngModel)]="Sucursal" mode="md" class="segment segment-md ng-untouched ng-pristine ng-valid">
+        <ion-segment [(ngModel)]="Sucursal" mode="md">
             <ion-segment-button value="reservar" aria-pressed="true">
                 Reservar
             </ion-segment-button>
@@ -64,7 +60,8 @@
         <ion-list *ngSwitchCase="'reservar'">
 
             <!-- <h4 text-center class="blanco_2"> Realiza tu Reservación</h4> -->
-            <form [formGroup]="myForm" novalidate class="card_atras">
+
+            <form [formGroup]="myForm" novalidate>
                 <ion-list>
                     <div *ngIf="evento != null">
 
@@ -72,12 +69,13 @@
                         <ion-item text-center no-lines>
                             <label class="selecciona"> RESERVACIÓN PARA: {{data.titulo}}</label>
                         </ion-item>
+
                         <br><br>
                         <div align="end">
                             <p align="end" class="senala2">SEÑALA LA CANTIDAD DE PERSONAS</p>
                         </div>
 
-                        <!-- <ion-item>
+                        <!-- <ion-item no-lines>
                             <ion-grid>
                                 <ion-row>
                                     <ion-col col-6>
@@ -97,39 +95,31 @@
                             <ion-row>
                                 <ion-col col-6>
                                     <div text-center>
-                                        <!-- <div *ngIf="evento == 1">
-                                            <img [src]="eventoI.img" id="people">
-                                        </div>
-                                        <div *ngIf="evento == 0"> -->
                                         <img [src]="sucursal.photoURL" id="people">
-                                        <!-- </div> -->
                                     </div>
                                 </ion-col>
                                 <ion-col col-2>
                                     <br>
                                     <div text-right>
+                                        <!-- <img src="assets/imgs/icons/-.png" id="mas_menos" (click)="decrement()"> -->
                                         <img src="assets/imgs/icons/menos_2.png" id="mas_menos" (click)="decrement()">
                                     </div>
                                 </ion-col>
                                 <ion-col col-2 id="caja">
                                     <ion-row>
                                         <div align="center">
-                                            <!-- <ion-icon name="md-person"
-                                                style="color: #FFC149; margin-left: 25%;position: absolute;">
-                                            </ion-icon> -->
                                             <img src="assets/imgs/icons/grupo.png"
                                                 style="width: 50%;margin-left: 20%;position: absolute;">
                                         </div>
                                     </ion-row>
-                                    <ion-row>
-                                        <div class="caja" text-center>
-                                            <span>{{people}}</span>
-                                        </div>
-                                    </ion-row>
+                                    <div class="caja" text-center>
+                                        <span>{{people}}</span>
+                                    </div>
                                 </ion-col>
                                 <ion-col col-2>
                                     <br>
                                     <div text-rigth>
+                                        <!-- <img src="assets/imgs/icons/+.png" id="mas_menos" (click)="increment()"> -->
                                         <img src="assets/imgs/icons/mas_2.png" id="mas_menos" (click)="increment()">
                                     </div>
                                 </ion-col>
@@ -150,7 +140,6 @@
                     </ion-item>
 
                     <br>
-
                     <ion-row class="reloj">
                         <ion-col col-6>
                         </ion-col>
@@ -163,11 +152,10 @@
                                 </ion-label>
                                 <ion-datetime item-end displayFormat="hh:mm a" minuteValues="0,30"
                                     [(ngModel)]="data.hora" name="hora" formControlName="hora" doneText=Aceptar
-                                    cancelText=Cancelar style="color: #000;"></ion-datetime>
+                                    cancelText=Cancelar></ion-datetime>
                             </ion-item>
                         </ion-col>
                     </ion-row>
-                    <br>
                     <ion-row class="calendar">
                         <ion-col col-6>
                         </ion-col>
@@ -178,20 +166,15 @@
                                         <ion-icon name="md-calendar" class="ion-icon"></ion-icon>
                                     </div>
                                 </ion-label>
-                                <div *ngIf="evento == 1">
-                                    <ion-datetime item-end displayFormat="DD/MM/YYYY" [(ngModel)]="data.fecha"
-                                        name="fecha" formControlName="fecha" [disabled]="disabledFecha"
-                                        min={{fechaActual}} doneText=Aceptar cancelText=Cancelar style="color: #000;">
-                                    </ion-datetime>
-                                </div>
-                                <div *ngIf="evento == 0">
-                                    <ion-datetime item-end displayFormat="DD/MM/YYYY" [(ngModel)]="data.fecha"
-                                        name="fecha" formControlName="fecha" min={{fechaActual}} doneText=Aceptar cancelText=Cancelar style="color: #000;">
-                                    </ion-datetime>
-                                </div>
+                                <ion-datetime item-end displayFormat="DD/MM/YYYY" [(ngModel)]="data.fecha" name="fecha"
+                                    formControlName="fecha" [disabled]="disabledFecha" min={{fechaActual}}
+                                    doneText=Aceptar cancelText=Cancelar>
+                                </ion-datetime>
                             </ion-item>
                         </ion-col>
                     </ion-row>
+
+
 
                     <!-- <ion-item>
                         <ion-label>
@@ -201,8 +184,8 @@
                         </ion-label>
                         <ion-datetime item-end displayFormat="hh:mm a" minuteValues="0,30" [(ngModel)]="data.hora"
                             name="hora" formControlName="hora" doneText=Aceptar cancelText=Cancelar></ion-datetime>
-                    </ion-item> -->
-                    <!-- <ion-item>
+                    </ion-item>
+                    <ion-item>
                         <ion-label>
                             <div class="_icons">
                                 <img src="assets/imgs/icons/calendario.png" id="label">
@@ -281,19 +264,11 @@
                     </ion-item> -->
                     <!-- <ion-item>
                         <ion-label>Compartir cuenta</ion-label>
-                        <ion-select multiple="true" [(ngModel)]="compartir" cancelText="Cancelar" okText="Aceptar"
-                            name="compartir" formControlName="compartir">
-                            <ion-option *ngFor="let tel of telefono4" [value]="tel.tel">
-                                {{ tel.nombre }}
-                                {{ tel.tel }}
-                            </ion-option>
-                        </ion-select>
+
                     </ion-item> -->
                 </ion-list>
             </form>
         </ion-list>
-
-
 
         <ion-list *ngSwitchCase="'informacion'">
             <br>
@@ -301,18 +276,9 @@
                 <ion-col col-1></ion-col>
                 <ion-col>
                     <ion-card>
-                        <!-- <div *ngIf="evento == 1">
-                            <img [src]="eventoI.img">
-                        </div>
-                        <div *ngIf="evento == 0"> -->
-                        <img [src]="sucursal.photoURL">
-                        <!-- </div> -->
-                        <!-- <img [src]="data.img" /> -->
-                        <!-- <div class="card-title">
-                            <img src="" alt="">
-                        </div> -->
+                        <img [src]="sucursal.photoURL" />
                         <div class="card-subtitle">
-                            <img src="./assets/content/esquinal.png" class="esquina" alt="">
+                            <!-- <img src="./assets/content/esquinal.png" style="width: 20%;margin-top: -70px;margin-left: -6px;" class="esquinal" alt=""> -->
                         </div>
                     </ion-card>
                 </ion-col>
@@ -369,10 +335,8 @@
                 </ion-col>
                 <ion-col col-1></ion-col>
             </ion-row>
-
-
-
-            <!-- <ion-list class="card_atras">
+            <!-- 
+            <ion-list class="card_atras">
                 <ion-item>
                     <ion-label>Descripción:</ion-label>
                     <ion-label text-wrap>{{sucursal.descripcion}}</ion-label>
@@ -393,6 +357,7 @@
                     <ion-label>Código de Etiqueta:</ion-label>
                     <ion-label text-wrap>{{sucursal.codigoEtiqueta}}</ion-label>
                 </ion-item>
+
             </ion-list> -->
 
 
@@ -401,17 +366,15 @@
             </agm-map> -->
         </ion-list>
 
-
-
         <ion-list *ngSwitchCase="'croquis'">
             <br><br><br>
             <div class="card_atras_2">
-                <ion-card class="zoomX">
+                <div class="zoomX">
                     <zoom-area *ngFor="let img of img2; let i = index">
                         <!-- <img  src="https://firebasestorage.googleapis.com/v0/b/guestreservation-8b24b.appspot.com/o/croquis%2FZfIHbD67hsrpsKuWAS6g?alt=media&token=312d729d-9fb6-48d9-b7b9-8e3b7a263b9c" /> -->
                         <img src='{{ img.imagenes }}' />
                     </zoom-area>
-                </ion-card>
+                </div>
             </div>
         </ion-list>
     </div>
@@ -422,24 +385,19 @@
         <ion-row>
             <ion-col col-6>
                 <div text-center>
-                    <button ion-button round block round style="background-color: #000; color: #fff;height: 35px;"
-                        (click)="(goBack(idReservacion))">Atras</button>
+                    <button ion-button round block round color="dark" (click)="(goBack(idReservacion))">Atras</button>
                 </div>
             </ion-col>
             <ion-col col-6>
                 <div text-center>
                     <div *ngIf="idReservacion == null">
-                        <button ion-button block round style="height: 35px;" (click)="reservacionAdd()"
+                        <button ion-button block round color="dark" (click)="reservacionAdd()"
                             [disabled]="!myForm.valid || people == 0">Continuar</button>
                     </div>
                     <div *ngIf="idReservacion != null">
-                        <button ion-button block round style="background-color: #000; color: #fff;height: 35px;"
+                        <button ion-button block round color="dark"
                             (click)="reservacionUpdate(idReservacion)">Continuar</button>
                     </div>
-                    <!-- <div>
-                        <button ion-button block round style="height: 35px;" (click)="reservacionAdd()"
-                            >Continuar</button>
-                    </div> -->
                 </div>
             </ion-col>
         </ion-row>
