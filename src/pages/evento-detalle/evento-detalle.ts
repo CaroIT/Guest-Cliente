@@ -2,6 +2,8 @@ import { Component } from "@angular/core";
 import { AngularFirestore } from "@angular/fire/firestore";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
 import { CargaArchivoProvider } from "../../providers/carga-archivo/carga-archivo";
+import { EventosPage } from "../eventos/eventos";
+import { Reservacion_1Page } from "../reservacion-1/reservacion-1";
 // import { AngularFirestore } from '@angular/fire/firestore';
 import { ReservacionesPage } from '../reservaciones/reservaciones';
 import { TabsPage } from "../tabs/tabs";
@@ -79,5 +81,15 @@ export class EventoDetallePage {
 
   goBack() {
     this.navCtrl.setRoot(TabsPage);
+  }
+
+  verEvento() {
+    this.navCtrl.setRoot(EventosPage);
+  }
+
+  verReservacion() {
+    const estatus = 1;
+    const opcionS = '';
+    this.navCtrl.setRoot(Reservacion_1Page, {opcionS: opcionS, estatus: estatus});
   }
 }

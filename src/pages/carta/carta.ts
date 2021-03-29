@@ -34,6 +34,9 @@ export class CartaPage {
   productos: any;
   total: any;
   tabBarElement: any;
+  uidUserSesion: any;
+  miUser: any = {};
+  eventoSel: any = {};
 
   constructor(
     public navCtrl: NavController,
@@ -65,6 +68,28 @@ export class CartaPage {
     console.log("zona", this.zona, "area", this.area);
     //para ocultar las tabs en la pantalla de resumen
     this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
+  
+    this.uidUserSesion = localStorage.getItem('uid');
+    console.log('id del usuario en eventos', this.uidUserSesion);
+
+     //obtener informacion de mi user
+     this.afs
+     .collection("users").doc(this.uidUserSesion)
+     .valueChanges()
+     .subscribe(dataSu => {
+       this.miUser = dataSu;
+       console.log('Datos de mi usuario', this.miUser);
+     });
+
+     //Obtener el nombredel evento
+    this.afs
+    .collection("evento").doc(this.evento)
+    .valueChanges()
+    .subscribe(dataSu => {
+      this.eventoSel = dataSu;
+      console.log('Datos de mi evento', this.eventoSel);
+    });
+
   }
 
   ionViewDidLoad() {

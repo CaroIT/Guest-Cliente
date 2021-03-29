@@ -1,16 +1,39 @@
 page-carta {
-    ion-content {
-        background-image: url('../assets/imgs/fondo_r3.png');
-        background-repeat: no-repeat;
+
+    //Nuevo
+    .toolbar-background {
+        background-image: url('../assets/content/head.png')!important;
         background-size: cover;
-        //background-position: center;
-        width: 100%;
-        position: relative;
-        border: none;
+        background-position: center center;
+        background-repeat: no-repeat;
     }
-    ion-icon {
-        color: #eccc68;
+
+    .borde {
+        margin-top: 0em;
     }
+
+    .lugar {
+        color: #000;
+    }
+
+    .lugar {
+        color: #474646;
+        font-size: medium;
+    }
+
+
+    // ion-content {
+    //     background-image: url('../assets/imgs/fondo_r3.png');
+    //     background-repeat: no-repeat;
+    //     background-size: cover;
+    //     //background-position: center;
+    //     width: 100%;
+    //     position: relative;
+    //     border: none;
+    // }
+    // ion-icon {
+    //     color: #eccc68;
+    // }
     .card_atras {
         background: -moz-linear-gradient(top, rgba(69, 72, 77, 1) 0%, rgba(68, 71, 75, 0.05) 2%, rgba(0, 0, 0, 1) 100%);
         /* FF3.6-15 */

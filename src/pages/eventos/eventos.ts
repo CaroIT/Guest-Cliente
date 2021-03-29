@@ -10,6 +10,7 @@ import { UsuarioProvider } from '../../providers/usuario/usuario';
 //import { UserProvider } from '../../providers/user/user';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { SMS } from '@ionic-native/sms';
+import { Reservacion_1Page } from '../reservacion-1/reservacion-1';
 //import { PushNotiProvider } from '../../providers/push-noti/push-noti';
 
 @IonicPage()
@@ -143,5 +144,15 @@ export class EventosPage {
       uid: uid,
       sucursalID: sucursalID
     });
+  }
+
+  verEvento() {
+    this.navCtrl.setRoot(EventosPage);
+  }
+
+  verReservacion() {
+    const estatus = 1;
+    const opcionS = '';
+    this.navCtrl.setRoot(Reservacion_1Page, {opcionS: opcionS, estatus: estatus});
   }
 }

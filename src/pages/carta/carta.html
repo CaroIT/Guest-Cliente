@@ -1,20 +1,21 @@
-<ion-header class="fondo">
-
-    <ion-navbar hideBackButton >
-        <ion-grid>
-            <ion-row>
-                <ion-col>
-                    <ion-title><h6>CARTA MÓVIL</h6></ion-title>
-                </ion-col>
-                <ion-col >
-                </ion-col>
-                <ion-col>
-                     <img class="icon_img" src="../assets/imgs/icons/corona.png">
-                </ion-col>
-            </ion-row>
-        </ion-grid>
+<ion-header>
+    <ion-navbar class="borde" hideBackButton>
+        <ion-row>
+            <ion-col>
+                <button ion-button menuToggle class="botonMod">
+                    <ion-icon item-start name="menu" class="colorIcon3" style="zoom:1.5;"></ion-icon>
+                </button>
+            </ion-col>
+            <ion-col>
+                <img src="./assets/imgs/Logoblanco.png" style="width: 60%;" alt="">
+            </ion-col>
+            <ion-col>
+                <div align='end'>
+                    <img src="{{miUser.photoURL}}?type=large&width=720&height=720" style="width:40%;border-radius:50%;">
+                </div>
+            </ion-col>
+        </ion-row>
     </ion-navbar>
-
 </ion-header>
 <ion-content>
     <!-- <ion-list *ngFor='let task of tasks | async'>
@@ -22,13 +23,54 @@
 </ion-list> -->
     <!--Barra de busqueda-->
     <!-- <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar> -->
-    <ion-card class="card_atras2">
+    
+    <ion-row>
+        <ion-col col-1></ion-col>
+        <ion-col>
+            <p class="lugar">
+                LUGAR: {{eventoSel.titulo}}
+                <br>
+                <!-- <span style="position:absolute;margin-top:-10px">________________</span> -->
+                <img src="./assets/icon/Vector10.png" style="width: 40%;" alt="">
+            </p>
+
+        </ion-col>
+        <ion-col col-1></ion-col>
+    </ion-row>
+
+    <ion-row>
+        <ion-col col-1></ion-col>
+        <ion-col>
+            <ion-card class="cuadro">
+                Carta de bebidas
+            </ion-card>
+            <ion-card class="descripcion">
+                <br>
+                <ion-row *ngFor="let cartaItem of cartas">
+                    <ion-col col-1><img src="./assets/icon/Group 49.png" style="margin-top: 10%;" alt=""></ion-col>
+                    <ion-col col-3 class="letra">{{cartaItem.titulo}}</ion-col>
+                    <ion-col col-3 class="letraContenido">{{cartaItem.categoria}}</ion-col>
+                    <ion-col col-4 class="precio">{{cartaItem.precio | currency}}</ion-col>
+                    <ion-col col-1>
+                        <!-- <ion-icon name="eye" style="color: #FD9530;font-size: 25px;"
+                            (click)="productoDetalle(cartaItem.uid)">
+                        </ion-icon> -->
+                        <ion-icon name="ios-checkbox-outline" style="color: black;" (click)="productoDetalle(cartaItem.uid)"></ion-icon>
+                    </ion-col>
+                </ion-row>
+            </ion-card>
+        </ion-col>
+        <ion-col col-1></ion-col>
+    </ion-row>
+    
+    <!-- <ion-card class="card_atras2">
         <ion-card-header class="card_atras2">
             <p class="blanco_1" text-center text-color="texto3"> Carta de bebidas </p>
         </ion-card-header>
 
-    </ion-card>
-    <ion-grid>
+    </ion-card> -->
+
+    <!-- <ion-grid>
         <ion-row>
             <ion-col col-6 *ngFor="let cartaItem of cartas">
                 <ion-card class="card_atras">
@@ -42,11 +84,6 @@
                             <img class="icon" src="../assets/imgs/icons/billete.png" item-start>
                             <ion-badge class="fon" item-end>{{cartaItem.precio | currency}}</ion-badge>
                         </ion-item>
-                        <!-- <ion-item class="card_atras">
-                        <img class="icon" src="../assets/imgs/icons/admin-historial.png" item-start>
-                        <p class="blanco_1"> Nota </p>
-                        <ion-badge class="fon" item-end>{{cartaItem.nota}}</ion-badge>
-                    </ion-item> -->
                         <ion-item style="text-align: right;" class="card_atras" (click)="productoDetalle(cartaItem.uid)">
                             <img class="icon" src="../assets/imgs/icons/corona.png" item-end>
                             <a class="blanco_2">Reservar</a>
@@ -56,7 +93,7 @@
                 </ion-card>
             </ion-col>
         </ion-row>
-    </ion-grid>
+    </ion-grid> -->
 </ion-content>
 
 <ion-footer no-border>

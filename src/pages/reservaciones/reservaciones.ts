@@ -69,6 +69,10 @@ export class ReservacionesPage {
   resultCompartidas: any;
   usertel: any;
   resultCompartidasFinal: any;
+  miUser: any = {};
+  uidUserSesion: any;
+  eventoI: any = {};
+
 
   constructor(
     public navCtrl: NavController,
@@ -90,8 +94,12 @@ export class ReservacionesPage {
     this.zonasnav = this.navParams.get("zona")
     if (this.evento != null) {
       this.evento = this.navParams.get("uid");
+      this.evento = 1;
+      console.log("Evento 1, Seleccionaste evento");
     } else {
       this.evento = null;
+      this.evento = 0;
+      console.log("Evento 0, seleccionaste sucursal");
     }
     this.afs
       .collection("sucursales")
@@ -102,19 +110,28 @@ export class ReservacionesPage {
         console.log(this.sucursal);
       });
 
-      // this.afs
-      // .collection("croquis_img")
-      // .doc(this.idSucursal)
-      // .valueChanges()
-      // .subscribe(data => {
-      //   this.croquiss = data;
-      //   console.log("estos son los croquis",this.croquiss);
-      // });
+    // this.afs
+    //   .collection("evento")
+    //   .doc(this.evento)
+    //   .valueChanges()
+    //   .subscribe(data => {
+    //     this.eventoI = data;
+    //     console.log(this.eventoI);
+    //   });
 
-      this.afs.collection('croquis_img', ref => ref.where('idSucursal', '==', this.idSucursal)).valueChanges().subscribe(data => {
-        this.croquis = data;
-        console.log("croquis", this.croquis);
-      });
+    // this.afs
+    // .collection("croquis_img")
+    // .doc(this.idSucursal)
+    // .valueChanges()
+    // .subscribe(data => {
+    //   this.croquiss = data;
+    //   console.log("estos son los croquis",this.croquiss);
+    // });
+
+    this.afs.collection('croquis_img', ref => ref.where('idSucursal', '==', this.idSucursal)).valueChanges().subscribe(data => {
+      this.croquis = data;
+      console.log("croquis", this.croquis);
+    });
 
     //consultar tabla users
     this.afs
@@ -139,6 +156,18 @@ export class ReservacionesPage {
     //console.log('telefonodel user', this.telefono);
     //para ocultar las tabs en la pantalla de resumen
     this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
+
+    this.uidUserSesion = localStorage.getItem('uid');
+    console.log('id del usuario en eventos', this.uidUserSesion);
+
+    //obtener informacion de mi user
+    this.afs
+      .collection("users").doc(this.uidUserSesion)
+      .valueChanges()
+      .subscribe(dataSu => {
+        this.miUser = dataSu;
+        console.log('Datos de mi usuario', this.miUser);
+      });
 
   }
 
@@ -344,7 +373,7 @@ export class ReservacionesPage {
         this.afs.collection('users', ref => ref.where('uid', '==', this.uid)).valueChanges().subscribe(data => {
           this.usertel = data;
           this.usertel.forEach(element => {
-            console.log('usertel',element.phoneNumber);
+            console.log('usertel', element.phoneNumber);
             //insertar en tabla compartidas telefono del usuario en sesion
             this._providerReserva.saveCompartirPropio(element.phoneNumber, respuesta.idReservacion, this.uid).then((respuesta: any) => {
               console.log("Respuesta: ", respuesta);
@@ -359,28 +388,28 @@ export class ReservacionesPage {
           this.telefono2 = this.telefono1.replace(/-/g, "");
           this.telefono3 = this.telefono2.substr(-10);
           //insertar en tabla compartidas los numeros de con quien se esta compartiendo
-             this._providerReserva.saveCompartirTodos(this.telefono3, respuesta.idReservacion, this.uid).then((respuesta2: any) => {
-              console.log("Respuesta id compartir: ", respuesta2.idCompartir);
-                this.afs.collection('compartidas', ref => ref.where('idCompartir', '==', respuesta2.idCompartir)).valueChanges().subscribe(data => {
-                  this.resultCompartidas = data;
-                //insertar el player id de cada telefono insertado
-                this.resultCompartidas.forEach(element => {
-                  console.log('este es el telefono',element.telefono);
-                  this._providerReserva.buscarPlayerid(element.telefono).subscribe(players => {
-                        this.players = players[0].playerID;
-                       this.afs.collection("compartidas").doc(element.idCompartir).update({
-                         "playerId": this.players
-                         })
-                          .then(function () {
-                            console.log("se actualizo el playerid");
-                          });
-                  });
-                  });
+          this._providerReserva.saveCompartirTodos(this.telefono3, respuesta.idReservacion, this.uid).then((respuesta2: any) => {
+            console.log("Respuesta id compartir: ", respuesta2.idCompartir);
+            this.afs.collection('compartidas', ref => ref.where('idCompartir', '==', respuesta2.idCompartir)).valueChanges().subscribe(data => {
+              this.resultCompartidas = data;
+              //insertar el player id de cada telefono insertado
+              this.resultCompartidas.forEach(element => {
+                console.log('este es el telefono', element.telefono);
+                this._providerReserva.buscarPlayerid(element.telefono).subscribe(players => {
+                  this.players = players[0].playerID;
+                  this.afs.collection("compartidas").doc(element.idCompartir).update({
+                    "playerId": this.players
+                  })
+                    .then(function () {
+                      console.log("se actualizo el playerid");
+                    });
                 });
+              });
             });
+          });
           //consulta para buscar el player id del ususario seleccionado y su tel
         });//termina foreach compartir
-        console.log('reservacion nueva',respuesta.idReservacion);
+        console.log('reservacion nueva', respuesta.idReservacion);
         //cambiar reservacion a estatus compartido
         this._providerReserva
           .updateReservacionCompartida(respuesta.idReservacion)
@@ -470,29 +499,29 @@ export class ReservacionesPage {
       const telefono3_ = [];
       //consultar tabla users de la base de datos y sacar numeros de telefono registrados
       //this.monRes.getAllClientes("users").then(c => {
-        //this.clientes = c;
-        //console.log("Entonson clienes antes de comparar", this.clientes);
-        //this.clientes.forEach(datac => {
-          //console.log("tel 10 dijitos base antes de comparar",datac.displayName);
-          //console.log("tel 10 dijitos base antes de comparar",datac.phoneNumber);
-          //consulta para sacar contactos del telefono
-          this.contactlist.forEach(data => {
-            console.log("resultado number telefono", data.phoneNumbers);
-            //estandarizar telefono a 10 digitos
-            //validar que si algun telefono es nulo no pase por la comparacion
-            if (data.phoneNumbers != null) {
-              this.telefono1 = data.phoneNumbers[0].value.replace(/ /g, "");
-              this.telefono2 = this.telefono1.replace(/-/g, "");
-              this.telefono3 = this.telefono2.substr(-10);
-              console.log("tel 10 dijitos contactos", this.telefono3);
-              //console.log("tel 10 dijitos base", datac.phoneNumber);
-              //comparar si el nuero en la base de datos es igual a un contacto
-              //if (this.telefono3 == datac.phoneNumber) {
-                telefono3_.push({ tel: this.telefono3, nombre: data.displayName });
-            //  }
-            }
-          });//cierra funcion sacar contactos
-        //});
+      //this.clientes = c;
+      //console.log("Entonson clienes antes de comparar", this.clientes);
+      //this.clientes.forEach(datac => {
+      //console.log("tel 10 dijitos base antes de comparar",datac.displayName);
+      //console.log("tel 10 dijitos base antes de comparar",datac.phoneNumber);
+      //consulta para sacar contactos del telefono
+      this.contactlist.forEach(data => {
+        console.log("resultado number telefono", data.phoneNumbers);
+        //estandarizar telefono a 10 digitos
+        //validar que si algun telefono es nulo no pase por la comparacion
+        if (data.phoneNumbers != null) {
+          this.telefono1 = data.phoneNumbers[0].value.replace(/ /g, "");
+          this.telefono2 = this.telefono1.replace(/-/g, "");
+          this.telefono3 = this.telefono2.substr(-10);
+          console.log("tel 10 dijitos contactos", this.telefono3);
+          //console.log("tel 10 dijitos base", datac.phoneNumber);
+          //comparar si el nuero en la base de datos es igual a un contacto
+          //if (this.telefono3 == datac.phoneNumber) {
+          telefono3_.push({ tel: this.telefono3, nombre: data.displayName });
+          //  }
+        }
+      });//cierra funcion sacar contactos
+      //});
       //});
       this.telefono4 = telefono3_;
       console.log('telefonos10dijitoscomparacion', telefono3_);
@@ -501,14 +530,14 @@ export class ReservacionesPage {
     });
   }
 
-  getImagen(idx){
-    console.log("idUsuarioHistorial: ",idx);
+  getImagen(idx) {
+    console.log("idUsuarioHistorial: ", idx);
 
-   this._providerReserva.getCroquisImg(idx).subscribe(res=>{
-     console.log("Este es el resultado de imagen: ", res);
-     this.img2 = res;
-     console.log(this.img2);
-   });
+    this._providerReserva.getCroquisImg(idx).subscribe(res => {
+      console.log("Este es el resultado de imagen: ", res);
+      this.img2 = res;
+      console.log(this.img2);
+    });
   }
 
 }

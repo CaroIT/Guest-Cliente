@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { CartaProvider } from '../../providers/carta/carta';
 import { ReservacionProvider } from '../../providers/reservacion/reservacion';
@@ -23,10 +24,15 @@ export class ProductoDetallePage {
   tabBarElement: any;
   area: any;
   zona: any;
+  eventoSel: any = {};
+  uidUserSesion: any;
+  usuarios: any;
+  miUser: any = {};
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
+    public afs: AngularFirestore,
     public _providerCarta: CartaProvider,
     public _providerReservacion: ReservacionProvider
   ) {
@@ -39,6 +45,29 @@ export class ProductoDetallePage {
     console.log("zona", this.zona, "area", this.area);
     //para ocultar las tabs en la pantalla de resumen
     this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
+  
+    //sacar el id del usuario del local storage
+    this.uidUserSesion = localStorage.getItem('uid');
+    console.log('id del usuario en eventos', this.uidUserSesion);
+    
+     //obtener informacion de mi user
+     this.afs
+     .collection("users").doc(this.uidUserSesion)
+     .valueChanges()
+     .subscribe(dataSu => {
+       this.miUser = dataSu;
+       console.log('Datos de mi usuario', this.miUser);
+     });
+
+     //Obtener el nombredel evento
+    this.afs
+    .collection("evento").doc(this.evento)
+    .valueChanges()
+    .subscribe(dataSu => {
+      this.eventoSel = dataSu;
+      console.log('Datos de mi evento', this.eventoSel);
+    });
+  
   }
 
   ionViewDidLoad() {

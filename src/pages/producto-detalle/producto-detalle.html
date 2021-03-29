@@ -1,34 +1,122 @@
-<ion-header class="fondo">
-    <ion-navbar hideBackButton>
-        <ion-grid>
-            <ion-row>
-                <ion-col>
-                    <ion-title><h6 class="blanco_2">{{product.titulo}}</h6></ion-title>
-                </ion-col>
-                <ion-col >
-                </ion-col>
-                <ion-col>
-                     <img class="icon_img" src="../assets/imgs/icons/corona.png">
-                </ion-col>
-            </ion-row>
-        </ion-grid>
+<ion-header>
+    <ion-navbar class="borde" hideBackButton>
+        <ion-row>
+            <ion-col>
+                <button ion-button menuToggle class="botonMod">
+                    <ion-icon item-start name="menu" class="colorIcon3" style="zoom:1.5;"></ion-icon>
+                </button>
+            </ion-col>
+            <ion-col>
+                <img src="./assets/imgs/Logoblanco.png" style="width: 60%;" alt="">
+            </ion-col>
+            <ion-col>
+                <div align='end'>
+                    <img src="{{miUser.photoURL}}?type=large&width=720&height=720" style="width:40%;border-radius:50%;">
+                </div>
+            </ion-col>
+        </ion-row>
     </ion-navbar>
 </ion-header>
 
 <ion-content class="card-background-page" padding>
-    <ion-card class="card-fondo">
-        <img [src]="product.img" />
-        <!--<div class="card-title">
-            <ion-badge id="color-nota" item-end id="badge-titulo">
-                <div text-wrap>
-                    {{product.nota}}
+
+    <ion-row>
+        <ion-col col-1></ion-col>
+        <ion-col>
+            <p class="lugar">
+                LUGAR: {{eventoSel.titulo}}
+                <br>
+                <!-- <span style="position:absolute;margin-top:-10px">________________</span> -->
+                <img src="./assets/icon/Vector10.png" style="width: 40%;" alt="">
+            </p>
+
+        </ion-col>
+        <ion-col col-1></ion-col>
+    </ion-row>
+
+    <br><br>
+
+    <ion-row>
+        <ion-col col-1></ion-col>
+        <ion-col>
+
+            <p class="titulo">{{product.titulo}}</p>
+
+            <br><br>
+
+            <img src="./assets/icon/Vector23.png" width="100%" alt="">
+        </ion-col>
+        <ion-col col-1></ion-col>
+    </ion-row>
+
+    <ion-row>
+        <ion-col col-1></ion-col>
+        <ion-col>
+            <ion-row>
+                <ion-col col-8>
+                    <p class="titulo_s">
+                        {{product.categoria}}
+                    </p>
+                    <p class="nota">
+                        {{product.nota}}
+                    </p>
+                </ion-col>
+                <ion-col col-4>
+                    <p class="titulo_s">
+                        PRECIO
+                    </p>
+                    <p class="precionum">
+                        {{product.precio | currency}}
+                    </p>
+                </ion-col>
+            </ion-row>
+        </ion-col>
+        <ion-col col-1></ion-col>
+    </ion-row>
+
+    <ion-grid id="pisto">
+        <ion-row>
+            <ion-col col-4>
+                <div text-right>
+                    <img src="assets/imgs/icons/menos.png" id="mas_menos" (click)="decrement(); validarBoton();">
                 </div>
-            </ion-badge>
-        </div>-->
-        <!--<div class="card-subtitle">
-            <ion-badge color="dark" item-end id="badge-stitulo">{{product.precio | currency}}
-            </ion-badge>
-        </div>-->
+            </ion-col>
+            <ion-col col-4 id="caja">
+                <div class="caja" text-center>
+                    <span>{{pisto}}</span>
+                </div>
+            </ion-col>
+            <ion-col col-4>
+                <div text-rigth>
+                    <img src="assets/imgs/icons/mass.png" id="mas_menos" (click)="increment(); validarBoton();">
+                </div>
+            </ion-col>
+        </ion-row>
+        <ion-row align="center">
+            <ion-col col-3></ion-col>
+            <ion-col col-6>
+                <div text-center>
+                    <div *ngIf="modificar != true">
+                        <button ion-button round block class="colorbtn"
+                            (click)="(agregar(product.titulo, product.precio, product.img))"
+                            [disabled]="disableButton">Agregar</button>
+                    </div>
+                    <div *ngIf="modificar == true && pisto != 0">
+                        <button ion-button round block class="colorbtn"
+                            (click)="(modificar_(product.titulo, product.precio, key))"
+                            [disabled]="disableButton">Modificar</button>
+                    </div>
+                    <div *ngIf="modificar == true && pisto == 0">
+                        <button ion-button round block class="colorbtn" (click)="(eliminar(key))">Eliminar</button>
+                    </div>
+                </div>
+            </ion-col>
+            <ion-col col-3></ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <!-- <ion-card class="card-fondo">
+        <img [src]="product.img" />
     </ion-card>
     <ion-card class="card_atras2">
         <ion-card-header >
@@ -75,19 +163,19 @@
                 </div>
             </ion-col>
         </ion-row>
-    </ion-grid>
+    </ion-grid> -->
 </ion-content>
 
 <ion-footer no-border>
-    <ion-toolbar>
-        <ion-grid>
-            <ion-row>
-                <ion-col col-12>
-                    <div text-center>
-                        <button ion-button round block color="dark" (click)="(goBack())">Atras</button>
-                    </div>
-                </ion-col>
-            </ion-row>
-        </ion-grid>
-    </ion-toolbar>
+    <ion-grid>
+        <ion-row align="center">
+          <ion-col col-2></ion-col>
+            <ion-col col-8>
+                <div text-center>
+                    <button ion-button round block class="colorbtn" (click)="(goBack())">Atras</button>
+                </div>
+            </ion-col>
+            <ion-col col-2></ion-col>
+        </ion-row>
+    </ion-grid>
 </ion-footer>
