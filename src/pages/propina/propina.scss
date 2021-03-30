@@ -1,19 +1,48 @@
 page-propina {
-  ion-content {
-      background-image: url('../assets/imgs/fondo_r3.png');
-      background-repeat: no-repeat;
-      background-size: cover;
-      //background-position: center;
-      width: 100%;
-      position: relative;
-      border: none;
-  }
-  .toolbar-background-md {
-      background-color: rgba(0, 0, 0, 0.5);
-  }
-  .toolbar-background-ios {
-      background-color: rgba(0, 0, 0, 0.5);
-  }
+
+      //Nuevo
+      .toolbar-background {
+        background-image: url('../assets/content/head.png')!important;
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+    }
+    
+    .borde {
+        margin-top: 0em;
+    }
+    
+    //Nuevo
+    .botonMod {
+        background: white;
+        height: 36px;
+        border-radius: 60%;
+        margin-top: 10px;
+        width: 26px;
+    }
+    
+    //Nuevo
+    .colorIcon3 {
+        zoom: 1;
+        color: #000;
+        font-size: inherit;
+    }
+    
+  // ion-content {
+  //     background-image: url('../assets/imgs/fondo_r3.png');
+  //     background-repeat: no-repeat;
+  //     background-size: cover;
+  //     //background-position: center;
+  //     width: 100%;
+  //     position: relative;
+  //     border: none;
+  // }
+  // .toolbar-background-md {
+  //     background-color: rgba(0, 0, 0, 0.5);
+  // }
+  // .toolbar-background-ios {
+  //     background-color: rgba(0, 0, 0, 0.5);
+  // }
 
 
   //NUEVOS

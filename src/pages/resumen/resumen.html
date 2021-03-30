@@ -1,11 +1,249 @@
 <ion-header>
-    <ion-navbar>
-        <ion-title>resumen</ion-title>
+    <ion-navbar class="borde" hideBackButton>
+        <ion-row>
+            <ion-col>
+                <button ion-button menuToggle class="botonMod">
+                    <ion-icon item-start name="menu" class="colorIcon3" style="zoom:1.5;"></ion-icon>
+                </button>
+            </ion-col>
+            <ion-col>
+                <img src="./assets/imgs/Logoblanco.png" style="width: 60%;" alt="">
+            </ion-col>
+            <ion-col>
+                <div align='end'>
+                    <img src="{{miUser.photoURL}}?type=large&width=720&height=720" style="width:40%;border-radius:50%;">
+                </div>
+            </ion-col>
+        </ion-row>
     </ion-navbar>
 </ion-header>
 
 <ion-content>
-    <ion-card class="_card">
+
+    <ion-row>
+        <ion-col col-1></ion-col>
+        <ion-col>
+            <p class="lugar">
+                resumen
+                <br>
+                <!-- <span style="position:absolute;margin-top:-10px">________________</span> -->
+                <img src="./assets/icon/Vector10.png" alt="">
+            </p>
+
+        </ion-col>
+        <ion-col col-1></ion-col>
+    </ion-row>
+
+
+    <ion-row>
+        <ion-col col-1></ion-col>
+        <ion-col>
+            <ion-card>
+                <br>
+                <ion-row>
+                    <ion-col col-1></ion-col>
+                    <ion-col col-3>
+                        <ion-card>
+                            <ion-row>
+                                <ion-col>
+                                    <div text-center text-uppercase class="text_color2">
+                                        {{mes}}
+                                    </div>
+                                    <div text-center class="text_num2">
+                                        <b>{{diasN}}</b>
+                                    </div>
+                                    <div text-center class="text_color3">
+                                        {{dias}}
+                                    </div>
+                                </ion-col>
+                            </ion-row>
+                        </ion-card>
+                    </ion-col>
+                    <ion-col col-1>
+                        <img src="./assets/imgs/icons/Rectangle.png" style="width: 3px;height: 50%;" alt="">
+                    </ion-col>
+                    <ion-col>
+                        <div class="sucursal">
+                            {{s.displayName}}
+                        </div>
+                        <div class="text_colors">
+                            <ion-icon name="person" class="icono"></ion-icon> &nbsp; Reservación para {{r.numPersonas}}
+                            personas
+                        </div>
+                        <div text-uppercase class="text_colors">
+                            <ion-icon name="alarm-outline" class="icono"></ion-icon> &nbsp; {{r.hora}}
+                        </div>
+                        <div text-uppercase class="text_colors">
+                            <ion-icon name="wine" class="icono"></ion-icon> &nbsp;&nbsp; 
+                            {{z.nombre}}
+                        </div>
+                    </ion-col>
+                </ion-row>
+                <ion-row style="margin-top: -20%">
+                    <ion-col col-1></ion-col>
+                    <ion-col col-3>
+                        <ion-card>
+                            <ion-row>
+                                <ion-col>
+                                    <div text-center text-uppercase class="text_color2">
+                                        Cupón
+                                    </div>
+                                    <div text-center style="margin-left: 15px;">
+                                        <img src="./assets/imgs/icons/bx-money.png" style="width: 70%;" alt="">
+                                    </div>
+                                </ion-col>
+                            </ion-row>
+                        </ion-card>
+                    </ion-col>
+                    <ion-col col-1>
+                        <img src="./assets/imgs/icons/Rectangle.png" style="width: 3px;height: 50%;" alt="">
+                    </ion-col>
+                    <ion-col col-7>
+                        <div class="sucursal">
+                            cupones
+                        </div>
+                        <ion-item>
+                            <ion-label>Cupones</ion-label>
+                            <ion-select [(ngModel)]="codi" (ngModelChange)='onChange($event)'>
+                                
+                                <div *ngIf="usuariosss.ciudad == totalsucursal.ciudad">
+                                    <div *ngFor="let cupones of totalcupones">
+                                        <div *ngIf="totalsucursal.uid == cupones.idSucursal">
+                                            <div *ngIf="cupones.numCupones > 0">
+                                                <div *ngIf="cupones.fechaExpiracion >= fechaActual">
+                                                    <div *ngFor="let cupon of cupones_visibles">
+                                                        <div *ngIf="cupones.uid == cupon" >
+                                                            <ion-option [value]="cupones.codigoCupon">
+                                                                Código: {{cupones.codigoCupon}} - Valor
+                                                                ${{cupones.valorCupon}}
+                                                            </ion-option>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </ion-select>
+
+                            <!-- verificarcodigo(s.uidSucursal, total)" -->
+
+                        </ion-item>
+
+                        <button ion-button block round style="height: 30px;width: 70%;background-color: #FD9530;"
+                            (click)="verificarcodigo(s.uidSucursal, total)">Verificar</button>
+
+                    </ion-col>
+                </ion-row>
+
+
+                <ion-grid>
+                    <ion-row>
+                        <ion-col col-12>
+                            <div text-center class="consumoR">
+                                Consumo de la reservación
+                            </div>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col col-3>
+                            <div text-center class="consumodetalle">
+                                <ion-icon></ion-icon> &nbsp; Producto
+                            </div>
+                        </ion-col>
+                        <ion-col col-3>
+                            <div text-center class="consumodetalle">
+                                <ion-icon></ion-icon> &nbsp; Costo
+                            </div>
+                        </ion-col>
+                        <ion-col col-3>
+                            <div text-center class="consumodetalle">
+                                <ion-icon></ion-icon> &nbsp; Cantidad
+                            </div>
+                        </ion-col>
+                        <ion-col col-3>
+                            <div text-center class="consumodetalle">
+                                <ion-icon></ion-icon> &nbsp; Total
+                            </div>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row *ngFor="let producto of productos">
+                        <ion-col col-3>
+                            <div text-center class="consumodetalles">
+                                {{producto.producto}}
+                            </div>
+                        </ion-col>
+                        <ion-col col-3>
+                            <div text-center class="consumodetalles">
+                                {{producto.costo | currency}}
+                            </div>
+                        </ion-col>
+                        <ion-col col-3>
+                            <div text-center class="consumodetalles">
+                                {{producto.cantidad}}
+                            </div>
+                        </ion-col>
+                        <ion-col col-3>
+                            <div text-center class="consumodetalles">
+                                {{producto.total | currency}}
+                            </div>
+                        </ion-col>
+                    </ion-row>
+                    <br>
+                    <ion-row align="center">
+                        <ion-col col-1></ion-col>
+                        <ion-col col-6 class="fondorow">
+                            <div text-center class="consumoT">
+                                Consumo {{s.totalReservacion}}
+                            </div>
+                        </ion-col>
+                        <ion-col col-4 class="fondorow">
+                            <div text-center class="consumoT">
+                                {{total | currency}}
+                            </div>
+                        </ion-col>
+                        <ion-col col-1></ion-col>
+                    </ion-row>
+        
+        
+                    <div *ngIf="ocultar1">
+                        <ion-row>
+                            <ion-col col-1></ion-col>
+                            <ion-col col-6 class="fondorow">
+                                <div text-center class="consumoT">
+                                    Total a pagar
+                                </div>
+                            </ion-col>
+                            <ion-col col-4 class="fondorow">
+                                <div text-center class="consumoT">
+                                    {{resta | currency}}
+                                </div>
+                            </ion-col>
+                            <ion-col col-1></ion-col>
+                        </ion-row>
+                    </div>
+                </ion-grid>
+
+                <br>
+
+                <div class="_footer">
+                    <div text-center margin>
+                        Al selecionar "Continuar", aceptas los términos y condiciones de los <a>Términos de uso</a> y la <a>Política
+                            de
+                            privacidad</a> de Guest Resy
+                    </div>
+                </div>
+                
+            </ion-card>
+        </ion-col>
+        <ion-col col-1></ion-col>
+    </ion-row>
+
+
+
+
+    <!-- <ion-card class="_card">
         <ion-card-content>
             <ion-grid>
                 <ion-row>
@@ -31,16 +269,15 @@
                             <ion-icon name="time"></ion-icon> &nbsp; {{r.hora}}
                         </div>
                         <div text-uppercase class="text_color">
-                            <!-- <img src="./assets/imgs/icons/mesa.png" style="width: 6%;">  -->
                             <ion-icon name="wine"></ion-icon> &nbsp;&nbsp; {{z.nombre}}
                         </div>
                     </ion-col>
                 </ion-row>
             </ion-grid>
         </ion-card-content>
-    </ion-card>
+    </ion-card> -->
 
-    <ion-card class="_card">
+    <!-- <ion-card class="_card">
         <ion-card-content>
             <ion-grid>
                 <ion-row>
@@ -67,135 +304,17 @@
                 </ion-row>
             </ion-grid>
         </ion-card-content>
-    </ion-card>
-    <ion-card class="_card">
-        <ion-card-content>
-            <ion-grid>
-                <ion-row>
-                    <ion-col col-12>
-                        <div text-center class="consumoR">
-                            <ion-icon name="wine"></ion-icon> &nbsp; Consumo de la reservación
-                        </div>
-                    </ion-col>
-                </ion-row>
-                <ion-row>
-                    <ion-col col-3>
-                        <div text-center class="consumodetalle">
-                            <ion-icon></ion-icon> &nbsp; Producto
-                        </div>
-                    </ion-col>
-                    <ion-col col-3>
-                        <div text-center class="consumodetalle">
-                            <ion-icon></ion-icon> &nbsp; Costo
-                        </div>
-                    </ion-col>
-                    <ion-col col-3>
-                        <div text-center class="consumodetalle">
-                            <ion-icon></ion-icon> &nbsp; Cantidad
-                        </div>
-                    </ion-col>
-                    <ion-col col-3>
-                        <div text-center class="consumodetalle">
-                            <ion-icon></ion-icon> &nbsp; Total
-                        </div>
-                    </ion-col>
-                </ion-row>
-                <ion-row *ngFor="let producto of productos">
-                    <ion-col col-3>
-                        <div text-center class="consumodetalle">
-                            {{producto.producto}}
-                        </div>
-                    </ion-col>
-                    <ion-col col-3>
-                        <div text-center class="consumodetalle">
-                            {{producto.costo | currency}}
-                        </div>
-                    </ion-col>
-                    <ion-col col-3>
-                        <div text-center class="consumodetalle">
-                            {{producto.cantidad}}
-                        </div>
-                    </ion-col>
-                    <ion-col col-3>
-                        <div text-center class="consumodetalle">
-                            {{producto.total | currency}}
-                        </div>
-                    </ion-col>
-                </ion-row>
-                <ion-row class="fondorow">
-                    <ion-col col-7 class="fondorow">
-                        <div text-center class="consumoT">
-                            <ion-icon name="cash"></ion-icon> &nbsp; Consumo {{s.totalReservacion}}
-                        </div>
-                    </ion-col>
-                    <ion-col col-5 class="fondorow">
-                        <div text-center class="consumoT">
-                            {{total | currency}}
-                        </div>
-                    </ion-col>
-                    <!-- <ion-col col-5 class="fondorow" *ngFor="let cupon of coupons | async ">
-                        <div text-center class="consumoT">
-                            {{cupon.codigoCupon}}
-                        </div>
-                    </ion-col> -->
-                </ion-row>
+    </ion-card> -->
 
-
-                <div *ngIf="ocultar1">
-                    <ion-row class="fondorow">
-                        <ion-col col-7 class="fondorow">
-                            <div text-center class="consumoT">
-                                <ion-icon name="cash"></ion-icon> &nbsp; Total a pagar
-                            </div>
-                        </ion-col>
-                        <ion-col col-5 class="fondorow">
-                            <div text-center class="consumoT">
-                                {{resta | currency}}
-                            </div>
-                        </ion-col>
-                    </ion-row>
-                </div>
-
-                <!-- <ion-row class="fondorow" *ngFor="let item of _coupon | async ">
-                    <ion-col col-7 class="fondorow">
-                        <div text-center class="consumoT">
-                            <ion-icon name="cash"></ion-icon> &nbsp; Valor del Cupón
-                        </div>
-                    </ion-col>
-                    <ion-col col-5 class="fondorow">
-                        <div text-center class="consumoT" disable>
-                            $ {{item.valorCupon}}
-                        </div>
-                        <br>
-                        <button block round class="botontotal" (click)="consumototal(total, item.valorCupon, item.uid, item.numCupones)">Total</button>
-
-                        <div text-center class="consumoT" *ngFor="let reservacion of _reser | async " style="margin-top: -23px;">
-                            $ {{reservacion.totalReservacion}}
-                        </div>
-                    </ion-col>
-                </ion-row> -->
-            </ion-grid>
-            <br><br><br>
-            <!--<div class="_footer">
-                <div text-center margin>
-                    Al selecionar "Reservar", aceptas los términos y condiciones de los <a>Términos de uso</a> y la
-                    <a>Política
-                        de
-                        privacidad</a> de Guest Resy
-                </div>
-            </div>-->
-        </ion-card-content>
-
-    </ion-card>
-     <div class="_footer">
-        <div text-center margin>
-            Al selecionar "Continuar", aceptas los términos y condiciones de los <a>Términos de uso</a> y la <a>Política
-                de
-                privacidad</a> de Guest Resy
-        </div>
-    </div>
+    <br>
 </ion-content>
 
 <ion-footer>
-    <button ion-button full color="dark" (click)="saveReserva()">Continuar</button>
+    <ion-row>
+        <ion-col col-3></ion-col>
+        <ion-col col-6>
+            <button ion-button full class="botoncont" (click)="saveReserva()">Continuar</button>
+        </ion-col>
+        <ion-col col-3></ion-col>
+    </ion-row>  
 </ion-footer>

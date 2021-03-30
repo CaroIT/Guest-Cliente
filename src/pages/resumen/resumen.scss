@@ -1,20 +1,90 @@
 page-resumen {
-    ion-content {
-        background-image: url('../assets/imgs/fondo_r3.png');
-        background-repeat: no-repeat;
+
+    //Nuevo
+    .toolbar-background {
+        background-image: url('../assets/content/head.png')!important;
         background-size: cover;
-        //background-position: center;
-        width: 100%;
-        position: relative;
-        border: none;
+        background-position: center center;
+        background-repeat: no-repeat;
     }
-    ._card {
-        background-color: rgba(0, 0, 0, 0.65);
+    
+    .borde {
+        margin-top: 0em;
     }
+    
+    //Nuevo
+    .botonMod {
+        background: white;
+        height: 36px;
+        border-radius: 60%;
+        margin-top: 10px;
+        width: 26px;
+    }
+    
+    //Nuevo
+    .colorIcon3 {
+        zoom: 1;
+        color: #000;
+        font-size: inherit;
+    }
+
+    .lugar {
+        color: #FD9530;
+        text-transform: uppercase;
+    }
+
+    .text_color2 {
+        color: #FD9530;
+        font-weight: bold;
+    }
+    
+
+    .text_num2 {
+        font-size: 4rem;
+        color: #FD9530;
+    }
+
+
+    .text_color3 {
+        font-size: 1rem;
+        font-weight: bold;
+        color: #000;
+        text-transform: uppercase;
+    }
+
+    .text_colors {
+        color: #706F6F;
+        margin-top: 2px;
+    }
+
+    .text_colors2 {
+        color: #706F6F;
+    }
+
+    .icono {
+        color: #FFC149;
+    }
+
     .sucursal {
-        color: #eccc68;
+        font-weight: bold;
+        color: #706F6F;
         font-size: 2rem;
+        text-transform: uppercase;
     }
+
+    // ion-content {
+    //     background-image: url('../assets/imgs/fondo_r3.png');
+    //     background-repeat: no-repeat;
+    //     background-size: cover;
+    //     //background-position: center;
+    //     width: 100%;
+    //     position: relative;
+    //     border: none;
+    // }
+    ._card {
+        // background-color: rgba(0, 0, 0, 0.65);
+    }
+    
     .text_color {
         color: #fff;
     }
@@ -31,7 +101,11 @@ page-resumen {
     }
     .consumodetalle {
         font-size: 1.3rem;
-        color: #fff;
+        color: #706F6F;
+    }
+    .consumodetalles {
+        font-size: 1.3rem;
+        color: #949494;
     }
     .consumoT {
         font-size: 1.8rem;
@@ -39,26 +113,35 @@ page-resumen {
     }
     .consumoR {
         font-size: 1.8rem;
-        color: #eccc68;
+        color: #706F6F;
+        text-transform: uppercase;
+        font-weight: bold;
+        margin-top: -15%;
     }
     ._footer {
-        background-color: #000000c2;
-        position: absolute;
+        // background-color: #000000c2;
+        // position: absolute;
         bottom: 0;
         width: 100%;
         height: 10%;
-        color: rgb(255, 255, 255);
+        color: #949494;
     }
     .fondorow {
-        background-color: #222;
+        background-color: #FFC149;
+        // width: 90%;
     }
     ion-footer {
-        background-color: #222222;
+        // background-color: #222222;
     }
     .botontotal {
         width: 70%;
         height: 40%;
         border-radius: 15px;
         margin-left: -70%;
+    }
+    .botoncont {
+        background-color: #FD9530;
+        border-radius: 25px;
+        height: 35px;
     }
 }

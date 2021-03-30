@@ -12,6 +12,7 @@ import { Observable } from 'rxjs/Observable';
 import { SMS } from '@ionic-native/sms';
 //import { SocialSharing } from '@ionic-native/social-sharing';
 import { PropinaPage } from "../../pages/propina/propina";
+import { CuponesProvider } from '../../providers/cupones/cupones';
 
 interface Publica {
   codigoCupon: number;
@@ -60,6 +61,19 @@ export class ResumenPage {
   data: any = {};
   ocultar1: Boolean = false;
   resultCompartidasFinal: any;
+  uidUserSesion: any;
+  miUser: any = {};
+  fechaActual: any;
+  totalsucursal: any = {};
+  usuariosss: any = {};
+  totalcupones: any;
+  cuponess: any;
+  cupones_acajeados: any;
+  cupones_visibles: any = [];
+  sucursal: any;
+  ocultar2: boolean = true;
+  codigoSel: any;
+
 
   constructor(
     public navCtrl: NavController,
@@ -71,6 +85,7 @@ export class ResumenPage {
     public platform: Platform,
     public fb: FormBuilder,
     private sms: SMS,
+    public cupProv: CuponesProvider,
     //private socialSharing: SocialSharing,
     public afs: AngularFirestore
   ) {
@@ -92,6 +107,9 @@ export class ResumenPage {
     this.getSucursal();
     this.loadProductRes();
     this.getZona();
+    this.goToUser();
+    this.AllCupon();
+    this.codigoSel = 0;
     // this.verificarcodigo();
     //this.ionViewWillEnter();
   }
@@ -102,6 +120,23 @@ export class ResumenPage {
   }
   ionViewWillLeave() {
     this.tabBarElement.style.display = 'flex';
+  }
+
+  goToUser() {
+
+    //sacar el id del usuario del local storage
+    this.uidUserSesion = localStorage.getItem('uid');
+    console.log('id del usuario en eventos', this.uidUserSesion);
+
+    //obtener informacion de mi user
+    this.afs
+      .collection("users").doc(this.uidUserSesion)
+      .valueChanges()
+      .subscribe(dataSu => {
+        this.miUser = dataSu;
+        console.log('Datos de mi usuario', this.miUser);
+      });
+
   }
 
   loadNavParams() {
@@ -163,16 +198,16 @@ export class ResumenPage {
     //    "Gracias por reservar en Guest Resy te notificaremos cuando tu reservación haya sido aceptada.",
     //  buttons: [
     //    {
-      //    text: "Aceptar",
-        //  handler: () => {
-        //    console.log("Buy clicked");
-            this.notiReservaCompartida();
-            this.enviarMensaje();
-            //this.navCtrl.setRoot(TabsPage);
-            localStorage.removeItem('reservacion');
-          //}
-        //}
-      //]
+    //    text: "Aceptar",
+    //  handler: () => {
+    //    console.log("Buy clicked");
+    this.notiReservaCompartida();
+    this.enviarMensaje();
+    //this.navCtrl.setRoot(TabsPage);
+    localStorage.removeItem('reservacion');
+    //}
+    //}
+    //]
     //});
     //alertMesas.present();
     // despues del resumen va alas propinas
@@ -181,30 +216,30 @@ export class ResumenPage {
     });
   }
 
-  enviarMensaje(){
-      this.afs.collection('compartidas', ref => ref.where('idReservacion', '==', this.idReservacion)).valueChanges().subscribe(data2 => {
-         this.resultCompartidasFinal = data2;
-         console.log('compartidasFinal',this.resultCompartidasFinal);
+  enviarMensaje() {
+    this.afs.collection('compartidas', ref => ref.where('idReservacion', '==', this.idReservacion)).valueChanges().subscribe(data2 => {
+      this.resultCompartidasFinal = data2;
+      console.log('compartidasFinal', this.resultCompartidasFinal);
       //insertar el player id de cada telefono insertado
-       this.resultCompartidasFinal.forEach(element2 => {
-           //console.log('compartidasFinal',element2);
-          console.log('este player id',element2.playerId);
-          if(element2.playerId==undefined){
-             const numeroEnviar=element2.telefono;
-             const numeroWhats='+52'+numeroEnviar;
-              console.log('mensaje a',numeroEnviar);
-              console.log('mensaje whats a',numeroWhats);
-              //this.sms.send('416123456', 'Hello world!')
-               this.sms.send(numeroEnviar, 'Descarga GuestApp!  https://play.google.com/store/apps/details?id=com.guestapp.app');
-              //whats app mensaje
-              //this.socialSharing.shareViaWhatsAppToReceiver(numeroWhats, 'GuestResy.com!').then(() => {
-              //   console.log('enviado whats');
-              //  }).catch(() => {
-              //     console.log(' error enviado whats');
-               //});
-          }
-         });
+      this.resultCompartidasFinal.forEach(element2 => {
+        //console.log('compartidasFinal',element2);
+        console.log('este player id', element2.playerId);
+        if (element2.playerId == undefined) {
+          const numeroEnviar = element2.telefono;
+          const numeroWhats = '+52' + numeroEnviar;
+          console.log('mensaje a', numeroEnviar);
+          console.log('mensaje whats a', numeroWhats);
+          //this.sms.send('416123456', 'Hello world!')
+          this.sms.send(numeroEnviar, 'Descarga GuestApp!  https://play.google.com/store/apps/details?id=com.guestapp.app');
+          //whats app mensaje
+          //this.socialSharing.shareViaWhatsAppToReceiver(numeroWhats, 'GuestResy.com!').then(() => {
+          //   console.log('enviado whats');
+          //  }).catch(() => {
+          //     console.log(' error enviado whats');
+          //});
+        }
       });
+    });
   }
 
   notiReservaCompartida() {
@@ -213,32 +248,32 @@ export class ResumenPage {
       console.log('Usuarios compartidos: ', this.usersCompartido);
       this.usersCompartido.forEach(usersCom => {
         console.log("PlayerID:", usersCom.playerId);
-        if(usersCom.playerId!=undefined){
-            console.log('notificacion  a',usersCom.playerId);
-            if (this.platform.is("cordova")) {
-              let noti = {
-                app_id: "de05ee4f-03c8-4ff4-8ca9-c80c97c5c0d9",
-                include_player_ids: [usersCom.playerId],
-                   data: { foo: "bar" },
-                contents: {
-                  en: "Han compartido una reservación contigo"
-                }
-              };
-                 window["plugins"].OneSignal.postNotification(
-                noti,
-                   function (successResponse) {
-                     console.log(
-                    "Notification Post Success:",
-                    successResponse
-                  );
-                },
-                function (failedResponse: any) {
-                  console.log("Notification Post Failed: ", failedResponse);
-                }
-              );
-              } else {
-              console.log("Solo funciona en dispositivos");
+        if (usersCom.playerId != undefined) {
+          console.log('notificacion  a', usersCom.playerId);
+          if (this.platform.is("cordova")) {
+            let noti = {
+              app_id: "de05ee4f-03c8-4ff4-8ca9-c80c97c5c0d9",
+              include_player_ids: [usersCom.playerId],
+              data: { foo: "bar" },
+              contents: {
+                en: "Han compartido una reservación contigo"
               }
+            };
+            window["plugins"].OneSignal.postNotification(
+              noti,
+              function (successResponse) {
+                console.log(
+                  "Notification Post Success:",
+                  successResponse
+                );
+              },
+              function (failedResponse: any) {
+                console.log("Notification Post Failed: ", failedResponse);
+              }
+            );
+          } else {
+            console.log("Solo funciona en dispositivos");
+          }
         }
 
       });
@@ -246,7 +281,7 @@ export class ResumenPage {
   }
 
   verificarcodigo(uidsucursal, total) {
-    const cvc = parseInt(this.data.cvc);
+    const cvc = parseInt(this.codigoSel);
     console.log("este es el codigo", cvc);
     console.log("Uid de la sucursal", uidsucursal);
     console.log('este es el total', total);
@@ -254,7 +289,7 @@ export class ResumenPage {
 
     this.afs.collection('cupones', ref => ref.where('codigoCupon', '==', cvc)).valueChanges().subscribe(data => {
       this.cupones = data;
-      console.log("estos son mis cupones", this.cupones.numCupones);
+      // console.log("estos son mis cupones", this.cupones.numCupones);
 
       this.cupones.forEach(element => {
 
@@ -306,7 +341,7 @@ export class ResumenPage {
 
   doToReservacion(total) {
     const rest = total - this.cuponn;
-    const cvc = parseInt(this.cvc);
+    const cvc = parseInt(this.codigoSel);
     const restacupones = this.numcupon - 1;
 
     console.log("esta es la resta del cupon:", rest);
@@ -328,7 +363,7 @@ export class ResumenPage {
   doToCupon(total) {
 
     const rest = total - this.cuponn;
-    const cvc = parseInt(this.cvc);
+    const cvc = parseInt(this.codigoSel);
     const restacupones = this.numcupon - 1;
 
     console.log("esta es la resta del cupon:", rest);
@@ -347,8 +382,9 @@ export class ResumenPage {
 
   doToCanjeo(total) {
     this.ocultar1 = !this.ocultar1;
+    this.ocultar2 = !this.ocultar2;
     const rest = total - this.cuponn;
-    const cvc = parseInt(this.cvc);
+    const cvc = parseInt(this.codigoSel);
     const restacupones = this.numcupon - 1;
 
     console.log("esta es la resta del cupon:", rest);
@@ -384,5 +420,66 @@ export class ResumenPage {
     alerta.present();
   }
 
+  AllCupon() {
+    this.fechaActual = new Date().toJSON().split("T")[0];
+    console.log('ionViewDidLoad AgregarCuponesPage', this.fechaActual);
+
+    this.sucursal = localStorage.getItem('idSucursal');
+    console.log('id de la pinchi sucursal', this.sucursal);
+
+    //Se obteniene datos del sucursales
+    this.afs.collection('sucursales').doc(this.sucursal).valueChanges().subscribe(sucudata => {
+      this.totalsucursal = sucudata;
+      console.log("sucursales", this.totalsucursal);
+    });
+
+    //Se obteniene datos del usuario
+    this.cupProv.getDataUser(this.uid).then(user => {
+      this.usuariosss = user;
+      console.log("datos usuario", user);
+    });
+
+    //Se obteniene datos del cupones
+    this.afs.collection('cupones').valueChanges().subscribe(data => {
+      this.totalcupones = data;
+      console.log("total de cupones", this.totalcupones);
+    });
+
+    this.afs.collection('cupones').valueChanges().subscribe(data => {
+      this.cuponess = data;
+      console.log("estos son mis cupones", this.cuponess);
+
+      var cuponesarreglo = [];
+
+      this.cuponess.forEach(element => {
+        const id = element.uid
+        console.log('id del cupon', id)
+
+        this.afs.collection('canjeo', ref => ref.where('idUser', '==', this.uid).where('idCupon', '==', id)).valueChanges().subscribe(data => {
+          this.cupones_acajeados = data;
+          console.log("estos son mis cupones canjeados", this.cupones_acajeados);
+          console.log("estos son mis cupones canjeados", this.cupones_acajeados.length);
+
+          if (this.cupones_acajeados.length == 0) {
+            cuponesarreglo.push(id);
+            console.log("estos son los id visibles", cuponesarreglo.join(", "));
+            console.log("estos son los datos de los datos visibles", cuponesarreglo);
+
+            this.cupones_visibles = cuponesarreglo;
+
+          }
+        });
+
+      });
+
+    });
+  }
+
+
+  onChange(dato) {
+    console.log("Dato:", dato);
+    this.codigoSel = dato;
+    console.log("este es el valor de la variable global", this.codigoSel);
+  }
 
 }

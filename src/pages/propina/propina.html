@@ -1,18 +1,20 @@
-<ion-header class="esquina">
-    <ion-navbar hideBackButton class="borde">
-       <ion-row >
-         <ion-col>
-            <!--<button ion-fab color="negro" (click)="(goBack())"><ion-icon name="arrow-back" color="naranja" style="zoom:1.2;"></ion-icon></button>-->
-         </ion-col>
-         <ion-col>
-             <ion-title class="texto-alineado"><h6>AGREGAR PROPINA</h6></ion-title>
-         </ion-col>
-         <ion-col>
-             <button class="esquina">
-              <img src="./assets/imgs/icons/corona.png" class="ima">
-             </button>
-         </ion-col>
-       </ion-row>
+<ion-header>
+    <ion-navbar class="borde" hideBackButton>
+        <ion-row>
+            <ion-col>
+                <button ion-button menuToggle class="botonMod">
+                    <ion-icon item-start name="menu" class="colorIcon3" style="zoom:1.5;"></ion-icon>
+                </button>
+            </ion-col>
+            <ion-col>
+                <img src="./assets/imgs/Logoblanco.png" style="width: 60%;" alt="">
+            </ion-col>
+            <ion-col>
+                <div align='end'>
+                    <img src="{{miUser.photoURL}}?type=large&width=720&height=720" style="width:40%;border-radius:50%;">
+                </div>
+            </ion-col>
+        </ion-row>
     </ion-navbar>
 </ion-header>
 <ion-content padding>
