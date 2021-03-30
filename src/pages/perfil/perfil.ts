@@ -19,40 +19,57 @@ export class PerfilPage {
   user: Credenciales = {};
   nombresUsers: any;
   tarjetasData: any;
+  uidUserSesion: any;
+  miUser: any = {};
 
   constructor(public navCtrl: NavController,
-              public usuarioProv: UsuarioProvider,
-              private afAuth: AngularFireAuth,
-              public afDB: AngularFireDatabase,
-              public afs: AngularFirestore) {
+    public usuarioProv: UsuarioProvider,
+    private afAuth: AngularFireAuth,
+    public afDB: AngularFireDatabase,
+    public afs: AngularFirestore) {
 
-            console.log( this.usuarioProv.usuario );
-            this.user = this.usuarioProv.usuario;
+    console.log(this.usuarioProv.usuario);
+    this.user = this.usuarioProv.usuario;
 
-            this.afAuth.authState.subscribe(user =>{
-              console.log('AFAUTH!!');
-              console.log( JSON.stringify(user));
-            });
+    this.afAuth.authState.subscribe(user => {
+      console.log('AFAUTH!!');
+      console.log(JSON.stringify(user));
+    });
 
-            //consultar tabla usuarios
-            this.afs
-              .collection("users")
-              .valueChanges()
-              .subscribe(data => {
-                this.nombresUsers = data;
-              });
-              //consultar tabla tarjetas
-              this.afs
-                .collection("tarjetas")
-                .valueChanges()
-                .subscribe(datat => {
-                  this.tarjetasData = datat;
-                });
+    //consultar tabla usuarios
+    this.afs
+      .collection("users")
+      .valueChanges()
+      .subscribe(data => {
+        this.nombresUsers = data;
+      });
+
+    //consultar tabla tarjetas
+    this.afs
+      .collection("tarjetas")
+      .valueChanges()
+      .subscribe(datat => {
+        this.tarjetasData = datat;
+      });
+
+    //sacar el id del usuario del local storage
+    this.uidUserSesion = localStorage.getItem('uid');
+    console.log('id del usuario en eventos', this.uidUserSesion);
+
+    //obtener informacion de mi user
+    this.afs
+      .collection("users").doc(this.uidUserSesion)
+      .valueChanges()
+      .subscribe(dataSu => {
+        this.miUser = dataSu;
+        console.log('Datos de mi usuario', this.miUser);
+      });
+
   }
 
-  salir(){
+  salir() {
     localStorage.setItem("isLogin", 'false');
-    this.afAuth.auth.signOut().then( res => {
+    this.afAuth.auth.signOut().then(res => {
       this.usuarioProv.usuario = {};
       this.navCtrl.setRoot(LoginPage);
     });

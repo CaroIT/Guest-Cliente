@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { AngularFirestore } from '@angular/fire/firestore';
 import { TabsPage } from '../tabs/tabs';
 import { ReservacionProvider } from '../../providers/reservacion/reservacion';
+import { EventosPage } from '../eventos/eventos';
 
 
 
@@ -88,7 +89,7 @@ export class PropinaPage {
                 text: "Aceptar",
                 handler: () => {
                   console.log("Buy clicked");
-                  this.navCtrl.setRoot(TabsPage);
+                  this.navCtrl.setRoot(EventosPage);
                 }
               }
             ]
@@ -109,7 +110,7 @@ export class PropinaPage {
               text: "Aceptar",
               handler: () => {
                 console.log("Buy clicked");
-                this.navCtrl.setRoot(TabsPage);
+                this.navCtrl.setRoot(EventosPage);
               }
             }
           ]
