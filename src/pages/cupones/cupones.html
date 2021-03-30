@@ -2,19 +2,17 @@
     <ion-navbar class="borde">
         <ion-row>
             <ion-col>
-                <button ion-button menuToggle>
+                <button ion-button menuToggle class="botonMod">
                     <ion-icon item-start name="menu" class="colorIcon3" style="zoom:1.5;"></ion-icon>
                 </button>
             </ion-col>
             <ion-col>
-                <ion-title class="texto-alineado">
-                    <h6>CUPONES</h6>
-                </ion-title>
+                <img src="./assets/imgs/Logoblanco.png" style="width: 60%;" alt="">
             </ion-col>
             <ion-col>
-                <button class="esquina">
-                    <img src="./assets/imgs/icons/corona.png" class="ima">
-                </button>
+                <div align='end'>
+                    <img src="{{miUser.photoURL}}?type=large&width=720&height=720" style="width:40%;border-radius:50%;">
+                </div>
             </ion-col>
         </ion-row>
     </ion-navbar>
@@ -22,7 +20,19 @@
 
 <ion-content padding>
 
-    <h2 class="titulos">Cupones disponibles</h2>
+    <br>
+    <br>
+    <label for="" style="margin-left:20px; margin-top:10px;color:#FD9530">CUPONES DISPONIBLES</label>
+    <br>
+    <span style="margin-left:20px;position:absolute;margin-top:-10px">________________________________</span>
+    <br>
+    <span style="margin-left:20px;opacity:.3;position:absolute;margin-top:-8px">
+        <font size="2">ESTOS CUPONES ESTAN ACTIVOS</font>
+    </span>
+
+    <br> <br>
+
+    <!-- <h2 class="titulos">Cupones disponibles</h2> -->
     <div *ngFor="let sucursal of totalsucursal">
         <div *ngIf="usuario.ciudad == sucursal.ciudad">
             <div *ngFor="let cupones of totalcupones" style="text-align: center;">
@@ -31,8 +41,8 @@
                         <div *ngIf="cupones.uid == cupon">
                             <div *ngIf=" cupones.numCupones > 0">
                                 <div *ngIf="cupones.fechaExpiracion >= fechaActual">
-                                    <br> <br>
-                                        <ion-badge class="tamanoB" color="naranja" item-end>
+                                    <!-- <br> <br> -->
+                                    <!-- <ion-badge class="tamanoB" color="naranja" item-end>
                                             Cupón de descuento {{ cupones.valorCupon | currency }}
                                             <br>
                                             Código {{ cupones.codigoCupon }}
@@ -43,7 +53,34 @@
                                                 <ion-icon name="copy" is-active="false"></ion-icon> Copiar código
                                             </ion-badge>
                                         </ion-badge>
-                                        <br>
+                                        <br> -->
+
+                                    <img src="./assets/imgs/Vector (3).png" alt="" style="width:420px">
+                                    <br><br>
+                                    <div class="row" style="position:absolute;margin-top:-110px;margin-left:60px">
+                                        <div class="col-4">
+                                            <font style="color:#C88F1E" size="6"> <b>{{ cupones.valorCupon | currency
+                                                    }}</b></font>
+
+                                        </div>
+                                        <div class="col-2">
+                                            <img src="./assets/imgs/Logoblanco.png"
+                                                style="margin-top:-10px;width:65px; margin-left:40px">
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="position:absolute;margin-top:-60px;margin-left:50px">
+                                        <div class="col-4">
+                                            <font style="color:#C88F1E"> mxn de descuento</font>
+
+                                        </div>
+                                        <div class="col-4">
+                                            <font style="color:#C88F1E;margin-left:10px"> Código {{ cupones.codigoCupon
+                                                }}</font>
+
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>

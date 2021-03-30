@@ -34,6 +34,9 @@ export class CuponesPage {
   cupones_acajeados: any;
   cupones_visibles: any = [];
 
+  uidUserSesion: any;
+  miUser: any = {};
+
   constructor(public navCtrl: NavController,
     private clipboard: Clipboard,
     public usuarioProv: UsuarioProvider,
@@ -44,6 +47,15 @@ export class CuponesPage {
 
     this.uid = localStorage.getItem('uid');
     console.log("este es mi uid", this.uid);
+
+    //obtener informacion de mi user
+    this.afs
+      .collection("users").doc(this.uid)
+      .valueChanges()
+      .subscribe(dataSu => {
+        this.miUser = dataSu;
+        console.log('Datos de mi usuario', this.miUser);
+      });
 
   }
 
@@ -87,7 +99,7 @@ export class CuponesPage {
           console.log("estos son mis cupones canjeados", this.cupones_acajeados);
           console.log("estos son mis cupones canjeados", this.cupones_acajeados.length);
 
-          if(this.cupones_acajeados.length == 0){
+          if (this.cupones_acajeados.length == 0) {
             cuponesarreglo.push(id);
             console.log("estos son los id visibles", cuponesarreglo.join(", "));
             console.log("estos son los datos de los datos visibles", cuponesarreglo);
