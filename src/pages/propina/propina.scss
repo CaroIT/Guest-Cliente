@@ -27,6 +27,24 @@ page-propina {
         color: #000;
         font-size: inherit;
     }
+
+    .ion-icon {
+      color: #706F6F;
+      font-size: 30px;
+      margin-top: -5px;
+      font-weight: bold;
+    }
+
+    .lugar {
+      color: #FD9530;
+      font-size: medium;
+      text-transform: uppercase;
+    }
+
+    .detalle {
+      color: #474646;
+      margin-top: -10px;
+    }
     
   // ion-content {
   //     background-image: url('../assets/imgs/fondo_r3.png');
@@ -126,9 +144,16 @@ ion-list .item {
     padding-left: 0px;
   }
   .blanco_1 {
-      font-size: 18px;
-      resize: none;
-      color: #FFFFFF;
+      font-size: 15px;
+      text-transform: uppercase;
+      // resize: none;
+      color: #706F6F;
+  }
+  .blanco_12 {
+    font-size: 12px;
+      text-transform: uppercase;
+      // resize: none;
+      color: #706F6F;
   }
   .blanco_2 {
       font-size: 11px;

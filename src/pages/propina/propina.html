@@ -17,25 +17,58 @@
         </ion-row>
     </ion-navbar>
 </ion-header>
-<ion-content padding>
-  <form [formGroup]="myForm" novalidate class="">
-   <ion-list>
-       <ion-item>
-         <ion-label class="blanco_1">Propina</ion-label>
-         <ion-select [(ngModel)]="propina" multiple="false" cancelText="Cancelar" okText="Aceptar" name="propina" formControlName="propina">
-             <div>
-               <ion-option value="0.05">5%</ion-option>
-               <ion-option value="0.10">10%</ion-option>
-               <ion-option value="0.15">15%</ion-option>
-               <ion-option value="0.20">20%</ion-option>
-             </div>
-         </ion-select>
-         <!--<ion-datetime displayFormat="M" doneText=Aceptar cancelText=Cancelar [(ngModel)]="mesExp" name="mesExp" formControlName="mesExp"></ion-datetime>-->
-         <!--<ion-input type="tel" [(ngModel)]="mesExp" name="mesExp" formControlName="mesExp" maxlength="2"></ion-input>-->
-       </ion-item>
-    </ion-list>
-  </form>
-  <!--<div class="_footer">
+<ion-content>
+
+    <ion-row>
+        <ion-col col-1></ion-col>
+        <ion-col>
+            <p class="lugar">
+                Propina
+                <br>
+                <!-- <span style="position:absolute;margin-top:-10px">________________</span> -->
+                <img src="./assets/icon/Vector10.png" style="width: 40%;" alt="">
+            </p>
+            <p class="detalle">Detalle</p>
+
+        </ion-col>
+        <ion-col col-1></ion-col>
+    </ion-row>
+
+    <ion-row>
+        <ion-col col-1></ion-col>
+        <ion-col col-3>
+            <ion-card>
+                <ion-label class="blanco_1"><b>Propina</b></ion-label>
+                <ion-icon name="cash-outline" class="ion-icon"></ion-icon>
+            </ion-card>
+        </ion-col>
+        <ion-col col-7>
+            <ion-card>
+                <form [formGroup]="myForm" novalidate class="">
+                    <ion-list no-lines>
+                        <ion-item>
+                            <ion-label class="blanco_12"><b>Ajusta tu porcentaje</b></ion-label>
+                            <ion-select [(ngModel)]="propina" multiple="false" cancelText="Cancelar" okText="Aceptar"
+                                name="propina" formControlName="propina">
+                                <div>
+                                    <ion-option value="0.05">5%</ion-option>
+                                    <ion-option value="0.10">10%</ion-option>
+                                    <ion-option value="0.15">15%</ion-option>
+                                    <ion-option value="0.20">20%</ion-option>
+                                </div>
+                            </ion-select>
+                        </ion-item>
+                    </ion-list>
+                </form>
+                <br>
+            </ion-card>
+        </ion-col>
+        <ion-col col-1></ion-col>
+    </ion-row>
+
+    
+
+    <!--<div class="_footer">
       <div text-center margin>
           Al selecionar "Reservar", aceptas los términos y condiciones de los <a>Términos de uso</a> y la
           <a>Política
@@ -43,19 +76,20 @@
               privacidad</a> de Guest Resy
       </div>
   </div>-->
-  <ion-footer no-border>
-      <ion-toolbar>
-          <ion-grid>
-              <ion-row>
-                <ion-col col-6>
+    <ion-footer no-border>
+        <ion-grid>
+            <ion-row>
+                <ion-col col-3>
                 </ion-col>
                 <ion-col col-6>
-                      <div text-center>
-                          <button ion-button block round color="dark" (click)="propinaAdd()" [disabled]="!myForm.valid">Reservar</button>
-                      </div>
+                    <div text-center>
+                        <button ion-button block round style="background-color: #FD9530;height: 35px;" (click)="propinaAdd()"
+                            [disabled]="!myForm.valid">Reservar</button>
+                    </div>
                 </ion-col>
-              </ion-row>
-          </ion-grid>
-      </ion-toolbar>
-  </ion-footer>
- </ion-content>
+                <ion-col col-3>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-footer>
+</ion-content>
