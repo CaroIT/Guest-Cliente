@@ -1,105 +1,210 @@
 <ion-header>
-    <ion-navbar class="borde">
-        <ion-row>
-            <ion-col>
-               <button ion-button menuToggle>
-                     <ion-icon item-start name="menu" class="colorIcon3" style="zoom:1.5;"></ion-icon>
-                </button>
-            </ion-col>
-            <ion-col>
-              <ion-title class="texto-alineado"><h6>TARJETAS</h6></ion-title>
-            </ion-col>
-            <ion-col>
-              <button class="esquina">
-               <img src="./assets/imgs/icons/corona.png" class="ima">
-              </button>
-            </ion-col>
-        </ion-row>
-    </ion-navbar>
+  <ion-navbar class="borde">
+    <ion-row>
+      <ion-col>
+        <button ion-button menuToggle class="botonMod">
+          <ion-icon item-start name="menu" class="colorIcon31" style="zoom:1.5;height: 18px;"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col>
+        <img src="./assets/imgs/Logoblanco.png" style="width: 60%;" alt="">
+      </ion-col>
+      <ion-col>
+        <div align='end'>
+          <img src="{{miUser.photoURL}}?type=large&width=720&height=720" style="width:40%;border-radius:50%;">
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-navbar>
 </ion-header>
 <ion-content padding>
-  <div class="derechaBoton">
-    <!--<button ion-button color="naranja" (click)="NousarTarjetas()">
-         Desactivar
-    </button>-->
-     <button *ngIf="!numTarjetas" (click)="agregarTarjeta()" text-align ion-button clear small color="light" icon-left item-end>
-        <ion-icon name="add" class="colorIcon" style="zoom:1.1;"></ion-icon>
-         Agregar tarjeta
-     </button>
+
+  <br>
+  <br>
+  <label for="" style="margin-left:20px; margin-top:10px;color:#FD9530"> <b> TARJETAS REGISTRADAS</b></label>
+  <br>
+  <span style="margin-left:20px;position:absolute;margin-top:-10px">________________________________</span>
+  <br>
+  <span style="margin-left:20px;opacity:.3;position:absolute;margin-top:-8px">
+    <font size="1">ESTAS SE ENCUENTRAN <b style="color:#FD9530"> ACTIVAS</b></font>
+  </span>
+
+  <br> <br>
+  <div align="right">
+    <button (click)="agregarTarjeta()" text-align ion-button clear small color="light" icon-left item-end>
+      <!-- <ion-icon name="add" class="colorIcon" style="zoom:1.1;"></ion-icon> -->
+      <img src="./assets/imgs/icons/Group 89.png" alt="">
+      <!-- Agregar más -->
+    </button>
+    <br>
+    <font style="opacity:.4;margin-top:-10px;position:absolute;margin-left:-60px" size="1">Agregar más</font>
   </div>
-    <ion-card class="card_atras" *ngFor="let tarjetas of misTarjetas">
-        <ion-card-content class="card_atras">
-            <ion-card-title>
-                <h4 class="blanco_1">Tarjeta registrada
-                  <!--<ion-badge class="negro" item-end><div *ngIf="tarjetas.estatus=='INACTIVA'">{{tarjetas.estatus}}</div></ion-badge>-->
-                </h4>
-            </ion-card-title>
-            <ion-item class="card_atras">
-                <img class="icon" src="../assets/imgs/icons/tarjeta.png" item-start>
-                <p class="blanco_2">Estado</p>
-                <ion-badge color="naranja" item-end><div *ngIf="tarjetas.estatus=='ACTIVA'">{{tarjetas.estatus}}</div></ion-badge>
-            </ion-item>
-            <ion-item class="card_atras">
-                <img class="icon" src="../assets/imgs/icons/tarjeta.png" item-start>
-                <p class="blanco_2">Número</p>
-                <ion-badge class="negro" item-end>**** **** **** {{tarjetas.numTarjeta4dijitos}}</ion-badge>
-            </ion-item>
-            <ion-item class="card_atras">
-                <img class="icon" src="../assets/imgs/icons/tarjeta.png" item-start>
-                <a class="blanco_2">Mes expiración</a>
-                <ion-badge class="negro" item-end><div *ngIf="tarjetas.mesExpiracion=='1'">Enero</div></ion-badge>
-                <ion-badge class="negro" item-end><div *ngIf="tarjetas.mesExpiracion=='2'">Febrero</div></ion-badge>
-                <ion-badge class="negro" item-end><div *ngIf="tarjetas.mesExpiracion=='3'">Marzo</div></ion-badge>
-                <ion-badge class="negro" item-end><div *ngIf="tarjetas.mesExpiracion=='4'">Abril</div></ion-badge>
-                <ion-badge class="negro" item-end><div *ngIf="tarjetas.mesExpiracion=='5'">Mayo</div></ion-badge>
-                <ion-badge class="negro" item-end><div *ngIf="tarjetas.mesExpiracion=='6'">Junio</div></ion-badge>
-                <ion-badge class="negro" item-end><div *ngIf="tarjetas.mesExpiracion=='7'">Julio</div></ion-badge>
-                <ion-badge class="negro" item-end><div *ngIf="tarjetas.mesExpiracion=='8'">Agosto</div></ion-badge>
-                <ion-badge class="negro" item-end><div *ngIf="tarjetas.mesExpiracion=='9'">Septiembre</div></ion-badge>
-                <ion-badge class="negro" item-end><div *ngIf="tarjetas.mesExpiracion=='10'">Octubre</div></ion-badge>
-                <ion-badge class="negro" item-end><div *ngIf="tarjetas.mesExpiracion=='11'">Noviembre</div></ion-badge>
-                <ion-badge class="negro" item-end><div *ngIf="tarjetas.mesExpiracion=='12'">Diciembre</div></ion-badge>
-            </ion-item>
-            <ion-item class="card_atras">
-                <img class="icon" src="../assets/imgs/icons/tarjeta.png" item-start>
-                <a class="blanco_2">Año expiración</a>
-                <ion-badge class="negro" item-end>{{tarjetas.anioExpiracion}}</ion-badge>
-            </ion-item>
-            <ion-item class="card_atras">
-               <!--<div *ngIf="tarjetas.estatus=='INACTIVA'">-->
-                <div class="centradoB">
-                  <button ion-button color="naranja" (click)="eliminarTarjeta(tarjetas.idTarjeta)">
-                       Eliminar
-                  </button>
-                  <!--<button ion-button color="naranja" (click)="usarTarjetaActivar(tarjetas.idTarjeta)">
+
+  <label for="" style="margin-left:20px; margin-top:10px;color:#FD9530"> <b> STATUS: ACTIVA</b> <img
+      src="./assets/imgs/icons/Ellipse 47.png" alt=""></label>
+
+  <br>
+
+  <div class="" *ngFor="let tarjetas of misTarjetas">
+    <div *ngIf="tarjetas.estatus!='Eliminada'">
+
+      <br>
+      <p style="opacity:.5">Número</p>
+      <ion-label style="opacity:.5" class="" item-end>{{tarjetas.numTarjeta}}</ion-label>
+
+      <br>
+      <b style="position:absolute;margin-top:-35px">____________________________________</b>
+      <br>
+
+      <a style="color:black;opacity:.5;margin-top:-10px;position:absolute">Mes expiración</a>
+      <div class="" style="opacity:.5">
+
+        <ion-label *ngIf="tarjetas.mesExpiracion=='1'">Enero</ion-label>
+        <ion-label *ngIf="tarjetas.mesExpiracion=='2'">Febrero</ion-label>
+        <ion-label *ngIf="tarjetas.mesExpiracion=='3'">Marzo</ion-label>
+        <ion-label *ngIf="tarjetas.mesExpiracion=='4'">Abril</ion-label>
+        <ion-label *ngIf="tarjetas.mesExpiracion=='5'">Mayo</ion-label>
+        <ion-label *ngIf="tarjetas.mesExpiracion=='6'">Junio</ion-label>
+        <ion-label *ngIf="tarjetas.mesExpiracion=='7'">Julio</ion-label>
+        <ion-label *ngIf="tarjetas.mesExpiracion=='8'">Agosto</ion-label>
+        <ion-label *ngIf="tarjetas.mesExpiracion=='9'">Septiembre</ion-label>
+        <ion-label *ngIf="tarjetas.mesExpiracion=='10'">Octubre</ion-label>
+        <ion-label *ngIf="tarjetas.mesExpiracion=='11'">Noviembre</ion-label>
+        <ion-label *ngIf="tarjetas.mesExpiracion=='12'">Diciembre</ion-label>
+
+      </div>
+      <b style="position:absolute;margin-top:-15px">____________________________________</b>
+
+      <br>
+      <a style="color:black;opacity:.5">Año expiración</a>
+      <ion-label class="" style="opacity:.5" item-end>{{tarjetas.anioExpiracion}}</ion-label>
+      <b style="position:absolute;margin-top:-15px">____________________________________</b>
+
+      <div class="centradoB">
+        <button ion-button color="dark" style="border-radius:25px;margin-top:60px"
+          (click)="eliminarTarjeta(tarjetas.idTarjeta)">
+          Eliminar tarjeta
+        </button>
+        <button ion-button color="naranja" style="border-radius:25px;margin-top:60px"
+          (click)="usarTarjeta(tarjetas.idTarjeta)">
+          Usar tarjeta
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+
+
+  <!-- <div class="derechaBoton">
+    <button ion-button color="naranja" (click)="NousarTarjetas()">
+         Desactivar
+    </button>
+    <button *ngIf="!numTarjetas" (click)="agregarTarjeta()" text-align ion-button clear small color="light" icon-left
+      item-end>
+      <ion-icon name="add" class="colorIcon" style="zoom:1.1;"></ion-icon>
+      Agregar tarjeta
+    </button>
+  </div>
+  <ion-card class="card_atras" *ngFor="let tarjetas of misTarjetas">
+    <ion-card-content class="card_atras">
+      <ion-card-title>
+        <h4 class="blanco_1">Tarjeta registrada
+          !--<ion-badge class="negro" item-end><div *ngIf="tarjetas.estatus=='INACTIVA'">{{tarjetas.estatus}}</div></ion-badge>--
+        </h4>
+      </ion-card-title>
+      <ion-item class="card_atras">
+        <img class="icon" src="../assets/imgs/icons/tarjeta.png" item-start>
+        <p class="blanco_2">Estado</p>
+        <ion-badge color="naranja" item-end>
+          <div *ngIf="tarjetas.estatus=='ACTIVA'">{{tarjetas.estatus}}</div>
+        </ion-badge>
+      </ion-item>
+      <ion-item class="card_atras">
+        <img class="icon" src="../assets/imgs/icons/tarjeta.png" item-start>
+        <p class="blanco_2">Número</p>
+        <ion-badge class="negro" item-end>**** **** **** {{tarjetas.numTarjeta4dijitos}}</ion-badge>
+      </ion-item>
+      <ion-item class="card_atras">
+        <img class="icon" src="../assets/imgs/icons/tarjeta.png" item-start>
+        <a class="blanco_2">Mes expiración</a>
+        <ion-badge class="negro" item-end>
+          <div *ngIf="tarjetas.mesExpiracion=='1'">Enero</div>
+        </ion-badge>
+        <ion-badge class="negro" item-end>
+          <div *ngIf="tarjetas.mesExpiracion=='2'">Febrero</div>
+        </ion-badge>
+        <ion-badge class="negro" item-end>
+          <div *ngIf="tarjetas.mesExpiracion=='3'">Marzo</div>
+        </ion-badge>
+        <ion-badge class="negro" item-end>
+          <div *ngIf="tarjetas.mesExpiracion=='4'">Abril</div>
+        </ion-badge>
+        <ion-badge class="negro" item-end>
+          <div *ngIf="tarjetas.mesExpiracion=='5'">Mayo</div>
+        </ion-badge>
+        <ion-badge class="negro" item-end>
+          <div *ngIf="tarjetas.mesExpiracion=='6'">Junio</div>
+        </ion-badge>
+        <ion-badge class="negro" item-end>
+          <div *ngIf="tarjetas.mesExpiracion=='7'">Julio</div>
+        </ion-badge>
+        <ion-badge class="negro" item-end>
+          <div *ngIf="tarjetas.mesExpiracion=='8'">Agosto</div>
+        </ion-badge>
+        <ion-badge class="negro" item-end>
+          <div *ngIf="tarjetas.mesExpiracion=='9'">Septiembre</div>
+        </ion-badge>
+        <ion-badge class="negro" item-end>
+          <div *ngIf="tarjetas.mesExpiracion=='10'">Octubre</div>
+        </ion-badge>
+        <ion-badge class="negro" item-end>
+          <div *ngIf="tarjetas.mesExpiracion=='11'">Noviembre</div>
+        </ion-badge>
+        <ion-badge class="negro" item-end>
+          <div *ngIf="tarjetas.mesExpiracion=='12'">Diciembre</div>
+        </ion-badge>
+      </ion-item>
+      <ion-item class="card_atras">
+        <img class="icon" src="../assets/imgs/icons/tarjeta.png" item-start>
+        <a class="blanco_2">Año expiración</a>
+        <ion-badge class="negro" item-end>{{tarjetas.anioExpiracion}}</ion-badge>
+      </ion-item>
+      <ion-item class="card_atras">
+        <div *ngIf="tarjetas.estatus=='INACTIVA'">
+        <div class="centradoB">
+          <button ion-button color="naranja" (click)="eliminarTarjeta(tarjetas.idTarjeta)">
+            Eliminar
+          </button>
+          <button ion-button color="naranja" (click)="usarTarjetaActivar(tarjetas.idTarjeta)">
                        Activar
-                  </button>-->
-                </div>
-               <!--</div>-->
-            </ion-item>
-            <!--<ion-item class="card_atras">
-               <!--<div *ngIf="tarjetas.estatus=='INACTIVA'">-->
-                <!--<div class="centradoB">
+                  </button>
+        </div>
+        </div>
+      </ion-item>
+      !--<ion-item class="card_atras">
+               !--<div *ngIf="tarjetas.estatus=='INACTIVA'">--
+      !--<div class="centradoB">
 
                   <button ion-button color="naranja" (click)="NousarTarjeta(tarjetas.idTarjeta)">
                        Desactivar
                   </button>
-                </div>-->
-               <!--</div>-->
-          <!--  </ion-item>-->
+                </div>--
+      !--</div>--
+      !--  </ion-item>--
 
-        </ion-card-content>
-    </ion-card>
-    <!--<div *ngIf="seccion=='detalle'">
+    </ion-card-content>
+  </ion-card>
+  !--<div *ngIf="seccion=='detalle'">
     <div class="centradoB">
       <button ion-button color="naranja" (click)="volverDetalle()">
            Volver
       </button>
     </div>
-    </div>-->
-    <div class="_footer">
-       <div class=".centradoB">
-           Solo puedes tener una tarjeta registrada. Si deseas agregar una nueva elimina la existente.
-       </div>
-   </div>
+    </div>--
+  <div class="_footer">
+    <div class=".centradoB">
+      Solo puedes tener una tarjeta registrada. Si deseas agregar una nueva elimina la existente.
+    </div>
+  </div> -->
 </ion-content>

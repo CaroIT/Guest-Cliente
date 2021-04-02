@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { TarjetasPage } from "../../pages/tarjetas/tarjetas";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { UsuarioProvider } from "../../providers/usuario/usuario";
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @IonicPage()
 @Component({
@@ -19,10 +20,12 @@ export class AgregarTarjetaPage {
   anioExp: any;
   cvc: any;
   uid: any;
+  miUser: any = {};
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public fb: FormBuilder,
+              public afs: AngularFirestore,
               public usuarioProv: UsuarioProvider)
  {
     //validas que los inputs del formulario no esten vacios
@@ -34,6 +37,14 @@ export class AgregarTarjetaPage {
     });
     //sacar el id del usuario del localstorage
     this.uid = localStorage.getItem('uid');
+
+    this.afs
+      .collection("users").doc(this.uid)
+      .valueChanges()
+      .subscribe(dataSu => {
+        this.miUser = dataSu;
+        console.log('Datos de mi usuario', this.miUser);
+      });
   }
 
   ionViewDidLoad() {
