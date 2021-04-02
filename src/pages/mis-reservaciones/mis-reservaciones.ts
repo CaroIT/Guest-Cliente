@@ -33,29 +33,30 @@ export class MisReservacionesPage {
   telUser: any;
   resCompartidas: any;
   infoResevaciones: any;
+  miUser: any = {};
   //playerID: any;
   //userID: any;
 
 
 
   constructor(public navCtrl: NavController,
-              public navParams: NavParams,
-              public monRes: MonitoreoReservasProvider,
-              public reservaProvider: ReservacionProvider,
-              public afDB: AngularFireDatabase,
-              public afs: AngularFirestore
-              //public _providerPushNoti: PushNotiProvider,
-              //public _providerUser: UserProvider
-            ) {
-  //sacar el id del usuario del local storage
-  this.uid = localStorage.getItem('uid');
-  //consultar tabla areas
-  this.afs
-    .collection("areas")
-    .valueChanges()
-    .subscribe(data => {
-      this.nombresAreas = data;
-    });
+    public navParams: NavParams,
+    public monRes: MonitoreoReservasProvider,
+    public reservaProvider: ReservacionProvider,
+    public afDB: AngularFireDatabase,
+    public afs: AngularFirestore
+    //public _providerPushNoti: PushNotiProvider,
+    //public _providerUser: UserProvider
+  ) {
+    //sacar el id del usuario del local storage
+    this.uid = localStorage.getItem('uid');
+    //consultar tabla areas
+    this.afs
+      .collection("areas")
+      .valueChanges()
+      .subscribe(data => {
+        this.nombresAreas = data;
+      });
 
     //consultar tabla zonas
     this.afs
@@ -65,26 +66,35 @@ export class MisReservacionesPage {
         this.nombresZonas = data1;
       });
 
-      //consultar tabla sucursales
-      this.afs
-        .collection("sucursales")
-        .valueChanges()
-        .subscribe(data2 => {
-          this.nombresSucursales = data2;
-        });
-      //consultar tabla sucursales
-        this.afs
-          .collection("reservaciones")
-          .valueChanges()
-          .subscribe(data3 => {
-            this.infoResevaciones = data3;
-            console.log('realizo consulta');
-            console.log('tabla reservaciones',this.infoResevaciones);
-          });
-          //this.playerID=localStorage.getItem("playerID");
-          //console.log('playerID user sesion eventos',this.playerID);
-          //this.userID=localStorage.getItem("uid");
-          //console.log('userID user sesion eventos',this.userID);
+    //consultar tabla sucursales
+    this.afs
+      .collection("sucursales")
+      .valueChanges()
+      .subscribe(data2 => {
+        this.nombresSucursales = data2;
+      });
+    //consultar tabla sucursales
+    this.afs
+      .collection("reservaciones")
+      .valueChanges()
+      .subscribe(data3 => {
+        this.infoResevaciones = data3;
+        console.log('realizo consulta');
+        console.log('tabla reservaciones', this.infoResevaciones);
+      });
+    //this.playerID=localStorage.getItem("playerID");
+    //console.log('playerID user sesion eventos',this.playerID);
+    //this.userID=localStorage.getItem("uid");
+    //console.log('userID user sesion eventos',this.userID);
+
+    //obtener informacion de mi user
+    this.afs
+      .collection("users").doc(this.uid)
+      .valueChanges()
+      .subscribe(dataSu => {
+        this.miUser = dataSu;
+        console.log('Datos de mi usuario', this.miUser);
+      });
   }
 
   ionViewDidLoad() {
@@ -94,13 +104,13 @@ export class MisReservacionesPage {
     //this._providerPushNoti.init_push_noti();
     //this.guardarPlayerID();
   }
-//  guardarPlayerID(){
-//      console.log('playerID user sesion eventos llego',this.playerID);
-//      console.log('userID user sesion eventos llego',this.userID);
-//    this._providerUser.insertarIDplayer(this.userID,this.playerID).then((respuesta2: any) => {
-//    console.log("Respuesta player insertado: ", respuesta2);
-//    });
-//  }
+  //  guardarPlayerID(){
+  //      console.log('playerID user sesion eventos llego',this.playerID);
+  //      console.log('userID user sesion eventos llego',this.userID);
+  //    this._providerUser.insertarIDplayer(this.userID,this.playerID).then((respuesta2: any) => {
+  //    console.log("Respuesta player insertado: ", respuesta2);
+  //    });
+  //  }
   //obtener todas las reservaciones de un usuario
   getAllReservaciones() {
     this.reservaProvider.getReservacionesCliente(this.uid).subscribe(reservacion => {
@@ -112,31 +122,31 @@ export class MisReservacionesPage {
   getTelUsuario() {
     this.reservaProvider.getTelUser(this.uid).subscribe(tel => {
       this.telUser = tel;
-        this.telUser.forEach(data => {
-            console.log('tel del usuario en sesion',data.phoneNumber);
-            //obtener reservaciones compartidas en las que esta el usuario
-            this.reservaProvider.getReservacionCompartida(data.phoneNumber).subscribe(resCom => {
-            this.resCompartidas = resCom;
-              console.log("compartidas ",this.resCompartidas);
-            });
+      this.telUser.forEach(data => {
+        console.log('tel del usuario en sesion', data.phoneNumber);
+        //obtener reservaciones compartidas en las que esta el usuario
+        this.reservaProvider.getReservacionCompartida(data.phoneNumber).subscribe(resCom => {
+          this.resCompartidas = resCom;
+          console.log("compartidas ", this.resCompartidas);
         });
+      });
     });
   }
 
   getClientes() {
-    this.monRes.getAllClientes("users").then(c =>{
-          this.clientes = c;
-          console.log("Estos son los clientes: ",this.clientes);
-        });
+    this.monRes.getAllClientes("users").then(c => {
+      this.clientes = c;
+      console.log("Estos son los clientes: ", this.clientes);
+    });
   }
 
-  verDetalle(idReservacion){
+  verDetalle(idReservacion) {
     this.navCtrl.setRoot(ReservacionDetallePage, {
       idReservacion: idReservacion
     });
   }
 
-  verCarta(idReservacion,idSucursal,idevento){
+  verCarta(idReservacion, idSucursal, idevento) {
     this.navCtrl.setRoot(CartaEditarPage, {
       idReservacion: idReservacion,
       idSucursal: idSucursal,
@@ -144,7 +154,7 @@ export class MisReservacionesPage {
     });
   }
 
-  CancelarReservacion(idReservacion){
+  CancelarReservacion(idReservacion) {
     this.reservaProvider
       .updateReservacioCancelado(idReservacion)
       .then((respuesta: any) => {
@@ -158,8 +168,8 @@ export class MisReservacionesPage {
     });
   }
 
-  aceptarCompartir(idCompartir,idReservacion){
-    console.log('llego a a ceptar compartir',idReservacion);
+  aceptarCompartir(idCompartir, idReservacion) {
+    console.log('llego a a ceptar compartir', idReservacion);
     //Consulta para mandar el estatus aceptado
     this.reservaProvider
       .updateCompartirAceptar(idCompartir)
@@ -169,12 +179,12 @@ export class MisReservacionesPage {
           console.log("Success: ", respuesta.success);
         }
       });
-      this.navCtrl.setRoot(MisReservacionesPage, {
-        idReservacion: idReservacion
-      });
+    this.navCtrl.setRoot(MisReservacionesPage, {
+      idReservacion: idReservacion
+    });
   }
 
-  rechazarCompartir(idCompartir,idReservacion){
+  rechazarCompartir(idCompartir, idReservacion) {
     this.reservaProvider
       .updateCompartirRechazar(idCompartir)
       .then((respuesta: any) => {
@@ -184,7 +194,7 @@ export class MisReservacionesPage {
         }
       });
     this.navCtrl.setRoot(MisReservacionesPage, {
-    idReservacion: idReservacion
+      idReservacion: idReservacion
     });
   }
 

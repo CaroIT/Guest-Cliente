@@ -1,9 +1,52 @@
 page-mis-reservaciones {
+
+  //Nuevo
+  .toolbar-background {
+    background-image: url('../assets/content/head.png')!important;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+
+  //Nuevo
+  .botonMod {
+      background: white;
+      height: 36px;
+      border-radius: 60%;
+      margin-top: 10px;
+      width: 26px;
+  }
+
+  //Nuevo
+  .colorIcon31 {
+      zoom: 1;
+      color: #000;
+      font-size: inherit;
+  }
+
+  .borde {
+      margin-top: 0em;
+  }
+
+  .lugar {
+    color: #FD9530;
+    font-size: medium;
+    text-transform: uppercase;
+  }
+
+  .detalle {
+    color: #cecece;
+    margin-top: -8px;
+    text-transform: uppercase;
+  }
+
+
+
   ion-content{
-  background-image: url('../assets/imgs/fondo_r3.png');
+  // background-image: url('../assets/imgs/fondo_r3.png');
   background-repeat: no-repeat;
   background-size: cover;
-    //background-position: center;
+  background-position: center;
   width: 100%;
   position: relative;
   border: none;
@@ -12,9 +55,9 @@ page-mis-reservaciones {
   height: 25px;
   width: 25px;
 }
-  ion-icon{
-    color: #e49602;
-  }
+  // ion-icon{
+  //   color: #e49602;
+  // }
   .icon_img{
     width: 30px;
     height: 30px;
@@ -23,31 +66,34 @@ page-mis-reservaciones {
   }
 
   .card_atras{
-    background: -moz-linear-gradient(top, rgb(228, 150, 2) 0%, rgba(68,71,75,0.05) 2%, rgba(0,0,0,1) 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(top, rgb(228, 150, 2) 0%,rgba(68,71,75,0.05) 2%,rgba(0,0,0,1) 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom, rgb(228, 150, 2) 0%,rgba(68,71,75,0.05) 2%,rgba(68,71,75,0.01) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+    // background: -moz-linear-gradient(top, rgb(255, 167, 3) 0%, rgba(68,71,75,0.05) 2%, rgba(0,0,0,1) 100%); /* FF3.6-15 */
+    // background: -webkit-linear-gradient(top, rgb(255, 167, 3) 0%,rgba(68,71,75,0.05) 2%,rgba(0,0,0,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    // background: linear-gradient(to bottom, rgb(228, 150, 2) 0%,rgba(68,71,75,0.05) 2%,rgba(68,71,75,0.01) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    // filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
   }
 
   .blanco_1{
-    font-size: 18px;
+    font-size: 17px;
      resize: none;
-     color: #fff;
+     color: #706F6F;
+     text-transform: uppercase;
+     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   }
   .blanco_2{
-    font-size: 15px;
+    font-size: 17px;
      resize: none;
-     color: #fff;
+     color: #706F6F;
+     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   }
   .texto_compartir{
     font-size: 14px;
      resize: none;
-     color: #fff;
+     color: #706F6F;
   }
   .card_title{
     font-size: 15px;
      resize: none;
-     color: #fff;
+     color: #000;
      font: bold;
      font-weight: 900;
 
@@ -57,8 +103,9 @@ page-mis-reservaciones {
      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
   }
   .negro{
-    background: #2f3542;
-    color: #fff;
+    background: #fff;
+    color: #cecece;
+    font-size: 16px;
   }
   a{
     color: #eccc68;
@@ -95,5 +142,18 @@ page-mis-reservaciones {
     background-color: black;
     margin-left: 150%;
     margin-top: 36%;
+  }
+
+  .colornaranja {
+    background-color: #FD9530;
+    font-size: 13px;
+    text-transform: uppercase;
+  }
+
+  .botonnaranja {
+    background-color: #FD9530;
+    height: 35px;
+    border-radius: 15px;
+    text-transform: uppercase;
   }
 }
