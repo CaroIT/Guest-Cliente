@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { ReservacionProvider } from '../../providers/reservacion/reservacion';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireDatabase } from '@angular/fire/database';
@@ -27,13 +27,16 @@ export class HistorialDetallePage {
   totalPropinaCupon: any;
   total: any;
   totalPropina: any;
+  miUser: any = {};
+  uid: any;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public _providerProductos: ReservacionProvider,
     public afDB: AngularFireDatabase,
-    public afs: AngularFirestore
+    public afs: AngularFirestore,
+    public viewCtrl: ViewController
   ) {
     console.log(navParams);
     this.historia = this.navParams.get("historia");
@@ -42,6 +45,7 @@ export class HistorialDetallePage {
     this.getProductos(idR); //llamar funcion de productos
     this.sumatoria = 0;
     this.getReservacionInfo(idR);
+    
     //consultar tabla zonas
     this.afs
       .collection("zonas")
@@ -49,39 +53,50 @@ export class HistorialDetallePage {
       .subscribe(data1 => {
         this.nombresZonas = data1;
       });
-      //consultar tabla cupones
-      this.afs
-        .collection("cupones")
-        .valueChanges()
-        .subscribe(data2 => {
-          this.infoCupones = data2;
-        });
-        //consultar tabla compartidas
-        this.afs
-          .collection("compartidas")
-          .valueChanges()
-          .subscribe(data3 => {
-            this.cuentasCompartidas = data3;
-              console.log("compartidas", this.cuentasCompartidas);
-          });
-          //consultar tabla users
-          this.afs
-            .collection("users")
-            .valueChanges()
-            .subscribe(data4 => {
-              this.infoUsers = data4;
-              console.log("usuarios", this.infoUsers);
-            });
-        //ver si la reservacioon existe en las compartidas
-        this._providerProductos.getReserCom(idR).subscribe(res11 => {
-          this.infoReserCom = res11;
-          this.infoReserCom_num = this.infoReserCom.length;
-          console.log("Este es el resultado de compartidas: ",  this.infoReserCom_num);
-        });
+    //consultar tabla cupones
+    this.afs
+      .collection("cupones")
+      .valueChanges()
+      .subscribe(data2 => {
+        this.infoCupones = data2;
+      });
+    //consultar tabla compartidas
+    this.afs
+      .collection("compartidas")
+      .valueChanges()
+      .subscribe(data3 => {
+        this.cuentasCompartidas = data3;
+        console.log("compartidas", this.cuentasCompartidas);
+      });
+    //consultar tabla users
+    this.afs
+      .collection("users")
+      .valueChanges()
+      .subscribe(data4 => {
+        this.infoUsers = data4;
+        console.log("usuarios", this.infoUsers);
+      });
+    //ver si la reservacioon existe en las compartidas
+    this._providerProductos.getReserCom(idR).subscribe(res11 => {
+      this.infoReserCom = res11;
+      this.infoReserCom_num = this.infoReserCom.length;
+      console.log("Este es el resultado de compartidas: ", this.infoReserCom_num);
+    });
+
+    this.uid = localStorage.getItem("uid");
+    console.log("quiero ver este", this.uid);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HistorialDetallePage');
+
+    this.afs
+      .collection("users").doc(this.uid)
+      .valueChanges()
+      .subscribe(dataSu => {
+        this.miUser = dataSu;
+        console.log('Datos de mi usuario', this.miUser);
+      });
   }
 
   getProductos(idx) {
@@ -96,30 +111,36 @@ export class HistorialDetallePage {
       this.productos = res;
       this._providerProductos.getInfo(idx).subscribe(res2 => {
         this.infoReservacion = res2;
-            this.propinaRe2=this.sumatoria*res2[0].propina;
-            const propinaCalculo2=this.sumatoria*res2[0].propina;
-            this.totalPropina=this.sumatoria+propinaCalculo2;
+        this.propinaRe2 = this.sumatoria * res2[0].propina;
+        const propinaCalculo2 = this.sumatoria * res2[0].propina;
+        this.totalPropina = this.sumatoria + propinaCalculo2;
       });
     });
   }
   getReservacionInfo(idx) {
     this._providerProductos.getInfo(idx).subscribe(res2 => {
       this.infoReservacion = res2;
-      console.log("Este es el resultado de reservacion: ",this.infoReservacion);
-      if(res2[0].uidCupon==undefined){
-         this.validarCupon='Noexiste';
-         console.log('validar cupon', this.validarCupon);
-       }else{
-          this.validarCupon='Existe';
-           console.log('validar cupon', this.validarCupon);
-          this.propinaRe=res2[0].totalReservacion*res2[0].propina;
-          const propinaCalculo=res2[0].totalReservacion*res2[0].propina;
-          this.totalPropinaCupon=res2[0].totalReservacion+propinaCalculo;
-          console.log('descuenton',res2[0].totalReservacion);
-          console.log('propina',res2[0].propina);
-          console.log('propina y cupon',this.totalPropinaCupon);
-        }
+      console.log("Este es el resultado de reservacion: ", this.infoReservacion);
+      if (res2[0].uidCupon == undefined) {
+        this.validarCupon = 'Noexiste';
+        console.log('validar cupon', this.validarCupon);
+      } else {
+        this.validarCupon = 'Existe';
+        console.log('validar cupon', this.validarCupon);
+        this.propinaRe = res2[0].totalReservacion * res2[0].propina;
+        const propinaCalculo = res2[0].totalReservacion * res2[0].propina;
+        this.totalPropinaCupon = res2[0].totalReservacion + propinaCalculo;
+        console.log('descuenton', res2[0].totalReservacion);
+        console.log('propina', res2[0].propina);
+        console.log('propina y cupon', this.totalPropinaCupon);
+      }
     });
+  }
+
+  closeModal() {
+    let result ="se cerrro";
+    this.viewCtrl.dismiss({result:result});
+    // this.modalCtrl.dismiss();
   }
 
 

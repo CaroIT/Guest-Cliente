@@ -5,6 +5,7 @@ import { ModalController } from 'ionic-angular';
 import { ReservacionProvider } from "../../providers/reservacion/reservacion";
 import { AngularFireAuth } from 'angularfire2/auth';
 import { HistorialDetallePage } from '../historial-detalle/historial-detalle';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 
 @IonicPage()
@@ -18,6 +19,7 @@ export class HistorialPage {
   historial = [];
   cont: any = 0;
   suma: any;
+  miUser: any = {};
 
   constructor(
     public navCtrl: NavController,
@@ -25,7 +27,8 @@ export class HistorialPage {
     public alertCtrl: AlertController,
     public modalCtrl: ModalController,
     private afAuth: AngularFireAuth,
-    public _providerReserva: ReservacionProvider
+    public _providerReserva: ReservacionProvider,
+    public afs: AngularFirestore
   ) {
 
     this.uid = localStorage.getItem("uid");
@@ -37,6 +40,14 @@ export class HistorialPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HistorialPage');
+
+    this.afs
+      .collection("users").doc(this.uid)
+      .valueChanges()
+      .subscribe(dataSu => {
+        this.miUser = dataSu;
+        console.log('Datos de mi usuario', this.miUser);
+      });
   }
 
   presentModal(historia: any) {
