@@ -40,7 +40,7 @@
     </ion-card>
 
     <ion-card *ngFor="let historia of historial; let i = index">
-        <ion-card-content class="card_atras">
+        <ion-card-content>
             <FONT SIZE="2" for="" style="opacity:.6">RESERVACIÓN {{i + 1}}</FONT>
             <br>
             <span style="position:absolute;margin-top:-16px">_____________________</span>
@@ -50,39 +50,44 @@
             </ion-card-title> -->
 
             <div class="row">
-                <div class="col-8">
-                    <p style="margin-left:30px;opacity:.6">HART</p>
+                <div class="" *ngFor="let sucurs of sucursal of sucursal">
+                    <div class="" *ngIf="historia.idSucursal == sucurs.$key">
+                        <div class="col-8">
+                            <p style="margin-left:30px;opacity:.6">{{sucurs.displayName}}</p>
+                            <img src="{{sucurs.photoURL}}?type=large&width=720&height=720"
+                                style="width:95px;height:120px">
 
-                    <img class="" src="../assets/imgs/patrick-tomasso-GXXYkSwndP4-unsplash1.png" style="width:95px"
-                        item-start>
+                            <!-- <img class="" src="../assets/imgs/patrick-tomasso-GXXYkSwndP4-unsplash1.png" style="width:95px" item-start> -->
+
+                        </div>
+                    </div>
 
                 </div>
+
+
                 <div class="col-4">
-                    <div class="col-4">
+                    <ion-item>
+                        <!-- <img class="icon" src="../assets/imgs/icons/calendario.png" item-start> -->
+                        <p class="">Fecha de reservación</p>
+                        <p class="" item-end>{{ historia.fechaR }} </p>
+                    </ion-item>
+                    <ion-item>
+                        <!-- <img class="icon" src="../assets/imgs/icons/time.png" item-start> -->
+                        <p class="">Estatus</p>
+                        <p item-end> {{ historia.estatus }} </p>
+                    </ion-item>
+                    <ion-item>
+                        <!-- <img class="icon" src="../assets/imgs/icons/admin- user.png" item-start> -->
+                        <p class="">No. Personas</p>
+                        <p class="" item-end> {{ historia.numPersonas }} </p>
+                    </ion-item>
 
-                        <ion-item>
-                            <!-- <img class="icon" src="../assets/imgs/icons/calendario.png" item-start> -->
-                            <p class="">Fecha de reservación</p>
-                            <p class="" item-end>{{ historia.fechaR }} </p>
-                        </ion-item>
-                        <ion-item>
-                            <!-- <img class="icon" src="../assets/imgs/icons/time.png" item-start> -->
-                            <p class="">Estatus</p>
-                            <p item-end> {{ historia.estatus }} </p>
-                        </ion-item>
-                        <ion-item>
-                            <!-- <img class="icon" src="../assets/imgs/icons/admin- user.png" item-start> -->
-                            <p class="">No. Personas</p>
-                            <p class="" item-end> {{ historia.numPersonas }} </p>
-                        </ion-item>
-
-                        <ion-item (click)="presentModal( historia)">
-                            <ion-badge item-end></ion-badge>
-                            <!-- <img class="icon" src="../assets/imgs/icons/mas.png" item-start> -->
-                            <ion-badge class="negro">Más detalles</ion-badge>
-                            <ion-badge item-end></ion-badge>
-                        </ion-item>
-                    </div>
+                    <ion-item (click)="presentModal( historia)">
+                        <ion-badge item-end></ion-badge>
+                        <!-- <img class="icon" src="../assets/imgs/icons/mas.png" item-start> -->
+                        <ion-badge class="negro">Más detalles</ion-badge>
+                        <ion-badge item-end></ion-badge>
+                    </ion-item>
                 </div>
             </div>
             <!-- <ion-item class="card_atras">

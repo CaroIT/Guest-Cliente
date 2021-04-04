@@ -1,21 +1,65 @@
 page-login {
 
-  ion-content{
+  ion-slides{
+    ion-slide {
+      height: 200px;
+      width: 100% !important;
+
+      img{
+        height: 200px;
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+
+
+  .sla {
+      height: 100%;
+       background-repeat: no-repeat;
+       background-size: cover;
+       top: 0;
+       right: 0;
+       bottom: 0;
+       left: 0;
+       width: auto;
+       z-index: 1;
+       position: absolute;
+  }
+
+  .sla2 {
+    background-image: url('../assets/imgs/Bco.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+    width: 100%;
+  }
+
+  .sla1 {
+    background-image: url('../assets/imgs/logoGuest.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+    width: 100%;
+  }
+
+  .sla3{
     background-image: url('../assets/imgs/Guest 159 1.png');
     background-repeat: no-repeat;
     background-size: cover;
-      //background-position: center;
+    background-position: center;
+    height: 100%;
     width: 100%;
-    position: relative;
-    border: none;
   }
 
   .blanco{
-    color: #000;
-    font: lighter;
-    letter-spacing: 0.25em;
+    color: #000000;
+    font:lighter;
     font-weight: 100;
-    border-radius:20px;
+    letter-spacing: 0.25em;
+    border-radius: 20px;
   }
 
   .margen{
@@ -33,16 +77,62 @@ page-login {
     height: 25px;
     width: 25px;
     background-color: transparent;
+
   }
 
   .esquina{
     text-align: right;
     margin-left: 40%;
     background-color: transparent;
+
   }
   
   .button{
     background-color: transparent;
   }
+
+  // ion-content{
+  //   background-image: url('../assets/imgs/Guest 159 1.png');
+  //   background-repeat: no-repeat;
+  //   background-size: cover;
+  //   width: 100%;
+  //   position: relative;
+  //   border: none;
+  // }
+
+  // .blanco{
+  //   color: #000;
+  //   font: lighter;
+  //   letter-spacing: 0.25em;
+  //   font-weight: 100;
+  //   border-radius:20px;
+  // }
+
+  // .margen{
+  //     margin-top: 30px;
+  // }
+
+  // .text{
+  //   color: #ffffff;
+  //   font: bold;
+  //   font-weight: 900;
+  //   text-align: center;
+  // }
+
+  // .ima{
+  //   height: 25px;
+  //   width: 25px;
+  //   background-color: transparent;
+  // }
+
+  // .esquina{
+  //   text-align: right;
+  //   margin-left: 40%;
+  //   background-color: transparent;
+  // }
+  
+  // .button{
+  //   background-color: transparent;
+  // }
 
 }

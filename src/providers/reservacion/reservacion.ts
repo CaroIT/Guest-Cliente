@@ -74,6 +74,9 @@ export class ReservacionProvider {
   historial: AngularFirestoreCollection<any[]>;
   _historial: Observable<any>;
 
+  sucursal: AngularFirestoreCollection<any[]>;
+  _sucursal: Observable<any>;
+
   constructor(public af: AngularFirestore) {
     console.log("Hello ReservacionProvider Provider");
   }
@@ -942,6 +945,22 @@ export class ReservacionProvider {
     );
     this._areas = this.areas.valueChanges();
     return (this._areas = this.areas.snapshotChanges().pipe(
+      map(changes => {
+        return changes.map(action => {
+          const data = action.payload.doc.data() as any;
+          data.$key = action.payload.doc.id;
+          return data;
+        });
+      })
+    ));
+  }
+
+  public getSucursal() {
+    // return this.afiredatabase.object("sucursales/" + uid);
+    // console.log("idSucursal", idx);
+    this.sucursal = this.af.collection<any>("sucursales");
+    this._sucursal = this.sucursal.valueChanges();
+    return (this._sucursal = this.sucursal.snapshotChanges().pipe(
       map(changes => {
         return changes.map(action => {
           const data = action.payload.doc.data() as any;

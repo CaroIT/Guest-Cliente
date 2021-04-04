@@ -20,6 +20,7 @@ export class HistorialPage {
   cont: any = 0;
   suma: any;
   miUser: any = {};
+  sucursal=[];
 
   constructor(
     public navCtrl: NavController,
@@ -34,6 +35,7 @@ export class HistorialPage {
     this.uid = localStorage.getItem("uid");
     console.log("quiero ver este", this.uid);
     this.getHistorial(this.uid);
+    this.getSucursal();
     this.contador();
 
   }
@@ -68,5 +70,12 @@ export class HistorialPage {
     console.log("contador", this.cont);
     this.cont = this.cont;
   }
+
+  getSucursal() {
+    this._providerReserva.getSucursal().subscribe(res => {
+    console.log("Este es el resultado de sucursal: ", res);
+    this.sucursal = res;
+  });
+}
 
 }
