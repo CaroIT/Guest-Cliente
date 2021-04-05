@@ -31,13 +31,13 @@
 
   <br> <br>
   <div align="right">
-    <button (click)="agregarTarjeta()" text-align ion-button clear small color="light" icon-left item-end>
+    <!-- <button (click)="agregarTarjeta()" text-align ion-button clear small color="light" icon-left item-end> -->
       <!-- <ion-icon name="add" class="colorIcon" style="zoom:1.1;"></ion-icon> -->
-      <img src="./assets/imgs/icons/Group 89.png" alt="">
+      <img (click)="agregarTarjeta()"  src="./assets/imgs/icons/mass.png" style="margin-left:-40px;position:absolute;width:20px"    alt="">
       <!-- Agregar más -->
-    </button>
+    <!-- </button> -->
     <br>
-    <font style="opacity:.4;margin-top:-10px;position:absolute;margin-left:-60px" size="1">Agregar más</font>
+    <font style="opacity:.4;margin-top:0px;position:absolute;margin-left:-60px" size="1">Agregar más</font>
   </div>
 
   <label for="" style="margin-left:20px; margin-top:10px;color:#FD9530"> <b> STATUS: ACTIVA</b> <img

@@ -1,34 +1,33 @@
 <ion-header>
-    <ion-navbar class="borde">
-        <ion-row>
-            <ion-col>
-                <button ion-button menuToggle class="botonMod">
-                    <ion-icon item-start name="menu" class="colorIcon31" style="zoom:1.5;height: 18px;"></ion-icon>
-                </button>
-            </ion-col>
-            <ion-col>
-                <img src="./assets/imgs/Logoblanco.png" style="width: 60%;" alt="">
-            </ion-col>
-            <ion-col>
-                <div align='end'>
-                    <img src="{{miUser.photoURL}}?type=large&width=720&height=720" style="width:40%;border-radius:50%;">
-                </div>
-            </ion-col>
-        </ion-row>
-    </ion-navbar>
+  <ion-navbar class="borde">
+    <ion-row>
+      <ion-col>
+        <button ion-button menuToggle class="botonMod">
+          <ion-icon item-start name="menu" class="colorIcon3" style="zoom:1.5;height: 18px;"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col>
+        <img src="./assets/imgs/Logoblanco.png" style="width: 60%;" alt="">
+      </ion-col>
+      <ion-col>
+        <div align='end'>
+          <img src="{{miUser.photoURL}}?type=large&width=720&height=720" style="width:40%;border-radius:50%;">
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-navbar>
 </ion-header>
+
 <ion-content padding>
-
+  <br>
+  <br>
+  <label for="" style="margin-left:20px; margin-top:10px;color:#FD9530">HISTORIAL</label>
+  <br>
+  <span style="margin-left:20px;position:absolute;margin-top:-10px">____________</span>
     <br>
-    <br>
-    <label for="" style="margin-left:20px; margin-top:10px;color:#FD9530">HISTORIAL</label>
-    <br>
-    <span style="margin-left:20px;position:absolute;margin-top:-10px">____________</span>
-    <br>
-    <br>
-
+  <br>
     <!--prueba de consula-->
-    <ion-card>
+    <ion-card >
 
         <div style="color: papayawhip;">
 
@@ -39,79 +38,56 @@
 
     </ion-card>
 
-    <ion-card *ngFor="let historia of historial; let i = index">
+    <ion-card  *ngFor="let historia of historial; let i = index">
         <ion-card-content>
-            <FONT SIZE="2" for="" style="opacity:.6">RESERVACIÓN {{i + 1}}</FONT>
-            <br>
-            <span style="position:absolute;margin-top:-16px">_____________________</span>
-            <br>
-            <!-- <ion-card-title>
-                <h4 class="blanco_1" ng-init='contador()'> Reservacion {{ i + 1}} </h4>
-            </ion-card-title> -->
+          <FONT  SIZE="2" for="" style="opacity:.6">RESERVACIÓN {{i}}</FONT>
+          <br>
+          <span style="position:absolute;margin-top:-16px">_____________________</span>
+<br>
+<div class="row">
 
-            <div class="row">
-                <div class="" *ngFor="let sucurs of sucursal of sucursal">
-                    <div class="" *ngIf="historia.idSucursal == sucurs.$key">
-                        <div class="col-8">
-                            <p style="margin-left:30px;opacity:.6">{{sucurs.displayName}}</p>
-                            <img src="{{sucurs.photoURL}}?type=large&width=720&height=720"
-                                style="width:95px;height:120px">
+  <div class="col-8">
 
-                            <!-- <img class="" src="../assets/imgs/patrick-tomasso-GXXYkSwndP4-unsplash1.png" style="width:95px" item-start> -->
+    <div class="" *ngFor="let sucurs of sucursal of sucursal">
+    <div class="" *ngIf="historia.idSucursal == sucurs.$key">
+    <p style="margin-left:30px;opacity:.6">{{sucurs.displayName}}</p>
+    <img src="{{sucurs.photoURL}}?type=large&width=720&height=720" style="width:95px;height:120px">
 
-                        </div>
-                    </div>
+    <!-- <img class="" src="../assets/imgs/patrick-tomasso-GXXYkSwndP4-unsplash1.png" style="width:95px" item-start> -->
 
-                </div>
+  </div>
+</div>
+
+</div>
 
 
-                <div class="col-4">
-                    <ion-item>
-                        <!-- <img class="icon" src="../assets/imgs/icons/calendario.png" item-start> -->
-                        <p class="">Fecha de reservación</p>
-                        <p class="" item-end>{{ historia.fechaR }} </p>
-                    </ion-item>
-                    <ion-item>
-                        <!-- <img class="icon" src="../assets/imgs/icons/time.png" item-start> -->
-                        <p class="">Estatus</p>
-                        <p item-end> {{ historia.estatus }} </p>
-                    </ion-item>
-                    <ion-item>
-                        <!-- <img class="icon" src="../assets/imgs/icons/admin- user.png" item-start> -->
-                        <p class="">No. Personas</p>
-                        <p class="" item-end> {{ historia.numPersonas }} </p>
-                    </ion-item>
+  <div class="col-4">
 
-                    <ion-item (click)="presentModal( historia)">
-                        <ion-badge item-end></ion-badge>
-                        <!-- <img class="icon" src="../assets/imgs/icons/mas.png" item-start> -->
-                        <ion-badge class="negro">Más detalles</ion-badge>
-                        <ion-badge item-end></ion-badge>
-                    </ion-item>
-                </div>
-            </div>
-            <!-- <ion-item class="card_atras">
-                <img class="icon" src="../assets/imgs/icons/calendario.png" item-start>
-                <p class="blanco_2">Fecha de reservación</p>
-                <ion-badge class="negro" item-end>{{ historia.fechaR }} </ion-badge>
-            </ion-item>
-            <ion-item class="card_atras">
-                <img class="icon" src="../assets/imgs/icons/time.png" item-start>
-                <a class="blanco_2">Estatus</a>
-                <ion-badge class="negro" item-end> Completada </ion-badge>
-            </ion-item>
-            <ion-item class="card_atras">
-                <img class="icon" src="../assets/imgs/icons/admin- user.png" item-start>
-                <a class="blanco_2">No. Personas</a>
-                <ion-badge class="negro" item-end> {{ historia.numPersonas }} </ion-badge>
-            </ion-item>
+    <ion-item >
+        <!-- <img class="icon" src="../assets/imgs/icons/calendario.png" item-start> -->
+        <p class="">Fecha de reservación</p>
+        <p class="" item-end>{{ historia.fechaR }} </p>
+    </ion-item>
+    <ion-item >
+        <!-- <img class="icon" src="../assets/imgs/icons/time.png" item-start> -->
+        <p class="">Estatus</p>
+        <p item-end> {{ historia.estatus }} </p>
+    </ion-item>
+    <ion-item >
+        <!-- <img class="icon" src="../assets/imgs/icons/admin- user.png" item-start> -->
+        <p class="">No. Personas</p>
+        <p class="" item-end> {{ historia.numPersonas }} </p>
+    </ion-item>
 
-            <ion-item class="card_atras" (click)="presentModal( historia )">
-                <ion-badge item-end></ion-badge>
-                <img class="icon" src="../assets/imgs/icons/mas.png" item-start>
-                <a class="blanco_2">Más detalles</a>
-                <ion-badge item-end></ion-badge>
-            </ion-item> -->
+    <ion-item  (click)="presentModal( historia)">
+        <ion-badge item-end></ion-badge>
+        <!-- <img class="icon" src="../assets/imgs/icons/mas.png" item-start> -->
+        <ion-badge  class="negro">Más detalles</ion-badge>
+        <ion-badge item-end></ion-badge>
+    </ion-item>
+  </div>
+</div>
+
         </ion-card-content>
     </ion-card>
 

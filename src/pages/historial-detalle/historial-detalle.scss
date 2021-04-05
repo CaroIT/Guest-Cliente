@@ -1,135 +1,108 @@
+
 page-historial-detalle {
 
-  //Nuevo
-  .toolbar-background {
-    background-image: url('../assets/content/head.png')!important;
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-  }
-
-  .borde {
-      margin-top: 0em;
-  }
-
-  .lugar {
-      color: #000;
-  }
-
-  //Nuevo
-  .toolbar-background {
-      background-image: url('../assets/content/head.png')!important;
-      background-size: cover;
-      background-position: center center;
-      background-repeat: no-repeat;
-  }
-
-  .borde {
-      margin-top: 0em;
-  }
-
-
   .main-view {
-    background: none;
+      background: none;
 
-}
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 140%;
-    z-index: 1;
-    opacity: .5;
-    background-color: #333;
-}
-.modal_content {
-    display: table;
-    position: relative;
-    top: calc(50% - (50%/2));
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: 55%;
-    padding: 10px;
-    z-index: 1;
-    margin: 0 auto;
-    padding: 10px;
-    // color: #333;
-    // background: #e8e8e8;
-    // background: -moz-linear-gradient(top, #fff 0%, #e8e8e8 100%);
-    // background: -webkit-linear-gradient(top, #fff 0%, #e8e8e8 100%);
-    // background: linear-gradient(to bottom, #fff 0%, #e8e8e8 100%);
-    border-radius: 5px;
-    box-shadow: 0 2px 3px rgba(51, 51, 51, .35);
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    //overflow: hidden;
-}
-.imgRedonda {
-    position: absolute;
-    height: 100px;
-    width: 100px;
-    border-radius: 50%;
-    border: 3px solid #E36485;
-    left: 50%;
-    margin-left: -55px;
-    top: -40px;
-    background: #E36485;
-    z-index: 10000;
-}
-.caja {
-    border-radius: 6px;
-    overflow: hidden;
-    height: 3.6rem;
-    font-size: 2.4rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    color: #fff;
-    background-color: #488aff;
-    -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
-    -webkit-transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1), color 300ms cubic-bezier(0.4, 0, 0.2, 1), -webkit-box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
-    transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1), color 300ms cubic-bezier(0.4, 0, 0.2, 1), -webkit-box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
-    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1), background-color 300ms cubic-bezier(0.4, 0, 0.2, 1), color 300ms cubic-bezier(0.4, 0, 0.2, 1);
-    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1), background-color 300ms cubic-bezier(0.4, 0, 0.2, 1), color 300ms cubic-bezier(0.4, 0, 0.2, 1), -webkit-box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
-    margin: 0.4rem 0.2rem;
-    padding: 4px 1.1em;
-}
-.separador {
-    margin-top: -2rem;
-}
-.tex1 {
-    width: 100%;
-    height: 3.5rem;
-}
-.tex2 {
-    width: 100%;
-    height: 8rem;
-}
+  }
+  .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 140%;
+      z-index: 1;
+      opacity: .5;
+      background-color: #333;
+  }
+  .modal_content {
+      display: table;
+      position: relative;
+      top: calc(50% - (50%/2));
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 55%;
+      padding: 10px;
+      z-index: 1;
+      margin: 0 auto;
+      padding: 10px;
+      // color: #333;
+      // background: #e8e8e8;
+      // background: -moz-linear-gradient(top, #fff 0%, #e8e8e8 100%);
+      // background: -webkit-linear-gradient(top, #fff 0%, #e8e8e8 100%);
+      // background: linear-gradient(to bottom, #fff 0%, #e8e8e8 100%);
+      border-radius: 5px;
+      box-shadow: 0 2px 3px rgba(51, 51, 51, .35);
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      //overflow: hidden;
+  }
+  .imgRedonda {
+      position: absolute;
+      height: 100px;
+      width: 100px;
+      border-radius: 50%;
+      border: 3px solid #E36485;
+      left: 50%;
+      margin-left: -55px;
+      top: -40px;
+      background: #E36485;
+      z-index: 10000;
+  }
+  .caja {
+      border-radius: 6px;
+      overflow: hidden;
+      height: 3.6rem;
+      font-size: 2.4rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      color: #fff;
+      background-color: #488aff;
+      -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+      -webkit-transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1), color 300ms cubic-bezier(0.4, 0, 0.2, 1), -webkit-box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
+      transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1), color 300ms cubic-bezier(0.4, 0, 0.2, 1), -webkit-box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
+      transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1), background-color 300ms cubic-bezier(0.4, 0, 0.2, 1), color 300ms cubic-bezier(0.4, 0, 0.2, 1);
+      transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1), background-color 300ms cubic-bezier(0.4, 0, 0.2, 1), color 300ms cubic-bezier(0.4, 0, 0.2, 1), -webkit-box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
+      margin: 0.4rem 0.2rem;
+      padding: 4px 1.1em;
+  }
+  .separador {
+      margin-top: -2rem;
+  }
+  .tex1 {
+      width: 100%;
+      height: 3.5rem;
+  }
+  .tex2 {
+      width: 100%;
+      height: 8rem;
+  }
 .icon{
-      height: 25px;
-      width: 25px;
-    }
-      ion-icon{
-        color: #e49602;
+        height: 25px;
+        width: 25px;
       }
-      .icon_img{
-        width: 30px;
-        height: 30px;
-        margin-left: 50%;
-      }
+        ion-icon{
+          color: #e49602;
+        }
+        .icon_img{
+          width: 30px;
+          height: 30px;
+          margin-left: 50%;
+        }
 
 
-      .blanco_1{
-        font-size: 25px;
-         resize: none;
-         color: #fff;
-      }
-      .blanco_2{
-        font-size: 15px;
-         resize: none;
-         color: #fff;
-      }
+        .blanco_1{
+          font-size: 25px;
+           resize: none;
+           color: #fff;
+        }
+        .blanco_2{
+          font-size: 15px;
+           resize: none;
+           color: #fff;
+        }
+
 }

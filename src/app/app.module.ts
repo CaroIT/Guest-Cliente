@@ -29,7 +29,7 @@ import { AgregarTarjetaPage } from '../pages/agregar-tarjeta/agregar-tarjeta';
 import { GenerarqrPage } from '../pages/generarqr/generarqr';
 import { Generarqr_2Page } from "../pages/generarqr-2/generarqr-2";
 import { CuponesPage } from "../pages/cupones/cupones";
-import { HistorialDetallePage } from "../pages/historial-detalle/historial-detalle";
+// import { HistorialDetallePage } from "../pages/historial-detalle/historial-detalle";
 import { PropinaPage } from "../pages/propina/propina";
 import { QrGeneradoPage } from "../pages/qr-generado/qr-generado";
 
@@ -127,7 +127,7 @@ export const firebaseConfig = {
     GenerarqrPage,
     Generarqr_2Page,
     CuponesPage,
-    HistorialDetallePage,
+    // HistorialDetallePage,
     PropinaPage,
     QrGeneradoPage,
     TipoLugarPage,
@@ -179,7 +179,7 @@ export const firebaseConfig = {
     GenerarqrPage,
     Generarqr_2Page,
     CuponesPage,
-    HistorialDetallePage,
+    // HistorialDetallePage,
     PropinaPage,
     QrGeneradoPage,
     TipoLugarPage,
